@@ -69,17 +69,6 @@ namespace EmptyProject.Core
         }
 
         /// <summary>
-        /// Loads game content, such as textures and particle systems.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-            playerTexture = Content.Load<Texture2D>("Content/Player/zero");
-        }
-
-        private Texture2D playerTexture = null;
-
-        /// <summary>
         /// Updates the game's logic, called once per frame.
         /// </summary>
         /// <param name="gameTime">
@@ -105,16 +94,26 @@ namespace EmptyProject.Core
         /// </param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Aqua);
+            GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
 
-            SpriteBatch sb = new SpriteBatch(GraphicsDevice);
             sb.Begin();
-            sb.Draw(playerTexture, new Rectangle();
+            sb.Draw(playerTexture, new Vector2(100, 100), new Rectangle(194, 6, 34, 39),
+                Color.White, 0, new Vector2(), 4, SpriteEffects.None, 1);
             sb.End();
         }
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+            playerTexture = Content.Load<Texture2D>("Player/zerobase");
+            sb = new SpriteBatch(GraphicsDevice);
+        }
+
+        private SpriteBatch sb = null;
+        private Texture2D playerTexture = null;
     }
 }
