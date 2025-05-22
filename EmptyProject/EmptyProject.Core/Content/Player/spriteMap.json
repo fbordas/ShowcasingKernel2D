@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "zerobase_000.png",
+    "SourceRectangle": {
+      "Location": {
+        "IsEmpty": false,
+        "X": 194,
+        "Y": 4
+      },
+      "Size": {
+        "IsEmpty": false,
+        "Width": 34,
+        "Height": 78
+      },
+      "X": 194,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78,
+      "Left": 194,
+      "Top": 4,
+      "Right": 228,
+      "Bottom": 82,
+      "IsEmpty": false
+    }
+  }
+]
