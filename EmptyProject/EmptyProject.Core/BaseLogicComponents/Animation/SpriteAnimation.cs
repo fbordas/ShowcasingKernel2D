@@ -9,7 +9,7 @@ namespace EmptyProject.Core.BaseLogicComponents.Animation
     internal class SpriteAnimation
     {
         public string Name { get; set; }
-        public List<AnimationFrames> Frames;
+        public List<AnimationFrame> Frames;
         public bool Loop { get; set; }
         public Helpers.AnimationTypes Tags { get; set; }
     }

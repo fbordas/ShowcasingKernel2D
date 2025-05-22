@@ -1,26 +1,1172 @@
 [
   {
-    "Name": "zerobase_000.png",
-    "SourceRectangle": {
-      "Location": {
-        "IsEmpty": false,
-        "X": 194,
-        "Y": 4
-      },
-      "Size": {
-        "IsEmpty": false,
-        "Width": 34,
-        "Height": 78
-      },
+    "Name": "idle01",
+    "Frame": {
       "X": 194,
       "Y": 4,
       "Width": 34,
-      "Height": 78,
-      "Left": 194,
-      "Top": 4,
-      "Right": 228,
-      "Bottom": 82,
-      "IsEmpty": false
+      "Height": 78
+    }
+  },
+  {
+    "Name": "idle02",
+    "Frame": {
+      "X": 237,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "idle03",
+    "Frame": {
+      "X": 282,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "idle04",
+    "Frame": {
+      "X": 328,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "idle05",
+    "Frame": {
+      "X": 371,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "idle06",
+    "Frame": {
+      "X": 413,
+      "Y": 4,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_007.png",
+    "Frame": {
+      "X": 98,
+      "Y": 52,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_008.png",
+    "Frame": {
+      "X": 138,
+      "Y": 52,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_009.png",
+    "Frame": {
+      "X": 178,
+      "Y": 52,
+      "Width": 37,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_010.png",
+    "Frame": {
+      "X": 222,
+      "Y": 52,
+      "Width": 39,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_011.png",
+    "Frame": {
+      "X": 269,
+      "Y": 52,
+      "Width": 32,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_012.png",
+    "Frame": {
+      "X": 310,
+      "Y": 52,
+      "Width": 24,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_013.png",
+    "Frame": {
+      "X": 344,
+      "Y": 52,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_014.png",
+    "Frame": {
+      "X": 380,
+      "Y": 52,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_015.png",
+    "Frame": {
+      "X": 423,
+      "Y": 52,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_016.png",
+    "Frame": {
+      "X": 467,
+      "Y": 52,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_017.png",
+    "Frame": {
+      "X": 515,
+      "Y": 52,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_018.png",
+    "Frame": {
+      "X": 87,
+      "Y": 111,
+      "Width": 35,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_019.png",
+    "Frame": {
+      "X": 128,
+      "Y": 111,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_020.png",
+    "Frame": {
+      "X": 163,
+      "Y": 111,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_021.png",
+    "Frame": {
+      "X": 196,
+      "Y": 111,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_022.png",
+    "Frame": {
+      "X": 233,
+      "Y": 111,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_023.png",
+    "Frame": {
+      "X": 269,
+      "Y": 111,
+      "Width": 36,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_024.png",
+    "Frame": {
+      "X": 316,
+      "Y": 111,
+      "Width": 33,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_025.png",
+    "Frame": {
+      "X": 357,
+      "Y": 111,
+      "Width": 33,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_026.png",
+    "Frame": {
+      "X": 399,
+      "Y": 111,
+      "Width": 33,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_027.png",
+    "Frame": {
+      "X": 438,
+      "Y": 111,
+      "Width": 33,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_028.png",
+    "Frame": {
+      "X": 477,
+      "Y": 111,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_029.png",
+    "Frame": {
+      "X": 517,
+      "Y": 111,
+      "Width": 37,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_030.png",
+    "Frame": {
+      "X": 38,
+      "Y": 162,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_031.png",
+    "Frame": {
+      "X": 71,
+      "Y": 162,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_032.png",
+    "Frame": {
+      "X": 110,
+      "Y": 162,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_033.png",
+    "Frame": {
+      "X": 144,
+      "Y": 162,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_034.png",
+    "Frame": {
+      "X": 178,
+      "Y": 162,
+      "Width": 23,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_035.png",
+    "Frame": {
+      "X": 205,
+      "Y": 162,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_036.png",
+    "Frame": {
+      "X": 233,
+      "Y": 162,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_037.png",
+    "Frame": {
+      "X": 260,
+      "Y": 162,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_038.png",
+    "Frame": {
+      "X": 294,
+      "Y": 162,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_039.png",
+    "Frame": {
+      "X": 332,
+      "Y": 162,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_040.png",
+    "Frame": {
+      "X": 385,
+      "Y": 162,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_041.png",
+    "Frame": {
+      "X": 439,
+      "Y": 162,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_042.png",
+    "Frame": {
+      "X": 488,
+      "Y": 162,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_043.png",
+    "Frame": {
+      "X": 537,
+      "Y": 162,
+      "Width": 33,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_044.png",
+    "Frame": {
+      "X": 582,
+      "Y": 162,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_045.png",
+    "Frame": {
+      "X": 36,
+      "Y": 218,
+      "Width": 35,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_046.png",
+    "Frame": {
+      "X": 81,
+      "Y": 218,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_047.png",
+    "Frame": {
+      "X": 120,
+      "Y": 218,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_048.png",
+    "Frame": {
+      "X": 166,
+      "Y": 218,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_049.png",
+    "Frame": {
+      "X": 205,
+      "Y": 218,
+      "Width": 32,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_050.png",
+    "Frame": {
+      "X": 246,
+      "Y": 218,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_051.png",
+    "Frame": {
+      "X": 287,
+      "Y": 218,
+      "Width": 26,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_052.png",
+    "Frame": {
+      "X": 320,
+      "Y": 218,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_053.png",
+    "Frame": {
+      "X": 358,
+      "Y": 218,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_054.png",
+    "Frame": {
+      "X": 392,
+      "Y": 218,
+      "Width": 32,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_055.png",
+    "Frame": {
+      "X": 434,
+      "Y": 218,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_056.png",
+    "Frame": {
+      "X": 469,
+      "Y": 218,
+      "Width": 39,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_057.png",
+    "Frame": {
+      "X": 518,
+      "Y": 218,
+      "Width": 39,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_058.png",
+    "Frame": {
+      "X": 568,
+      "Y": 218,
+      "Width": 39,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_059.png",
+    "Frame": {
+      "X": 12,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_060.png",
+    "Frame": {
+      "X": 44,
+      "Y": 301,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_061.png",
+    "Frame": {
+      "X": 76,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_062.png",
+    "Frame": {
+      "X": 115,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_063.png",
+    "Frame": {
+      "X": 152,
+      "Y": 301,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_064.png",
+    "Frame": {
+      "X": 182,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_065.png",
+    "Frame": {
+      "X": 214,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_066.png",
+    "Frame": {
+      "X": 246,
+      "Y": 301,
+      "Width": 24,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_067.png",
+    "Frame": {
+      "X": 279,
+      "Y": 301,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_068.png",
+    "Frame": {
+      "X": 308,
+      "Y": 301,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_069.png",
+    "Frame": {
+      "X": 352,
+      "Y": 301,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_070.png",
+    "Frame": {
+      "X": 395,
+      "Y": 301,
+      "Width": 38,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_071.png",
+    "Frame": {
+      "X": 439,
+      "Y": 301,
+      "Width": 35,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_072.png",
+    "Frame": {
+      "X": 484,
+      "Y": 301,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_073.png",
+    "Frame": {
+      "X": 526,
+      "Y": 301,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_074.png",
+    "Frame": {
+      "X": 566,
+      "Y": 301,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_075.png",
+    "Frame": {
+      "X": 605,
+      "Y": 301,
+      "Width": 31,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_076.png",
+    "Frame": {
+      "X": 94,
+      "Y": 377,
+      "Width": 36,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_077.png",
+    "Frame": {
+      "X": 143,
+      "Y": 377,
+      "Width": 36,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_078.png",
+    "Frame": {
+      "X": 191,
+      "Y": 377,
+      "Width": 35,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_079.png",
+    "Frame": {
+      "X": 241,
+      "Y": 377,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_080.png",
+    "Frame": {
+      "X": 295,
+      "Y": 377,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_081.png",
+    "Frame": {
+      "X": 336,
+      "Y": 377,
+      "Width": 43,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_082.png",
+    "Frame": {
+      "X": 384,
+      "Y": 377,
+      "Width": 44,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_083.png",
+    "Frame": {
+      "X": 432,
+      "Y": 377,
+      "Width": 43,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_084.png",
+    "Frame": {
+      "X": 481,
+      "Y": 377,
+      "Width": 43,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_085.png",
+    "Frame": {
+      "X": 555,
+      "Y": 377,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_086.png",
+    "Frame": {
+      "X": 6,
+      "Y": 448,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_087.png",
+    "Frame": {
+      "X": 46,
+      "Y": 448,
+      "Width": 24,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_088.png",
+    "Frame": {
+      "X": 77,
+      "Y": 448,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_089.png",
+    "Frame": {
+      "X": 109,
+      "Y": 448,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_090.png",
+    "Frame": {
+      "X": 146,
+      "Y": 448,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_091.png",
+    "Frame": {
+      "X": 178,
+      "Y": 448,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_092.png",
+    "Frame": {
+      "X": 221,
+      "Y": 448,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_093.png",
+    "Frame": {
+      "X": 255,
+      "Y": 448,
+      "Width": 30,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_094.png",
+    "Frame": {
+      "X": 293,
+      "Y": 448,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_095.png",
+    "Frame": {
+      "X": 323,
+      "Y": 448,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_096.png",
+    "Frame": {
+      "X": 354,
+      "Y": 448,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_097.png",
+    "Frame": {
+      "X": 390,
+      "Y": 448,
+      "Width": 23,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_098.png",
+    "Frame": {
+      "X": 424,
+      "Y": 448,
+      "Width": 16,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_099.png",
+    "Frame": {
+      "X": 458,
+      "Y": 448,
+      "Width": 8,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_100.png",
+    "Frame": {
+      "X": 470,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_101.png",
+    "Frame": {
+      "X": 497,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_102.png",
+    "Frame": {
+      "X": 505,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_103.png",
+    "Frame": {
+      "X": 530,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_104.png",
+    "Frame": {
+      "X": 538,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_105.png",
+    "Frame": {
+      "X": 570,
+      "Y": 448,
+      "Width": 4,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_106.png",
+    "Frame": {
+      "X": 24,
+      "Y": 512,
+      "Width": 50,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_107.png",
+    "Frame": {
+      "X": 79,
+      "Y": 512,
+      "Width": 50,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_108.png",
+    "Frame": {
+      "X": 135,
+      "Y": 512,
+      "Width": 50,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_109.png",
+    "Frame": {
+      "X": 190,
+      "Y": 512,
+      "Width": 48,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_110.png",
+    "Frame": {
+      "X": 244,
+      "Y": 512,
+      "Width": 40,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_111.png",
+    "Frame": {
+      "X": 289,
+      "Y": 512,
+      "Width": 37,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_112.png",
+    "Frame": {
+      "X": 331,
+      "Y": 512,
+      "Width": 29,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_113.png",
+    "Frame": {
+      "X": 367,
+      "Y": 512,
+      "Width": 29,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_114.png",
+    "Frame": {
+      "X": 403,
+      "Y": 512,
+      "Width": 29,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_115.png",
+    "Frame": {
+      "X": 438,
+      "Y": 512,
+      "Width": 34,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_116.png",
+    "Frame": {
+      "X": 478,
+      "Y": 512,
+      "Width": 24,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_117.png",
+    "Frame": {
+      "X": 511,
+      "Y": 512,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_118.png",
+    "Frame": {
+      "X": 540,
+      "Y": 512,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_119.png",
+    "Frame": {
+      "X": 571,
+      "Y": 512,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_120.png",
+    "Frame": {
+      "X": 603,
+      "Y": 512,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_121.png",
+    "Frame": {
+      "X": 213,
+      "Y": 588,
+      "Width": 35,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_122.png",
+    "Frame": {
+      "X": 260,
+      "Y": 588,
+      "Width": 27,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_123.png",
+    "Frame": {
+      "X": 304,
+      "Y": 588,
+      "Width": 29,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_124.png",
+    "Frame": {
+      "X": 351,
+      "Y": 588,
+      "Width": 28,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_125.png",
+    "Frame": {
+      "X": 397,
+      "Y": 588,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_126.png",
+    "Frame": {
+      "X": 245,
+      "Y": 654,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_127.png",
+    "Frame": {
+      "X": 274,
+      "Y": 654,
+      "Width": 25,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_128.png",
+    "Frame": {
+      "X": 313,
+      "Y": 654,
+      "Width": 22,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_129.png",
+    "Frame": {
+      "X": 347,
+      "Y": 654,
+      "Width": 23,
+      "Height": 78
+    }
+  },
+  {
+    "Name": "zerobase_130.png",
+    "Frame": {
+      "X": 381,
+      "Y": 654,
+      "Width": 22,
+      "Height": 78
     }
   }
 ]

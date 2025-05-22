@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmptyProject.Core.BaseLogicComponents.Animation
 {
-    internal class AnimationFrames
+    internal class AnimationFrame
     {
         public Rectangle SourceRectangle { get; set; }
         public float Duration { get; set; }

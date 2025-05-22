@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using EmptyProject.Core.BaseLogicComponents;
 using EmptyProject.Core.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,18 +55,7 @@ namespace EmptyProject.Core
         {
             base.Initialize();
 
-            // Load supported languages and set the default language.
-            List<CultureInfo> cultures = LocalizationManager.GetSupportedCultures();
-            var languages = new List<CultureInfo>();
-            for (int i = 0; i < cultures.Count; i++)
-            {
-                languages.Add(cultures[i]);
-            }
-
-            // TODO You should load this from a settings file or similar,
-            // based on what the user or operating system selected.
-            var selectedLanguage = LocalizationManager.DEFAULT_CULTURE_CODE;
-            LocalizationManager.SetCulture(selectedLanguage);
+            //var spritemap = Helpers.GetSpritesFromJson("Player/spriteMap.json");
         }
 
         /// <summary>
@@ -102,7 +92,7 @@ namespace EmptyProject.Core
 
             sb.Begin();
             sb.Draw(playerTexture, new Vector2(100, 100), new Rectangle(194, 6, 34, 39),
-                Color.White, 0, new Vector2(), 4, SpriteEffects.None, 1);
+                Color.White, 0, new Vector2(), 6, SpriteEffects.None, 1);
             sb.End();
         }
 
