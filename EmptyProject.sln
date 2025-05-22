@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyProject.Android", "EmptyProject\EmptyProject.Android\EmptyProject.Android.csproj", "{DA2812AD-5F17-4430-8D19-679A45A08F09}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyProject.iOS", "EmptyProject\EmptyProject.iOS\EmptyProject.iOS.csproj", "{BB286B66-6310-4CA4-9A8E-DEF6DB709574}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyProject.WindowsDX", "EmptyProject\EmptyProject.WindowsDX\EmptyProject.WindowsDX.csproj", "{8D238081-76D8-4081-8777-A920CF0F0C04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteCollectionToMap", "SpriteCollectionToMap\SpriteCollectionToMap.csproj", "{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
