@@ -4,12 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XnaRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace EmptyProject.Core.BaseLogicComponents.Animation
 {
     internal class AnimationFrame
     {
-        public Rectangle SourceRectangle { get; set; }
+        public string Name { get; set; }  
+        public XnaRectangle SourceRectangle { get; set; }
         public float Duration { get; set; }
     }
 }

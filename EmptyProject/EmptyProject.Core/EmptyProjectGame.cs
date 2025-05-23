@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using EmptyProject.Core.BaseLogicComponents;
+using EmptyProject.Core.BaseLogicComponents.Animation;
 using EmptyProject.Core.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,9 +56,8 @@ namespace EmptyProject.Core
         protected override void Initialize()
         {
             base.Initialize();
-
-            //var spritemap = Helpers.GetSpritesFromJson("Player/spriteMap.json");
         }
+
 
         /// <summary>
         /// Updates the game's logic, called once per frame.
@@ -91,19 +92,29 @@ namespace EmptyProject.Core
             base.Draw(gameTime);
 
             sb.Begin();
-            sb.Draw(playerTexture, new Vector2(100, 100), new Rectangle(194, 6, 34, 39),
-                Color.White, 0, new Vector2(), 6, SpriteEffects.None, 1);
+            ap.Draw(sb, playerTexture, new Vector2(100, 100));
             sb.End();
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
-            playerTexture = Content.Load<Texture2D>("Player/zerobase");
             sb = new SpriteBatch(GraphicsDevice);
+            ap = new AnimationPlayer();
+
+            playerTexture = Content.Load<Texture2D>("Player/zerobase");
+
+            var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
+            var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "ZeroIdle",
+                AnimationTypes.Grounded | AnimationTypes.Idle);
+
+            ap.Play(sheet.Animations["idle"]);
         }
 
         private SpriteBatch sb = null;
         private Texture2D playerTexture = null;
+        private AnimationPlayer ap = null;
+
+
     }
 }

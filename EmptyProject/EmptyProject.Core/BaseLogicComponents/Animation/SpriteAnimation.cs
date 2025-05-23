@@ -11,6 +11,6 @@ namespace EmptyProject.Core.BaseLogicComponents.Animation
         public string Name { get; set; }
         public List<AnimationFrame> Frames;
         public bool Loop { get; set; }
-        public Helpers.AnimationTypes Tags { get; set; }
+        public AnimationTypes Tags { get; set; }
     }
 }
