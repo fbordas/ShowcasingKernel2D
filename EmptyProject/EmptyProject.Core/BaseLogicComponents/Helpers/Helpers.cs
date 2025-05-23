@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
 using System.Drawing;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+System.Xml;
 
 #pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace EmptyProject.Core.BaseLogicComponents
@@ -33,7 +37,8 @@ namespace EmptyProject.Core.BaseLogicComponents
             if (!File.Exists(path)) { throw new FileNotFoundException(); }
             try
             {
-                var spriteMap = JsonSerializer.Deserialize<List<SpriteObject>>(File.ReadAllText(path));
+                //var spriteMap = XmlSerializer.Deserialize typeof(List<SpriteObject>)) as List<SpriteObject>;
+                //var spriteMap = 
                 return spriteMap;
             }
             catch (Exception)

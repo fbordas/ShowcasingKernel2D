@@ -55,7 +55,7 @@ namespace EmptyProject.Core
         {
             base.Initialize();
 
-            //var spritemap = Helpers.GetSpritesFromJson("Player/spriteMap.json");
+            var spritemap = Helpers.GetSpritesFromJson(Content.Load<string>("Player/spriteMap.json"));
         }
 
         /// <summary>

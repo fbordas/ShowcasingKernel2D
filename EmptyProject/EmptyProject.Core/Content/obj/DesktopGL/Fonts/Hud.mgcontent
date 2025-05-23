@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/FernandoRafaelBordas/source/repos/EmptyProject/EmptyProject/EmptyProject.Core/Content/Fonts/Hud.spritefont</SourceFile>
-  <SourceTime>2025-05-21T10:43:49.8191296-04:00</SourceTime>
-  <DestFile>C:/Users/FernandoRafaelBordas/source/repos/EmptyProject/EmptyProject/EmptyProject.Core/Content/bin/DesktopGL/Fonts/Hud.xnb</DestFile>
-  <DestTime>2025-05-22T12:35:38.4773737-04:00</DestTime>
+  <SourceFile>C:/Users/fbord/source/repos/TohnoCoding/LearningMonoGame/EmptyProject/EmptyProject.Core/Content/Fonts/Hud.spritefont</SourceFile>
+  <SourceTime>2025-05-21T17:38:09.4120661-04:00</SourceTime>
+  <DestFile>C:/Users/fbord/source/repos/TohnoCoding/LearningMonoGame/EmptyProject/EmptyProject.Core/Content/bin/DesktopGL/Fonts/Hud.xnb</DestFile>
+  <DestTime>2025-05-22T19:07:45.2116782-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2025-04-05T06:10:54-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
