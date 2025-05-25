@@ -1,1302 +1,1302 @@
 [
-  {
-    "Name": "idle01",
-    "Duration": 500,
-    "Frame": {
-      "X": 194,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
+    {
+        "Name": "idle001",
+        "Duration": 1000,
+        "Frame": {
+            "X": 194,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "idle002",
+        "Duration": 166,
+        "Frame": {
+            "X": 237,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "idle003",
+        "Duration": 444,
+        "Frame": {
+            "X": 282,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "idle004",
+        "Duration": 166,
+        "Frame": {
+            "X": 328,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "idle005",
+        "Duration": 166,
+        "Frame": {
+            "X": 371,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "idle006",
+        "Duration": 166,
+        "Frame": {
+            "X": 413,
+            "Y": 4,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "running007",
+        "Duration": 88,
+        "Frame": {
+            "X": 98,
+            "Y": 52,
+            "Width": 30,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run008",
+        "Duration": 88,
+        "Frame": {
+            "X": 138,
+            "Y": 52,
+            "Width": 31,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run009",
+        "Duration": 88,
+        "Frame": {
+            "X": 178,
+            "Y": 52,
+            "Width": 37,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run010",
+        "Duration": 88,
+        "Frame": {
+            "X": 222,
+            "Y": 52,
+            "Width": 39,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run011",
+        "Duration": 88,
+        "Frame": {
+            "X": 269,
+            "Y": 52,
+            "Width": 32,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run012",
+        "Duration": 88,
+        "Frame": {
+            "X": 310,
+            "Y": 52,
+            "Width": 24,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run013",
+        "Duration": 88,
+        "Frame": {
+            "X": 344,
+            "Y": 52,
+            "Width": 28,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run014",
+        "Duration": 88,
+        "Frame": {
+            "X": 380,
+            "Y": 52,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run015",
+        "Duration": 88,
+        "Frame": {
+            "X": 423,
+            "Y": 52,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "run016",
+        "Duration": 88,
+        "Frame": {
+            "X": 467,
+            "Y": 52,
+            "Width": 38,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "zerobase_017",
+        "Duration": 90,
+        "Frame": {
+            "X": 515,
+            "Y": 52,
+            "Width": 34,
+            "Height": 41
+        }
+    },
+    {
+        "Name": "zerobase_018",
+        "Duration": 1,
+        "Frame": {
+            "X": 87,
+            "Y": 111,
+            "Width": 35,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_019",
+        "Duration": 1,
+        "Frame": {
+            "X": 128,
+            "Y": 111,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_020",
+        "Duration": 1,
+        "Frame": {
+            "X": 163,
+            "Y": 111,
+            "Width": 28,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_021",
+        "Duration": 1,
+        "Frame": {
+            "X": 196,
+            "Y": 111,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_022",
+        "Duration": 1,
+        "Frame": {
+            "X": 233,
+            "Y": 111,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_023",
+        "Duration": 1,
+        "Frame": {
+            "X": 269,
+            "Y": 111,
+            "Width": 36,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_024",
+        "Duration": 1,
+        "Frame": {
+            "X": 316,
+            "Y": 111,
+            "Width": 33,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_025",
+        "Duration": 1,
+        "Frame": {
+            "X": 357,
+            "Y": 111,
+            "Width": 33,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_026",
+        "Duration": 1,
+        "Frame": {
+            "X": 399,
+            "Y": 111,
+            "Width": 33,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_027",
+        "Duration": 1,
+        "Frame": {
+            "X": 438,
+            "Y": 111,
+            "Width": 33,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_028",
+        "Duration": 1,
+        "Frame": {
+            "X": 477,
+            "Y": 111,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_029",
+        "Duration": 1,
+        "Frame": {
+            "X": 517,
+            "Y": 111,
+            "Width": 37,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_030",
+        "Duration": 1,
+        "Frame": {
+            "X": 38,
+            "Y": 162,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_031",
+        "Duration": 1,
+        "Frame": {
+            "X": 71,
+            "Y": 162,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_032",
+        "Duration": 1,
+        "Frame": {
+            "X": 110,
+            "Y": 162,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_033",
+        "Duration": 1,
+        "Frame": {
+            "X": 144,
+            "Y": 162,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_034",
+        "Duration": 1,
+        "Frame": {
+            "X": 178,
+            "Y": 162,
+            "Width": 23,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_035",
+        "Duration": 1,
+        "Frame": {
+            "X": 205,
+            "Y": 162,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_036",
+        "Duration": 1,
+        "Frame": {
+            "X": 233,
+            "Y": 162,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_037",
+        "Duration": 1,
+        "Frame": {
+            "X": 260,
+            "Y": 162,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_038",
+        "Duration": 1,
+        "Frame": {
+            "X": 294,
+            "Y": 162,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_039",
+        "Duration": 1,
+        "Frame": {
+            "X": 332,
+            "Y": 162,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_040",
+        "Duration": 1,
+        "Frame": {
+            "X": 385,
+            "Y": 162,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_041",
+        "Duration": 1,
+        "Frame": {
+            "X": 439,
+            "Y": 162,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_042",
+        "Duration": 1,
+        "Frame": {
+            "X": 488,
+            "Y": 162,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_043",
+        "Duration": 1,
+        "Frame": {
+            "X": 537,
+            "Y": 162,
+            "Width": 33,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_044",
+        "Duration": 1,
+        "Frame": {
+            "X": 582,
+            "Y": 162,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_045",
+        "Duration": 1,
+        "Frame": {
+            "X": 36,
+            "Y": 218,
+            "Width": 35,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_046",
+        "Duration": 1,
+        "Frame": {
+            "X": 81,
+            "Y": 218,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_047",
+        "Duration": 1,
+        "Frame": {
+            "X": 120,
+            "Y": 218,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_048",
+        "Duration": 1,
+        "Frame": {
+            "X": 166,
+            "Y": 218,
+            "Width": 28,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_049",
+        "Duration": 1,
+        "Frame": {
+            "X": 205,
+            "Y": 218,
+            "Width": 32,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_050",
+        "Duration": 1,
+        "Frame": {
+            "X": 246,
+            "Y": 218,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_051",
+        "Duration": 1,
+        "Frame": {
+            "X": 287,
+            "Y": 218,
+            "Width": 26,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_052",
+        "Duration": 1,
+        "Frame": {
+            "X": 320,
+            "Y": 218,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_053",
+        "Duration": 1,
+        "Frame": {
+            "X": 358,
+            "Y": 218,
+            "Width": 28,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_054",
+        "Duration": 1,
+        "Frame": {
+            "X": 392,
+            "Y": 218,
+            "Width": 32,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_055",
+        "Duration": 1,
+        "Frame": {
+            "X": 434,
+            "Y": 218,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_056",
+        "Duration": 1,
+        "Frame": {
+            "X": 469,
+            "Y": 218,
+            "Width": 39,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_057",
+        "Duration": 1,
+        "Frame": {
+            "X": 518,
+            "Y": 218,
+            "Width": 39,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_058",
+        "Duration": 1,
+        "Frame": {
+            "X": 568,
+            "Y": 218,
+            "Width": 39,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_059",
+        "Duration": 1,
+        "Frame": {
+            "X": 12,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_060",
+        "Duration": 1,
+        "Frame": {
+            "X": 44,
+            "Y": 301,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_061",
+        "Duration": 1,
+        "Frame": {
+            "X": 76,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_062",
+        "Duration": 1,
+        "Frame": {
+            "X": 115,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_063",
+        "Duration": 1,
+        "Frame": {
+            "X": 152,
+            "Y": 301,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_064",
+        "Duration": 1,
+        "Frame": {
+            "X": 182,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_065",
+        "Duration": 1,
+        "Frame": {
+            "X": 214,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_066",
+        "Duration": 1,
+        "Frame": {
+            "X": 246,
+            "Y": 301,
+            "Width": 24,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_067",
+        "Duration": 1,
+        "Frame": {
+            "X": 279,
+            "Y": 301,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_068",
+        "Duration": 1,
+        "Frame": {
+            "X": 308,
+            "Y": 301,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_069",
+        "Duration": 1,
+        "Frame": {
+            "X": 352,
+            "Y": 301,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_070",
+        "Duration": 1,
+        "Frame": {
+            "X": 395,
+            "Y": 301,
+            "Width": 38,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_071",
+        "Duration": 1,
+        "Frame": {
+            "X": 439,
+            "Y": 301,
+            "Width": 35,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_072",
+        "Duration": 1,
+        "Frame": {
+            "X": 484,
+            "Y": 301,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_073",
+        "Duration": 1,
+        "Frame": {
+            "X": 526,
+            "Y": 301,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_074",
+        "Duration": 1,
+        "Frame": {
+            "X": 566,
+            "Y": 301,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_075",
+        "Duration": 1,
+        "Frame": {
+            "X": 605,
+            "Y": 301,
+            "Width": 31,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_076",
+        "Duration": 1,
+        "Frame": {
+            "X": 94,
+            "Y": 377,
+            "Width": 36,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_077",
+        "Duration": 1,
+        "Frame": {
+            "X": 143,
+            "Y": 377,
+            "Width": 36,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_078",
+        "Duration": 1,
+        "Frame": {
+            "X": 191,
+            "Y": 377,
+            "Width": 35,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_079",
+        "Duration": 1,
+        "Frame": {
+            "X": 241,
+            "Y": 377,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_080",
+        "Duration": 1,
+        "Frame": {
+            "X": 295,
+            "Y": 377,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_081",
+        "Duration": 1,
+        "Frame": {
+            "X": 336,
+            "Y": 377,
+            "Width": 43,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_082",
+        "Duration": 1,
+        "Frame": {
+            "X": 384,
+            "Y": 377,
+            "Width": 44,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_083",
+        "Duration": 1,
+        "Frame": {
+            "X": 432,
+            "Y": 377,
+            "Width": 43,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_084",
+        "Duration": 1,
+        "Frame": {
+            "X": 481,
+            "Y": 377,
+            "Width": 43,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_085",
+        "Duration": 1,
+        "Frame": {
+            "X": 555,
+            "Y": 377,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_086",
+        "Duration": 1,
+        "Frame": {
+            "X": 6,
+            "Y": 448,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_087",
+        "Duration": 1,
+        "Frame": {
+            "X": 46,
+            "Y": 448,
+            "Width": 24,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_088",
+        "Duration": 1,
+        "Frame": {
+            "X": 77,
+            "Y": 448,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_089",
+        "Duration": 1,
+        "Frame": {
+            "X": 109,
+            "Y": 448,
+            "Width": 28,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_090",
+        "Duration": 1,
+        "Frame": {
+            "X": 146,
+            "Y": 448,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_091",
+        "Duration": 1,
+        "Frame": {
+            "X": 178,
+            "Y": 448,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_092",
+        "Duration": 1,
+        "Frame": {
+            "X": 221,
+            "Y": 448,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_093",
+        "Duration": 1,
+        "Frame": {
+            "X": 255,
+            "Y": 448,
+            "Width": 30,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_094",
+        "Duration": 1,
+        "Frame": {
+            "X": 293,
+            "Y": 448,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_095",
+        "Duration": 1,
+        "Frame": {
+            "X": 323,
+            "Y": 448,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_096",
+        "Duration": 1,
+        "Frame": {
+            "X": 354,
+            "Y": 448,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_097",
+        "Duration": 1,
+        "Frame": {
+            "X": 390,
+            "Y": 448,
+            "Width": 23,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_098",
+        "Duration": 1,
+        "Frame": {
+            "X": 424,
+            "Y": 448,
+            "Width": 16,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_099",
+        "Duration": 1,
+        "Frame": {
+            "X": 458,
+            "Y": 448,
+            "Width": 8,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_100",
+        "Duration": 1,
+        "Frame": {
+            "X": 470,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_101",
+        "Duration": 1,
+        "Frame": {
+            "X": 497,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_102",
+        "Duration": 1,
+        "Frame": {
+            "X": 505,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_103",
+        "Duration": 1,
+        "Frame": {
+            "X": 530,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_104",
+        "Duration": 1,
+        "Frame": {
+            "X": 538,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_105",
+        "Duration": 1,
+        "Frame": {
+            "X": 570,
+            "Y": 448,
+            "Width": 4,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_106",
+        "Duration": 1,
+        "Frame": {
+            "X": 24,
+            "Y": 512,
+            "Width": 50,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_107",
+        "Duration": 1,
+        "Frame": {
+            "X": 79,
+            "Y": 512,
+            "Width": 50,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_108",
+        "Duration": 1,
+        "Frame": {
+            "X": 135,
+            "Y": 512,
+            "Width": 50,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_109",
+        "Duration": 1,
+        "Frame": {
+            "X": 190,
+            "Y": 512,
+            "Width": 48,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_110",
+        "Duration": 1,
+        "Frame": {
+            "X": 244,
+            "Y": 512,
+            "Width": 40,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_111",
+        "Duration": 1,
+        "Frame": {
+            "X": 289,
+            "Y": 512,
+            "Width": 37,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_112",
+        "Duration": 1,
+        "Frame": {
+            "X": 331,
+            "Y": 512,
+            "Width": 29,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_113",
+        "Duration": 1,
+        "Frame": {
+            "X": 367,
+            "Y": 512,
+            "Width": 29,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_114",
+        "Duration": 1,
+        "Frame": {
+            "X": 403,
+            "Y": 512,
+            "Width": 29,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_115",
+        "Duration": 1,
+        "Frame": {
+            "X": 438,
+            "Y": 512,
+            "Width": 34,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_116",
+        "Duration": 1,
+        "Frame": {
+            "X": 478,
+            "Y": 512,
+            "Width": 24,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_117",
+        "Duration": 1,
+        "Frame": {
+            "X": 511,
+            "Y": 512,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_118",
+        "Duration": 1,
+        "Frame": {
+            "X": 540,
+            "Y": 512,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_119",
+        "Duration": 1,
+        "Frame": {
+            "X": 571,
+            "Y": 512,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_120",
+        "Duration": 1,
+        "Frame": {
+            "X": 603,
+            "Y": 512,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_121",
+        "Duration": 1,
+        "Frame": {
+            "X": 213,
+            "Y": 588,
+            "Width": 35,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_122",
+        "Duration": 1,
+        "Frame": {
+            "X": 260,
+            "Y": 588,
+            "Width": 27,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_123",
+        "Duration": 1,
+        "Frame": {
+            "X": 304,
+            "Y": 588,
+            "Width": 29,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_124",
+        "Duration": 1,
+        "Frame": {
+            "X": 351,
+            "Y": 588,
+            "Width": 28,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_125",
+        "Duration": 1,
+        "Frame": {
+            "X": 397,
+            "Y": 588,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_126",
+        "Duration": 1,
+        "Frame": {
+            "X": 245,
+            "Y": 654,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_127",
+        "Duration": 1,
+        "Frame": {
+            "X": 274,
+            "Y": 654,
+            "Width": 25,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_128",
+        "Duration": 1,
+        "Frame": {
+            "X": 313,
+            "Y": 654,
+            "Width": 22,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_129",
+        "Duration": 1,
+        "Frame": {
+            "X": 347,
+            "Y": 654,
+            "Width": 23,
+            "Height": 78
+        }
+    },
+    {
+        "Name": "zerobase_130",
+        "Duration": 1,
+        "Frame": {
+            "X": 381,
+            "Y": 654,
+            "Width": 22,
+            "Height": 78
+        }
     }
-  },
-  {
-    "Name": "idle02",
-    "Duration": 500,
-    "Frame": {
-      "X": 237,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "idle03",
-    "Duration": 500,
-    "Frame": {
-      "X": 282,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "idle04",
-    "Duration": 500,
-    "Frame": {
-      "X": 328,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "idle05",
-    "Duration": 500,
-    "Frame": {
-      "X": 371,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "idle06",
-    "Duration": 500,
-    "Frame": {
-      "X": 413,
-      "Y": 4,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_007.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 98,
-      "Y": 52,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_008.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 138,
-      "Y": 52,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_009.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 178,
-      "Y": 52,
-      "Width": 37,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_010.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 222,
-      "Y": 52,
-      "Width": 39,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_011.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 269,
-      "Y": 52,
-      "Width": 32,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_012.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 310,
-      "Y": 52,
-      "Width": 24,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_013.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 344,
-      "Y": 52,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_014.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 380,
-      "Y": 52,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_015.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 423,
-      "Y": 52,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_016.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 467,
-      "Y": 52,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_017.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 515,
-      "Y": 52,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_018.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 87,
-      "Y": 111,
-      "Width": 35,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_019.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 128,
-      "Y": 111,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_020.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 163,
-      "Y": 111,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_021.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 196,
-      "Y": 111,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_022.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 233,
-      "Y": 111,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_023.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 269,
-      "Y": 111,
-      "Width": 36,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_024.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 316,
-      "Y": 111,
-      "Width": 33,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_025.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 357,
-      "Y": 111,
-      "Width": 33,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_026.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 399,
-      "Y": 111,
-      "Width": 33,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_027.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 438,
-      "Y": 111,
-      "Width": 33,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_028.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 477,
-      "Y": 111,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_029.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 517,
-      "Y": 111,
-      "Width": 37,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_030.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 38,
-      "Y": 162,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_031.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 71,
-      "Y": 162,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_032.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 110,
-      "Y": 162,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_033.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 144,
-      "Y": 162,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_034.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 178,
-      "Y": 162,
-      "Width": 23,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_035.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 205,
-      "Y": 162,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_036.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 233,
-      "Y": 162,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_037.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 260,
-      "Y": 162,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_038.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 294,
-      "Y": 162,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_039.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 332,
-      "Y": 162,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_040.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 385,
-      "Y": 162,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_041.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 439,
-      "Y": 162,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_042.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 488,
-      "Y": 162,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_043.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 537,
-      "Y": 162,
-      "Width": 33,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_044.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 582,
-      "Y": 162,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_045.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 36,
-      "Y": 218,
-      "Width": 35,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_046.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 81,
-      "Y": 218,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_047.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 120,
-      "Y": 218,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_048.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 166,
-      "Y": 218,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_049.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 205,
-      "Y": 218,
-      "Width": 32,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_050.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 246,
-      "Y": 218,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_051.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 287,
-      "Y": 218,
-      "Width": 26,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_052.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 320,
-      "Y": 218,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_053.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 358,
-      "Y": 218,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_054.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 392,
-      "Y": 218,
-      "Width": 32,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_055.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 434,
-      "Y": 218,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_056.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 469,
-      "Y": 218,
-      "Width": 39,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_057.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 518,
-      "Y": 218,
-      "Width": 39,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_058.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 568,
-      "Y": 218,
-      "Width": 39,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_059.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 12,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_060.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 44,
-      "Y": 301,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_061.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 76,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_062.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 115,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_063.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 152,
-      "Y": 301,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_064.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 182,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_065.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 214,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_066.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 246,
-      "Y": 301,
-      "Width": 24,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_067.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 279,
-      "Y": 301,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_068.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 308,
-      "Y": 301,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_069.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 352,
-      "Y": 301,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_070.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 395,
-      "Y": 301,
-      "Width": 38,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_071.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 439,
-      "Y": 301,
-      "Width": 35,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_072.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 484,
-      "Y": 301,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_073.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 526,
-      "Y": 301,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_074.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 566,
-      "Y": 301,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_075.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 605,
-      "Y": 301,
-      "Width": 31,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_076.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 94,
-      "Y": 377,
-      "Width": 36,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_077.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 143,
-      "Y": 377,
-      "Width": 36,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_078.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 191,
-      "Y": 377,
-      "Width": 35,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_079.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 241,
-      "Y": 377,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_080.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 295,
-      "Y": 377,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_081.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 336,
-      "Y": 377,
-      "Width": 43,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_082.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 384,
-      "Y": 377,
-      "Width": 44,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_083.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 432,
-      "Y": 377,
-      "Width": 43,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_084.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 481,
-      "Y": 377,
-      "Width": 43,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_085.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 555,
-      "Y": 377,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_086.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 6,
-      "Y": 448,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_087.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 46,
-      "Y": 448,
-      "Width": 24,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_088.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 77,
-      "Y": 448,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_089.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 109,
-      "Y": 448,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_090.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 146,
-      "Y": 448,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_091.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 178,
-      "Y": 448,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_092.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 221,
-      "Y": 448,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_093.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 255,
-      "Y": 448,
-      "Width": 30,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_094.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 293,
-      "Y": 448,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_095.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 323,
-      "Y": 448,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_096.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 354,
-      "Y": 448,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_097.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 390,
-      "Y": 448,
-      "Width": 23,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_098.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 424,
-      "Y": 448,
-      "Width": 16,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_099.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 458,
-      "Y": 448,
-      "Width": 8,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_100.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 470,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_101.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 497,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_102.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 505,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_103.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 530,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_104.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 538,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_105.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 570,
-      "Y": 448,
-      "Width": 4,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_106.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 24,
-      "Y": 512,
-      "Width": 50,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_107.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 79,
-      "Y": 512,
-      "Width": 50,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_108.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 135,
-      "Y": 512,
-      "Width": 50,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_109.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 190,
-      "Y": 512,
-      "Width": 48,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_110.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 244,
-      "Y": 512,
-      "Width": 40,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_111.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 289,
-      "Y": 512,
-      "Width": 37,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_112.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 331,
-      "Y": 512,
-      "Width": 29,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_113.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 367,
-      "Y": 512,
-      "Width": 29,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_114.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 403,
-      "Y": 512,
-      "Width": 29,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_115.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 438,
-      "Y": 512,
-      "Width": 34,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_116.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 478,
-      "Y": 512,
-      "Width": 24,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_117.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 511,
-      "Y": 512,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_118.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 540,
-      "Y": 512,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_119.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 571,
-      "Y": 512,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_120.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 603,
-      "Y": 512,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_121.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 213,
-      "Y": 588,
-      "Width": 35,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_122.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 260,
-      "Y": 588,
-      "Width": 27,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_123.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 304,
-      "Y": 588,
-      "Width": 29,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_124.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 351,
-      "Y": 588,
-      "Width": 28,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_125.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 397,
-      "Y": 588,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_126.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 245,
-      "Y": 654,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_127.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 274,
-      "Y": 654,
-      "Width": 25,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_128.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 313,
-      "Y": 654,
-      "Width": 22,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_129.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 347,
-      "Y": 654,
-      "Width": 23,
-      "Height": 78
-    }
-  },
-  {
-    "Name": "zerobase_130.png",
-    "Duration": 500,
-    "Frame": {
-      "X": 381,
-      "Y": 654,
-      "Width": 22,
-      "Height": 78
-    }
-  }
 ]

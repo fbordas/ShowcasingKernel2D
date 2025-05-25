@@ -12,14 +12,6 @@
         },
         "runtime": {
           "EmptyProject.Core.dll": {}
-        },
-        "resources": {
-          "es-ES/EmptyProject.Core.resources.dll": {
-            "locale": "es-ES"
-          },
-          "fr-FR/EmptyProject.Core.resources.dll": {
-            "locale": "fr-FR"
-          }
         }
       },
       "MonoGame.Framework.DesktopGL/3.8.3": {

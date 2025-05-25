@@ -30,7 +30,7 @@ namespace EmptyProject.Core.BaseLogicComponents
 
         internal static Spritesheet TranslateIntoDomainModel(List<SpriteObject> so, Texture2D playerTexture, string sheetName, AnimationTypes aniTypes)
         {
-            var grouped = so.GroupBy(s => s.Name[..^3])
+            var grouped = so.GroupBy(s => StripTrailingDigits(s.Name))
                 .ToDictionary(
                     g => g.Key,
                     g => g.Select(s => new AnimationFrame
@@ -60,13 +60,23 @@ namespace EmptyProject.Core.BaseLogicComponents
             }
             return sheet;
         }
+
+        private static string StripTrailingDigits(string name)
+        {
+            for (int i = name.Length - 1; i >= 0; i--)
+            {
+                if (!char.IsDigit(name[i]))
+                    return name[..(i + 1)];
+            }
+            return name;
+        }
     }
 
-    internal record SpriteObject
+    internal class SpriteObject
     {
-        public string Name { get; private set; }
-        public SpriteFrame Frame { get; private set; }
-        public int Duration { get; private set; }
+        public string Name { get; set; }
+        public SpriteFrame Frame { get; set; }
+        public int Duration { get; set; }
 
         public SpriteObject(string name, Rectangle sourceArea, int duration)
         {
@@ -74,16 +84,20 @@ namespace EmptyProject.Core.BaseLogicComponents
             Duration = duration;
             Frame = new SpriteFrame(sourceArea.X, sourceArea.Y, sourceArea.Width, sourceArea.Height);
         }
+
+        public SpriteObject() { }
     }
 
     internal class SpriteFrame
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public SpriteFrame(int x, int y, int width, int height)
         { X = x; Y = y; Width = width; Height = height; }
+
+        public SpriteFrame() { }
     }
 }

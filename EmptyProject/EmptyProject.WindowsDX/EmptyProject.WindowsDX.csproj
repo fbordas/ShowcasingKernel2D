@@ -19,6 +19,11 @@
     <DefineConstants>$(DefineConstants);DIRECTX</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\EmptyProject.Core\Content\Player\spriteMap.json" Link="spriteMap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <MonoGameContentReference Include="..\EmptyProject.Core\Content\EmptyProject.mgcb">
       <Link>Content\EmptyProject.mgcb</Link>
     </MonoGameContentReference>

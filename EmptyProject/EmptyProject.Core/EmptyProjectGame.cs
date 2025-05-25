@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using EmptyProject.Core.BaseLogicComponents;
 using EmptyProject.Core.BaseLogicComponents.Animation;
-using EmptyProject.Core.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -73,7 +72,7 @@ namespace EmptyProject.Core
                 Exit();
 
             // TODO: Add your update logic here
-
+            ap.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -92,7 +91,7 @@ namespace EmptyProject.Core
             base.Draw(gameTime);
 
             sb.Begin();
-            ap.Draw(sb, playerTexture, new Vector2(100, 100));
+            ap.Draw(sb, playerTexture, new Vector2(300, 300));
             sb.End();
         }
 
@@ -108,7 +107,7 @@ namespace EmptyProject.Core
             var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "ZeroIdle",
                 AnimationTypes.Grounded | AnimationTypes.Idle);
 
-            ap.Play(sheet.Animations["idle"]);
+            ap.Play(sheet.Animations["run"]);
         }
 
         private SpriteBatch sb = null;
