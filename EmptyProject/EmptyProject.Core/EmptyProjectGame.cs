@@ -107,7 +107,7 @@ namespace EmptyProject.Core
             var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "ZeroIdle",
                 AnimationTypes.Grounded | AnimationTypes.Idle);
 
-            ap.Play(sheet.Animations["run"]);
+            ap.Play(sheet.Animations["idle"]);
         }
 
         private SpriteBatch sb = null;
