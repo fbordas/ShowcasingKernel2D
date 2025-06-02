@@ -73,6 +73,8 @@ namespace EmptyProject.Core
 
             // TODO: Add your update logic here
             ap.Update(gameTime);
+            ap2.Update(gameTime);
+            ap3.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -91,7 +93,9 @@ namespace EmptyProject.Core
             base.Draw(gameTime);
 
             sb.Begin();
-            ap.Draw(sb, playerTexture, new Vector2(300, 300));
+            ap.Draw(sb, playerTexture, new Vector2(150, 300));
+            ap2.Draw(sb, playerTexture, new Vector2(400, 300));
+            ap3.Draw(sb, playerTexture, new Vector2(650, 300));
             sb.End();
         }
 
@@ -100,19 +104,25 @@ namespace EmptyProject.Core
             base.LoadContent();
             sb = new SpriteBatch(GraphicsDevice);
             ap = new AnimationPlayer();
+            ap2 = new AnimationPlayer();
+            ap3 = new AnimationPlayer();
 
-            playerTexture = Content.Load<Texture2D>("Player/zerobase");
+            playerTexture = Content.Load<Texture2D>("Player/zero-rows");
 
             var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
-            var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "ZeroIdle",
+            var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero",
                 AnimationTypes.Grounded | AnimationTypes.Idle);
 
             ap.Play(sheet.Animations["idle"]);
+            ap2.Play(sheet.Animations["running"]);
+            ap3.Play(sheet.Animations["jumping"]);
         }
 
         private SpriteBatch sb = null;
         private Texture2D playerTexture = null;
         private AnimationPlayer ap = null;
+        private AnimationPlayer ap2 = null;
+        private AnimationPlayer ap3 = null;
 
 
     }
