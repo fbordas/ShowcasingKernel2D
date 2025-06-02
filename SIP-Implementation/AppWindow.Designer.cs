@@ -1,0 +1,264 @@
+﻿namespace SIP_Implementation
+{
+    partial class AppWindow
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
+            boxOpen = new OpenFileDialog();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            panel1 = new Panel();
+            spriteBox = new PictureBox();
+            lbFound = new Label();
+            listCols = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            bLoad = new Button();
+            tabPage2 = new TabPage();
+            jsonOut = new TextBox();
+            tabPage3 = new TabPage();
+            xmlOut = new TextBox();
+            tabPage4 = new TabPage();
+            label1 = new Label();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spriteBox).BeginInit();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            SuspendLayout();
+            // 
+            // boxOpen
+            // 
+            boxOpen.Filter = "PNG images|*.png|GIF images|*.gif";
+            boxOpen.OkRequiresInteraction = true;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Location = new Point(0, 2);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(937, 696);
+            tabControl1.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(panel1);
+            tabPage1.Controls.Add(lbFound);
+            tabPage1.Controls.Add(listCols);
+            tabPage1.Controls.Add(bLoad);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(929, 668);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Preview";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(spriteBox);
+            panel1.Location = new Point(339, 14);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(567, 638);
+            panel1.TabIndex = 7;
+            // 
+            // spriteBox
+            // 
+            spriteBox.Location = new Point(0, 0);
+            spriteBox.Name = "spriteBox";
+            spriteBox.Size = new Size(205, 176);
+            spriteBox.TabIndex = 7;
+            spriteBox.TabStop = false;
+            // 
+            // lbFound
+            // 
+            lbFound.Location = new Point(23, 47);
+            lbFound.Name = "lbFound";
+            lbFound.Size = new Size(310, 23);
+            lbFound.TabIndex = 6;
+            // 
+            // listCols
+            // 
+            listCols.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            listCols.FullRowSelect = true;
+            listCols.GridLines = true;
+            listCols.Location = new Point(22, 76);
+            listCols.Name = "listCols";
+            listCols.Size = new Size(311, 576);
+            listCols.TabIndex = 4;
+            listCols.UseCompatibleStateImageBehavior = false;
+            listCols.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "X Pos.";
+            columnHeader1.Width = 70;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Y Pos.";
+            columnHeader2.Width = 70;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Width";
+            columnHeader3.Width = 70;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Height";
+            columnHeader4.Width = 70;
+            // 
+            // bLoad
+            // 
+            bLoad.Location = new Point(22, 14);
+            bLoad.Name = "bLoad";
+            bLoad.Size = new Size(311, 23);
+            bLoad.TabIndex = 3;
+            bLoad.Text = "Load image";
+            bLoad.UseVisualStyleBackColor = true;
+            bLoad.Click += bLoad_Click;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(jsonOut);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(929, 668);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "JSON Output";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // jsonOut
+            // 
+            jsonOut.Dock = DockStyle.Fill;
+            jsonOut.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            jsonOut.Location = new Point(3, 3);
+            jsonOut.Multiline = true;
+            jsonOut.Name = "jsonOut";
+            jsonOut.ReadOnly = true;
+            jsonOut.ScrollBars = ScrollBars.Vertical;
+            jsonOut.Size = new Size(923, 662);
+            jsonOut.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(xmlOut);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(929, 668);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "XML Output";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // xmlOut
+            // 
+            xmlOut.Dock = DockStyle.Fill;
+            xmlOut.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            xmlOut.Location = new Point(0, 0);
+            xmlOut.Multiline = true;
+            xmlOut.Name = "xmlOut";
+            xmlOut.ReadOnly = true;
+            xmlOut.ScrollBars = ScrollBars.Vertical;
+            xmlOut.Size = new Size(929, 668);
+            xmlOut.TabIndex = 1;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(label1);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(929, 668);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "About";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(19, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(887, 418);
+            label1.TabIndex = 0;
+            label1.Text = resources.GetString("label1.Text");
+            // 
+            // AppWindow
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            ClientSize = new Size(933, 694);
+            Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            MaximizeBox = false;
+            Name = "AppWindow";
+            SizeGripStyle = SizeGripStyle.Hide;
+            Text = "SIP Implementation Sample";
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)spriteBox).EndInit();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+        private OpenFileDialog boxOpen;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private ListView listCols;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private Button bLoad;
+        private TabPage tabPage2;
+        private TextBox jsonOut;
+        private TabPage tabPage3;
+        private TextBox xmlOut;
+        private Label lbFound;
+        private TabPage tabPage4;
+        private Label label1;
+        private Panel panel1;
+        private PictureBox spriteBox;
+    }
+}
