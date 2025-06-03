@@ -143,6 +143,8 @@
             <param name="regions">The list of sprite regions to serialize.</param>
             <param name="frameName">The name of the frame to use in the JSON output.</param>
             <param name="duration">Optional; the duration for each sprite frame, if applicable.</param>
+            <param name="yTolerance">The variance on the Y axis in pixels to determine whether a sprite 
+            belongs to a group/row/action. Defaults to 3 pixels.</param>
             <returns>A JSON string representing the sprite regions provided.</returns>
         </member>
         <member name="M:SpriteImageParser.Core.SpriteRegionExporter.SerializeToJson(System.Collections.Generic.List{SpriteImageParser.Core.SpriteRegion})">
@@ -159,6 +161,8 @@
             <param name="regions">The list of sprite regions to serialize.</param>
             <param name="frameName">The name of the frame to use in the JSON output.</param>
             <param name="duration">Optional; the duration for each sprite frame, if applicable.</param>
+            <param name="yTolerance">The variance on the Y axis in pixels to determine whether a sprite 
+            belongs to a group/row/action. Defaults to 3 pixels.</param>
             <returns>An XML string representing the sprite regions provided.</returns>
         </member>
         <member name="M:SpriteImageParser.Core.SpriteRegionExporter.SerializeToXml(System.Collections.Generic.List{SpriteImageParser.Core.SpriteRegion})">

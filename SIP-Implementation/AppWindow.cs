@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Threading.Tasks.Sources;
 using SpriteImageParser.Core;
 using Exporter = SpriteImageParser.Core.SpriteRegionExporter;
 
@@ -12,11 +11,18 @@ namespace SIP_Implementation
             InitializeComponent();
         }
 
+        List<SpriteRegion> regions;
 
         private void bLoad_Click(object sender, EventArgs e)
         {
+            if (tbYTolerance.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter a Y Tolerance value.",
+                    "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             boxOpen.InitialDirectory = Assembly.GetEntryAssembly()?.Location;
-            
+
             boxOpen.ShowDialog();
             if (boxOpen.FileName == "") { return; }
 
@@ -45,7 +51,7 @@ namespace SIP_Implementation
             }
 
             // Use SIP to detect sprite regions
-            var regions = Parser.DetectSpritesInImage(pixels);
+            regions = Parser.DetectSpritesInImage(pixels, int.Parse(tbYTolerance.Text.Trim()));
             if (regions.Count == 0)
             {
                 lbFound.Text = "No sprites found in image.";
@@ -53,6 +59,7 @@ namespace SIP_Implementation
             }
             else
             {
+                spriteBox.Invalidate();
                 // If sprites were found, display their information
                 lbFound.Text = $"{regions.Count} sprites found in image.";
                 foreach (var region in regions)
@@ -70,6 +77,17 @@ namespace SIP_Implementation
                 // Serialize sprite regions to JSON and XML
                 jsonOut.Text = Exporter.SerializeToJson(regions);
                 xmlOut.Text = Exporter.SerializeToXml(regions);
+            }
+        }
+
+        private void spriteBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (regions == null || regions.Count == 0) return;
+
+            using var pen = new Pen(Color.Red, 2);
+            foreach (var region in regions)
+            { 
+                e.Graphics.DrawRectangle(pen, region.X, region.Y, region.Width, region.Height);
             }
         }
     }
