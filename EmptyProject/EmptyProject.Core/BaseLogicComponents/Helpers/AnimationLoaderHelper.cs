@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace EmptyProject.Core.BaseLogicComponents
 {
     public static class AnimationLoaderHelper
@@ -28,7 +27,8 @@ namespace EmptyProject.Core.BaseLogicComponents
             catch (Exception) { throw; }
         }
 
-        internal static Spritesheet TranslateIntoDomainModel(List<SpriteObject> so, Texture2D playerTexture, string sheetName, AnimationTypes aniTypes)
+        internal static Spritesheet TranslateIntoDomainModel(List<SpriteObject> so, Texture2D playerTexture,
+            string sheetName, AnimationTypes aniTypes)
         {
             var grouped = so.GroupBy(s => StripTrailingDigits(s.Name))
                 .ToDictionary(

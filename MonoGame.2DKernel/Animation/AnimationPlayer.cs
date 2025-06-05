@@ -6,7 +6,7 @@ namespace MonoGame.Kernel2D.Animation
 {
     internal class AnimationPlayer
     {
-        private SpriteAnimation _currentAnim;
+        private SpriteAnimation? _currentAnim;
         private int _currentAnimIndex;
         private float _elapsedTime;
 
@@ -39,7 +39,7 @@ namespace MonoGame.Kernel2D.Animation
                 {
                     if (_currentAnim.Loop)
                     { _currentAnimIndex = 0; }
-                    else { _currentAnimIndex = _currentAnim.Frames.Count; }
+                    else { _currentAnimIndex = _currentAnim.Frames.Count - 1; }
                 }
             }
         }

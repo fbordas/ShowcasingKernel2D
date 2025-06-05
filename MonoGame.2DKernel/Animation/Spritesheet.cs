@@ -11,6 +11,6 @@ namespace MonoGame.Kernel2D.Animation
     {
         public Texture2D? Texture { get; set; } = null;
         public string Name { get; set; } = string.Empty;
-        public Dictionary<string, SpriteAnimation> Animations = new();
+        public Dictionary<string, SpriteAnimation> Animations = [];
     }
 }

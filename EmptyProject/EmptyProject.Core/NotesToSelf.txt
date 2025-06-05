@@ -1,0 +1,16 @@
+﻿animation manager API
+	abstract/encapsulate animation process?
+	make it easier to run through the entire animation pipeline
+	build into separate library maybe? for later reusability? idk
+
+resource locator and loader
+	after building everything in mgcb-editor, manage compiled media resources
+	access all media through resource manager
+	build into separate library? for later reusability? idk
+
+STOP FUCKING HOARDING IDEAS AND NOT TRASHING AND DISCARDING WHAT DOESN'T WORK
+
+build preview toolkit using SIP for sprite resources maybe?
+	would be solid pipeline tool
+	not sure how this'd fit in with rest of engine and dev timeline
+	maybe standalone add-on?
