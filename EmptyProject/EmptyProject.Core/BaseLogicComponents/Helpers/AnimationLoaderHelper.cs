@@ -1,74 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
-using EmptyProject.Core.BaseLogicComponents.Animation;
-using System.Reflection.Metadata.Ecma335;
-using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using K2D = MonoGame.Kernel2D.Animation;
 
 namespace EmptyProject.Core.BaseLogicComponents
 {
     public static class AnimationLoaderHelper
-    {   
-        internal static List<SpriteObject> GetSpritesFromJson(string path)
+    {
+        internal static List<SpriteRow> GetSpritesFromJson(string path)
         {
             if (!File.Exists(path)) { throw new FileNotFoundException(); }
             try
             {
-                var spriteMap = JsonSerializer.Deserialize<List<SpriteObject>>(File.ReadAllText(path));
+                var spriteMap = JsonSerializer.Deserialize<List<SpriteRow>>(File.ReadAllText(path));
                 return spriteMap;
             }
             catch (Exception) { throw; }
         }
 
-        internal static Spritesheet TranslateIntoDomainModel(List<SpriteObject> so, Texture2D playerTexture,
-            string sheetName, AnimationTypes aniTypes)
+        internal static K2D.Spritesheet TranslateIntoDomainModel(List<SpriteRow> rows, Texture2D playerTexture,
+            string sheetName)
         {
-            var grouped = so.GroupBy(s => StripTrailingDigits(s.Name))
-                .ToDictionary(
-                    g => g.Key,
-                    g => g.Select(s => new AnimationFrame
-                    {
-                        Name = s.Name,
-                        Duration = s.Duration,
-                        SourceRectangle = new Rectangle(s.Frame.X, s.Frame.Y, s.Frame.Width, s.Frame.Height)
-                    }).ToList()
-                );
-
-            var sheet = new Spritesheet
+            var sheet = new K2D.Spritesheet
             {
                 Texture = playerTexture,
                 Name = sheetName,
                 Animations = []
             };
 
-            foreach (var (animationName, frameList) in grouped)
+            foreach (var row in rows)
             {
-                sheet.Animations[animationName] = new SpriteAnimation
+                var frameList = row.Frames.Select(s => new K2D.AnimationFrame
                 {
-                    Name = animationName,
+                    Name = s.Name,
+                    Duration = s.Duration,
+                    SourceRectangle = new Rectangle(s.Frame.X, s.Frame.Y, s.Frame.Width, s.Frame.Height)
+                }).ToList();
+
+                sheet.Animations[row.Name] = new K2D.SpriteAnimation
+                {
+                    Name = row.Name,
                     Frames = frameList,
-                    Loop = true,
-                    Tags = aniTypes
+                    Loop = row.Loop
                 };
             }
             return sheet;
-        }
-
-        private static string StripTrailingDigits(string name)
-        {
-            for (int i = name.Length - 1; i >= 0; i--)
-            {
-                if (!char.IsDigit(name[i]))
-                    return name[..(i + 1)];
-            }
-            return name;
         }
     }
 
@@ -99,5 +79,15 @@ namespace EmptyProject.Core.BaseLogicComponents
         { X = x; Y = y; Width = width; Height = height; }
 
         public SpriteFrame() { }
+    }
+
+    internal class SpriteRow
+    {
+        public string Name { get; set; }
+        public List<SpriteObject> Frames { get; set; }
+        public bool Loop { get; set; } = true; // Default to true if not specified
+        public SpriteRow(string name, List<SpriteObject> frames)
+        { Name = name; Frames = frames; }
+        public SpriteRow() { }
     }
 }

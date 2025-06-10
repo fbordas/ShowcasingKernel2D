@@ -2,7 +2,13 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "MonoGame.Framework.DesktopGL/3.8.3": {
+      "MonoGame.Framework.Android/3.8.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "MonoGame.Framework.DesktopGL/3.8.4": {
         "type": "package",
         "dependencies": {
           "MonoGame.Library.OpenAL": "1.23.1.10",
@@ -21,6 +27,18 @@
         },
         "build": {
           "build/MonoGame.Framework.DesktopGL.targets": {}
+        }
+      },
+      "MonoGame.Framework.iOS/3.8.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "MonoGame.Framework.WindowsDX/3.8.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
         }
       },
       "MonoGame.Library.OpenAL/1.23.1.10": {
@@ -119,24 +137,88 @@
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
         }
+      },
+      "MonoGame.Kernel2D/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MonoGame.Framework.Android": "3.8.3",
+          "MonoGame.Framework.DesktopGL": "3.8.3",
+          "MonoGame.Framework.WindowsDX": "3.8.3",
+          "MonoGame.Framework.iOS": "3.8.3"
+        },
+        "compile": {
+          "bin/placeholder/MonoGame.Kernel2D.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MonoGame.Kernel2D.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "MonoGame.Framework.DesktopGL/3.8.3": {
-      "sha512": "cuyMJrK6fHD13J3gqkSx5yF3agbI9E9sXtynhq6IDmUnvi43PTfbLEH04MStDzJJ3OPGaKDW1zcxqA/G8GwOUw==",
+    "MonoGame.Framework.Android/3.8.3": {
+      "sha512": "9hSYAGaSTG2VNUtrHMRvNMocirovapDVLBQW1GnrQFXv/hrkgWOYH5kdwuJlIdubsH78km2z5Kulm3GV4LmQ/Q==",
       "type": "package",
-      "path": "monogame.framework.desktopgl/3.8.3",
+      "path": "monogame.framework.android/3.8.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "README.md",
+        "build/MonoGame.Framework.Android.targets",
+        "lib/net8.0-android34.0/MonoGame.Framework.dll",
+        "lib/net8.0-android34.0/MonoGame.Framework.xml",
+        "monogame.framework.android.3.8.3.nupkg.sha512",
+        "monogame.framework.android.nuspec"
+      ]
+    },
+    "MonoGame.Framework.DesktopGL/3.8.4": {
+      "sha512": "2WR/vPNPcmQ9h4EhMkfpUfMW0Krm6pX0ElkZwSRI1IUecPuzLeXt0i9NRwGxZBUdcNdNxACCmswrxSf4B95Obg==",
+      "type": "package",
+      "path": "monogame.framework.desktopgl/3.8.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README-packages.md",
         "build/MonoGame.Framework.DesktopGL.targets",
         "lib/net8.0/MonoGame.Framework.dll",
         "lib/net8.0/MonoGame.Framework.xml",
-        "monogame.framework.desktopgl.3.8.3.nupkg.sha512",
+        "monogame.framework.desktopgl.3.8.4.nupkg.sha512",
         "monogame.framework.desktopgl.nuspec"
+      ]
+    },
+    "MonoGame.Framework.iOS/3.8.3": {
+      "sha512": "/3mNm6xfpZjPmgBoyRJ6kR2QZU0wWxnH5k7l1unenlxxR9fPv510Z+3/jkG9t7lLj5Zn9TWEq3fexMNGb/5+hw==",
+      "type": "package",
+      "path": "monogame.framework.ios/3.8.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "build/MonoGame.Framework.iOS.targets",
+        "lib/net8.0-ios18.0/MonoGame.Framework.dll",
+        "lib/net8.0-ios18.0/MonoGame.Framework.xml",
+        "monogame.framework.ios.3.8.3.nupkg.sha512",
+        "monogame.framework.ios.nuspec"
+      ]
+    },
+    "MonoGame.Framework.WindowsDX/3.8.3": {
+      "sha512": "d0d28IHIKdRlRgbg77B44Paj1FuLf58eciv+5i9Ca6sn7kyv6ZIme41Laicr1iMxo9ZbRnIidps8ttYpBSeThw==",
+      "type": "package",
+      "path": "monogame.framework.windowsdx/3.8.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "build/MonoGame.Framework.WindowsDX.targets",
+        "lib/net8.0-windows7.0/MonoGame.Framework.dll",
+        "lib/net8.0-windows7.0/MonoGame.Framework.xml",
+        "monogame.framework.windowsdx.3.8.3.nupkg.sha512",
+        "monogame.framework.windowsdx.nuspec"
       ]
     },
     "MonoGame.Library.OpenAL/1.23.1.10": {
@@ -260,11 +342,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "MonoGame.Kernel2D/1.0.0": {
+      "type": "project",
+      "path": "../../MonoGame.2DKernel/MonoGame.Kernel2D.csproj",
+      "msbuildProject": "../../MonoGame.2DKernel/MonoGame.Kernel2D.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "MonoGame.Framework.DesktopGL >= 3.8.*"
+      "MonoGame.Framework.DesktopGL >= 3.8.*",
+      "MonoGame.Kernel2D >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -299,7 +387,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj": {
+              "projectPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

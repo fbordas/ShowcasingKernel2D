@@ -8,13 +8,15 @@
     ".NETCoreApp,Version=v8.0": {
       "EmptyProject.Core/1.0.0": {
         "dependencies": {
-          "MonoGame.Framework.DesktopGL": "3.8.3"
+          "MonoGame.Framework.DesktopGL": "3.8.4",
+          "MonoGame.Kernel2D": "1.0.0"
         },
         "runtime": {
           "EmptyProject.Core.dll": {}
         }
       },
-      "MonoGame.Framework.DesktopGL/3.8.3": {
+      "MonoGame.Framework.Android/3.8.3": {},
+      "MonoGame.Framework.DesktopGL/3.8.4": {
         "dependencies": {
           "MonoGame.Library.OpenAL": "1.23.1.10",
           "MonoGame.Library.SDL": "2.32.2.1",
@@ -22,11 +24,13 @@
         },
         "runtime": {
           "lib/net8.0/MonoGame.Framework.dll": {
-            "assemblyVersion": "3.8.3.0",
-            "fileVersion": "3.8.3.0"
+            "assemblyVersion": "3.8.4.0",
+            "fileVersion": "3.8.4.0"
           }
         }
       },
+      "MonoGame.Framework.iOS/3.8.3": {},
+      "MonoGame.Framework.WindowsDX/3.8.3": {},
       "MonoGame.Library.OpenAL/1.23.1.10": {
         "runtimeTargets": {
           "runtimes/android-arm/native/libopenal.so": {
@@ -113,7 +117,21 @@
         }
       },
       "System.Memory/4.5.3": {},
-      "System.ValueTuple/4.5.0": {}
+      "System.ValueTuple/4.5.0": {},
+      "MonoGame.Kernel2D/1.0.0": {
+        "dependencies": {
+          "MonoGame.Framework.Android": "3.8.3",
+          "MonoGame.Framework.DesktopGL": "3.8.4",
+          "MonoGame.Framework.WindowsDX": "3.8.3",
+          "MonoGame.Framework.iOS": "3.8.3"
+        },
+        "runtime": {
+          "MonoGame.Kernel2D.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
     }
   },
   "libraries": {
@@ -122,12 +140,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MonoGame.Framework.DesktopGL/3.8.3": {
+    "MonoGame.Framework.Android/3.8.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cuyMJrK6fHD13J3gqkSx5yF3agbI9E9sXtynhq6IDmUnvi43PTfbLEH04MStDzJJ3OPGaKDW1zcxqA/G8GwOUw==",
-      "path": "monogame.framework.desktopgl/3.8.3",
-      "hashPath": "monogame.framework.desktopgl.3.8.3.nupkg.sha512"
+      "sha512": "sha512-9hSYAGaSTG2VNUtrHMRvNMocirovapDVLBQW1GnrQFXv/hrkgWOYH5kdwuJlIdubsH78km2z5Kulm3GV4LmQ/Q==",
+      "path": "monogame.framework.android/3.8.3",
+      "hashPath": "monogame.framework.android.3.8.3.nupkg.sha512"
+    },
+    "MonoGame.Framework.DesktopGL/3.8.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2WR/vPNPcmQ9h4EhMkfpUfMW0Krm6pX0ElkZwSRI1IUecPuzLeXt0i9NRwGxZBUdcNdNxACCmswrxSf4B95Obg==",
+      "path": "monogame.framework.desktopgl/3.8.4",
+      "hashPath": "monogame.framework.desktopgl.3.8.4.nupkg.sha512"
+    },
+    "MonoGame.Framework.iOS/3.8.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/3mNm6xfpZjPmgBoyRJ6kR2QZU0wWxnH5k7l1unenlxxR9fPv510Z+3/jkG9t7lLj5Zn9TWEq3fexMNGb/5+hw==",
+      "path": "monogame.framework.ios/3.8.3",
+      "hashPath": "monogame.framework.ios.3.8.3.nupkg.sha512"
+    },
+    "MonoGame.Framework.WindowsDX/3.8.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d0d28IHIKdRlRgbg77B44Paj1FuLf58eciv+5i9Ca6sn7kyv6ZIme41Laicr1iMxo9ZbRnIidps8ttYpBSeThw==",
+      "path": "monogame.framework.windowsdx/3.8.3",
+      "hashPath": "monogame.framework.windowsdx.3.8.3.nupkg.sha512"
     },
     "MonoGame.Library.OpenAL/1.23.1.10": {
       "type": "package",
@@ -163,6 +202,11 @@
       "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
       "path": "system.valuetuple/4.5.0",
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    },
+    "MonoGame.Kernel2D/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -32,7 +32,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj": {
+                "projectPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -55,6 +59,90 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.8.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj",
+        "projectName": "MonoGame.Kernel2D",
+        "projectPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj",
+        "packagesPath": "C:\\Users\\fbord\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fbord\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "c:\\program files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MonoGame.Framework.Android": {
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
+            "MonoGame.Framework.DesktopGL": {
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
+            "MonoGame.Framework.WindowsDX": {
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
+            "MonoGame.Framework.iOS": {
+              "target": "Package",
+              "version": "[3.8.3, )"
             }
           },
           "imports": [

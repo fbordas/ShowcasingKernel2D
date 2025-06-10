@@ -24,3 +24,6 @@ C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProje
 C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\obj\Debug\net8.0\refint\EmptyProject.Core.dll
 C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\obj\Debug\net8.0\EmptyProject.Core.pdb
 C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\obj\Debug\net8.0\ref\EmptyProject.Core.dll
+C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\bin\Debug\net8.0\MonoGame.Kernel2D.dll
+C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\bin\Debug\net8.0\MonoGame.Kernel2D.pdb
+C:\Users\fbord\source\repos\TohnoCoding\LearningMonoGame\EmptyProject\EmptyProject.Core\obj\Debug\net8.0\EmptyPro.17AE8A38.Up2Date

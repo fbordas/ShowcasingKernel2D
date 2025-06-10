@@ -14,4 +14,7 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MonoGame.2DKernel\MonoGame.Kernel2D.csproj" />
+  </ItemGroup>
 </Project>

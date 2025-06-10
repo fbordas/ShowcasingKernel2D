@@ -14,3 +14,5 @@ build preview toolkit using SIP for sprite resources maybe?
 	would be solid pipeline tool
 	not sure how this'd fit in with rest of engine and dev timeline
 	maybe standalone add-on?
+
+SIP output structure spec *already changed*

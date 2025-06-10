@@ -1,24 +1,29 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using XnaVector = Microsoft.Xna.Framework.Vector2;
 
 namespace MonoGame.Kernel2D.Animation
 {
-    internal class AnimationPlayer
+    public class AnimationPlayer
     {
         private SpriteAnimation? _currentAnim;
         private int _currentAnimIndex;
         private float _elapsedTime;
 
-        internal void Draw(SpriteBatch batch, Texture2D tex, XnaVector position)
+        public bool HasFinishedPlaying =>
+            _currentAnim != null &&
+            !_currentAnim.Loop &&
+            _currentAnimIndex >= _currentAnim.Frames.Count;
+
+        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position)
         {
-            if (_currentAnim == null) { return; }
+            if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
             batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 4, SpriteEffects.None, 0);
         }
 
-        internal void Play(SpriteAnimation anim)
+        public void Play(SpriteAnimation anim)
         {
             if (_currentAnim != anim)
             {
@@ -27,7 +32,7 @@ namespace MonoGame.Kernel2D.Animation
             }
         }
 
-        internal void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             if (_currentAnim == null) { return; }
             _elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -39,7 +44,7 @@ namespace MonoGame.Kernel2D.Animation
                 {
                     if (_currentAnim.Loop)
                     { _currentAnimIndex = 0; }
-                    else { _currentAnimIndex = _currentAnim.Frames.Count - 1; }
+                    else { _currentAnimIndex = _currentAnim.Frames.Count; }
                 }
             }
         }

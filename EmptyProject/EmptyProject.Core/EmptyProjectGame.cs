@@ -1,13 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using EmptyProject.Core.BaseLogicComponents;
-using EmptyProject.Core.BaseLogicComponents.Animation;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using static System.Net.Mime.MediaTypeNames;
+using K2D = MonoGame.Kernel2D.Animation;
 
 namespace EmptyProject.Core
 {
@@ -66,16 +62,36 @@ namespace EmptyProject.Core
         /// </param>
         protected override void Update(GameTime gameTime)
         {
-            // Exit the game if the Back button (GamePad) or Escape key (Keyboard) is pressed.
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            PollController();
+
             ap.Update(gameTime);
-            ap2.Update(gameTime);
-            ap3.Update(gameTime);
+
+            if (currentState == PlayerState.Dashing && ap.HasFinishedPlaying)
+            { 
+                ap.Play(sheet.Animations["idle"]);
+                currentState = PlayerState.Idle;
+            }
+            
             base.Update(gameTime);
+        }
+
+        private void PollController()
+        {
+            // Poll the controller for input.
+            var state = GamePad.GetState(PlayerIndex.One);
+            if (state.IsConnected)
+            {
+                if (state.Buttons.RightShoulder == ButtonState.Pressed &&
+                    currentState == PlayerState.Idle)
+                {
+                    ap.Play(sheet.Animations["dash"]);
+                    currentState = PlayerState.Dashing;
+                }
+            }
         }
 
         /// <summary>
@@ -94,8 +110,8 @@ namespace EmptyProject.Core
 
             sb.Begin();
             ap.Draw(sb, playerTexture, new Vector2(150, 300));
-            ap2.Draw(sb, playerTexture, new Vector2(400, 300));
-            ap3.Draw(sb, playerTexture, new Vector2(650, 300));
+            // ap2.Draw(sb, playerTexture, new Vector2(400, 300));
+            // ap3.Draw(sb, playerTexture, new Vector2(650, 300));
             sb.End();
         }
 
@@ -103,26 +119,27 @@ namespace EmptyProject.Core
         {
             base.LoadContent();
             sb = new SpriteBatch(GraphicsDevice);
-            ap = new AnimationPlayer();
-            ap2 = new AnimationPlayer();
-            ap3 = new AnimationPlayer();
+            ap = new K2D.AnimationPlayer();
+            // ap2 = new AnimationPlayer();
+            // ap3 = new AnimationPlayer();
 
-            playerTexture = Content.Load<Texture2D>("Player/zero-rows");
+            playerTexture = Content.Load<Texture2D>("Player/zero-fixed-rows");
 
             var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
-            var sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero",
-                AnimationTypes.Grounded | AnimationTypes.Idle);
+            sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero");
 
             ap.Play(sheet.Animations["idle"]);
-            ap2.Play(sheet.Animations["running"]);
-            ap3.Play(sheet.Animations["jumping"]);
+            // ap2.Play(sheet.Animations["running"]);
+            // ap3.Play(sheet.Animations["jumping"]);
         }
 
         private SpriteBatch sb = null;
         private Texture2D playerTexture = null;
-        private AnimationPlayer ap = null;
-        private AnimationPlayer ap2 = null;
-        private AnimationPlayer ap3 = null;
+        private K2D.AnimationPlayer ap = null;
+        //private AnimationPlayer ap2 = null;
+        //private AnimationPlayer ap3 = null;
+        private K2D.Spritesheet sheet = null;
+        private PlayerState currentState = PlayerState.Idle;
 
 
     }
