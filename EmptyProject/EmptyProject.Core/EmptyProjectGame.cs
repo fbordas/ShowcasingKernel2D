@@ -66,7 +66,7 @@ namespace EmptyProject.Core
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            PollController();
+            PollInput();
 
             ap.Update(gameTime);
 
@@ -79,7 +79,7 @@ namespace EmptyProject.Core
             base.Update(gameTime);
         }
 
-        private void PollController()
+        private void PollInput()
         {
             // Poll the controller for input.
             var state = GamePad.GetState(PlayerIndex.One);
@@ -90,6 +90,17 @@ namespace EmptyProject.Core
                 {
                     ap.Play(sheet.Animations["dash"]);
                     currentState = PlayerState.Dashing;
+                }
+            } 
+            else
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.NumPad6))
+                {
+                    if (currentState == PlayerState.Idle)
+                    {
+                        ap.Play(sheet.Animations["dash"]);
+                        currentState = PlayerState.Dashing;
+                    }
                 }
             }
         }
@@ -109,7 +120,7 @@ namespace EmptyProject.Core
             base.Draw(gameTime);
 
             sb.Begin();
-            ap.Draw(sb, playerTexture, new Vector2(150, 300));
+            ap.Draw(sb, playerTexture, new Vector2(150, 400));
             // ap2.Draw(sb, playerTexture, new Vector2(400, 300));
             // ap3.Draw(sb, playerTexture, new Vector2(650, 300));
             sb.End();

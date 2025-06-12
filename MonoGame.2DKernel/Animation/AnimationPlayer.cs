@@ -20,7 +20,7 @@ namespace MonoGame.Kernel2D.Animation
             if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
-            batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 4, SpriteEffects.None, 0);
+            batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 2, SpriteEffects.None, 0);
         }
 
         public void Play(SpriteAnimation anim)
