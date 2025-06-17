@@ -2,6 +2,7 @@
 	abstract/encapsulate animation process?
 	make it easier to run through the entire animation pipeline
 	build into separate library maybe? for later reusability? idk
+		THIS IS HAPPENING, Kernel2D exists and it's going to be as full a pipeline library as i can make it
 
 resource locator and loader
 	after building everything in mgcb-editor, manage compiled media resources

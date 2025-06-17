@@ -1,6 +1,6 @@
 ﻿using System;
 
-#pragma warning disable IDE0130 // Namespace does not match folder structure
+#pragma warning disable IDE0130 // i don't care if namespace doesn't match folder structure, STFU VS
 namespace EmptyProject.Core.BaseLogicComponents
 {
     [Flags]
@@ -10,7 +10,6 @@ namespace EmptyProject.Core.BaseLogicComponents
         Interactable,
         Looping,
         Interruptible,
-        FacingRight,
         Unskippable,
         Grounded,
         Airborne,
@@ -28,6 +27,9 @@ namespace EmptyProject.Core.BaseLogicComponents
         Jumping,
         Shooting,
         Slashing,
-        TakingDamage
+        TakingDamage,
+        Climbing,
+        WallSliding,
+        EnteringDoor
     }
 }

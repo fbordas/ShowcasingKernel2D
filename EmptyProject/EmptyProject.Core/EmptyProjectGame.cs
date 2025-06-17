@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Linq;
 using EmptyProject.Core.BaseLogicComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -78,7 +79,9 @@ namespace EmptyProject.Core
                 ap.Play(sheet.Animations["idle"]);
                 _currentState = PlayerState.Idle;
             }
-            
+
+            BuildWindowTitle();
+
             base.Update(gameTime);
         }
 
@@ -133,8 +136,11 @@ namespace EmptyProject.Core
             GraphicsDevice.Clear(Color.Gray);
             base.Draw(gameTime);
 
+            string display = Window.Title;
+
             sb.Begin();
             ap.Draw(sb, playerTexture, _playerPosition, _facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            sb.DrawString(_font, display, new Vector2(10, 10), Color.White);
             sb.End();
         }
 
@@ -145,6 +151,8 @@ namespace EmptyProject.Core
             ap = new K2D.AnimationPlayer();
 
             playerTexture = Content.Load<Texture2D>("Player/zero-fixed-rows");
+            _font = Content.Load<SpriteFont>("Fonts/Hud");
+
 
             var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
             sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero");
@@ -158,10 +166,44 @@ namespace EmptyProject.Core
         private K2D.Spritesheet sheet = null;
         private PlayerState _currentState = PlayerState.Idle;
         private XnaVector _playerPosition = new(150, 400);
+        private SpriteFont _font = null;
         private readonly PlatformerInputBridge _input = new();
         private bool _facingRight = true;
         private readonly PhysicsValues _physics = PhysicsValues.Default();
 
+        private void BuildWindowTitle()
+        {
+            var keyboard = Keyboard.GetState();
+            var gamepad = GamePad.GetState(PlayerIndex.One);
 
+            var keys = keyboard.GetPressedKeys();
+            string keyString = keys.Length > 0
+                ? $"Keys: {string.Join(", ", keys.Select(k => k.ToString()))}"
+                : "Keys: None";
+
+            string padButtons = "Buttons: ";
+            if (gamepad.IsConnected)
+            {
+                padButtons += string.Join(", ", new[]
+                {
+                    gamepad.Buttons.A == ButtonState.Pressed ? "A" : null,
+                    gamepad.Buttons.B == ButtonState.Pressed ? "B" : null,
+                    gamepad.Buttons.X == ButtonState.Pressed ? "X" : null,
+                    gamepad.Buttons.Y == ButtonState.Pressed ? "Y" : null,
+                    gamepad.Buttons.LeftShoulder == ButtonState.Pressed ? "LB" : null,
+                    gamepad.Buttons.RightShoulder == ButtonState.Pressed ? "RB" : null,
+                    gamepad.DPad.Left == ButtonState.Pressed ? "DPad.Left" : null,
+                    gamepad.DPad.Right == ButtonState.Pressed ? "DPad.Right" : null,
+                    gamepad.DPad.Up == ButtonState.Pressed ? "DPad.Up" : null,
+                    gamepad.DPad.Down == ButtonState.Pressed ? "DPad.Down" : null
+                }.Where(b => b != null));
+            }
+            else
+            {
+                padButtons += "None (Gamepad not connected)";
+            }
+
+            Window.Title = $"{keyString} | {padButtons}";
+        }
     }
 }
