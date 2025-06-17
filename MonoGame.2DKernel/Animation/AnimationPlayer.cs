@@ -9,19 +9,24 @@ namespace MonoGame.Kernel2D.Animation
         private SpriteAnimation? _currentAnim;
         private int _currentAnimIndex;
         private float _elapsedTime;
+        public bool FacingRight = true;
+        public string CurrentAnimationName = string.Empty;
 
         public bool HasFinishedPlaying =>
             _currentAnim != null &&
             !_currentAnim.Loop &&
             _currentAnimIndex >= _currentAnim.Frames.Count;
 
-        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position)
+        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx)
         {
             if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
-            batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 2, SpriteEffects.None, 0);
+            batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 2, fx, 0);
         }
+
+        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position) =>
+            Draw(batch, tex, position, SpriteEffects.None);
 
         public void Play(SpriteAnimation anim)
         {
@@ -30,6 +35,7 @@ namespace MonoGame.Kernel2D.Animation
                 _currentAnim = anim;
                 _currentAnimIndex = 0;
             }
+            CurrentAnimationName = anim.Name;
         }
 
         public void Update(GameTime gameTime)

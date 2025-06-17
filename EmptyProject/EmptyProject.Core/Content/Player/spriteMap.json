@@ -21,7 +21,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 166
+                "Duration": 122
             },
             {
                 "Name": "Row000001Sprite000003",
@@ -41,7 +41,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 166
+                "Duration": 111
             },
             {
                 "Name": "Row000001Sprite000005",
@@ -51,7 +51,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 166
+                "Duration": 111
             },
             {
                 "Name": "Row000001Sprite000006",
@@ -61,7 +61,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 166
+                "Duration": 111
             }
         ]
     },
