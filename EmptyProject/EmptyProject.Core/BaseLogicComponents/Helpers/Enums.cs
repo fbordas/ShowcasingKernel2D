@@ -25,6 +25,7 @@ namespace EmptyProject.Core.BaseLogicComponents
         Dashing,
         Running,
         Jumping,
+        Falling,
         Shooting,
         Slashing,
         TakingDamage,

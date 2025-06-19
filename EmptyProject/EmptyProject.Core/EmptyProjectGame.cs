@@ -72,13 +72,13 @@ namespace EmptyProject.Core
             _input.Update();
             PollInput();
 
-            ap.Update(gameTime);
+            player.Update(gameTime, _input);
 
-            if (_currentState == PlayerState.Dashing && ap.HasFinishedPlaying)
-            { 
-                ap.Play(sheet.Animations["idle"]);
-                _currentState = PlayerState.Idle;
-            }
+            //if (player.GetState() == PlayerState.Dashing && ap.HasFinishedPlaying)
+            //{ 
+            //    player.Play(sheet.Animations["idle"]);
+            //    _currentState = PlayerState.Idle;
+            //}
 
             BuildWindowTitle();
 
@@ -87,42 +87,7 @@ namespace EmptyProject.Core
 
         private void PollInput()
         {
-            if (_input.IsIdle())
-            {
-                _currentState = PlayerState.Idle;
-                ap.Play(sheet.Animations["idle"]);
-                return;
-            }
-
-            if (_input.MoveLeft()) _facingRight = false;
-            else if (_input.MoveRight()) _facingRight = true;
-
-            bool moving = _input.MoveLeft() || _input.MoveRight();
-            if (moving)
-            {
-                float speed = _facingRight ? _physics.RunSpeed : -_physics.RunSpeed;
-                _playerPosition = new(_playerPosition.X + speed, _playerPosition.Y);
-            }
-
-            if (_currentState != PlayerState.Dashing && _currentState != PlayerState.Jumping)
-            {
-                if (_currentState != PlayerState.Running)
-                    _currentState = PlayerState.Running;
-
-                if (ap.CurrentAnimationName != "run")
-                    ap.Play(sheet.Animations["run"]);
-            }
-
-            // TODO: all this shit about dashing and jumping
-            if (_input.DashPressed())
-            {
-                _currentState = PlayerState.Dashing;
-            }
-
-            if (_input.JumpPressed())
-            {
-                _currentState = PlayerState.Jumping;
-            }
+            player.HandleInput(_input); 
         }
 
         /// <summary>
@@ -139,7 +104,7 @@ namespace EmptyProject.Core
             string display = Window.Title;
 
             sb.Begin();
-            ap.Draw(sb, playerTexture, _playerPosition, _facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            player.Draw(gameTime);
             sb.DrawString(_font, display, new Vector2(10, 10), Color.White);
             sb.End();
         }
@@ -147,9 +112,9 @@ namespace EmptyProject.Core
         protected override void LoadContent()
         {
             base.LoadContent();
+            
             sb = new SpriteBatch(GraphicsDevice);
-            ap = new K2D.AnimationPlayer();
-
+            
             playerTexture = Content.Load<Texture2D>("Player/zero-fixed-rows");
             _font = Content.Load<SpriteFont>("Fonts/Hud");
 
@@ -157,30 +122,25 @@ namespace EmptyProject.Core
             var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
             sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero");
 
-            ap.Play(sheet.Animations["idle"]);
+            player = new(new XnaVector(150, 400), sb, sheet, playerTexture);
         }
 
         private SpriteBatch sb = null;
         private Texture2D playerTexture = null;
-        private K2D.AnimationPlayer ap = null;
-        private K2D.Spritesheet sheet = null;
-        private PlayerState _currentState = PlayerState.Idle;
-        private XnaVector _playerPosition = new(150, 400);
+        private Spritesheet sheet = null;
         private SpriteFont _font = null;
         private readonly PlatformerInputBridge _input = new();
-        private bool _facingRight = true;
-        private readonly PhysicsValues _physics = PhysicsValues.Default();
+        PlayerCharacter player = null;
+
 
         private void BuildWindowTitle()
         {
             var keyboard = Keyboard.GetState();
             var gamepad = GamePad.GetState(PlayerIndex.One);
-
             var keys = keyboard.GetPressedKeys();
             string keyString = keys.Length > 0
                 ? $"Keys: {string.Join(", ", keys.Select(k => k.ToString()))}"
                 : "Keys: None";
-
             string padButtons = "Buttons: ";
             if (gamepad.IsConnected)
             {
@@ -199,10 +159,7 @@ namespace EmptyProject.Core
                 }.Where(b => b != null));
             }
             else
-            {
-                padButtons += "None (Gamepad not connected)";
-            }
-
+            { padButtons += "None (Gamepad not connected)"; }
             Window.Title = $"{keyString} | {padButtons}";
         }
     }

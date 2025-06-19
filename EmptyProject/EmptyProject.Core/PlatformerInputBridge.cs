@@ -4,7 +4,7 @@ using K2D = MonoGame.Kernel2D;
 
 namespace EmptyProject.Core
 {
-    internal class PlatformerInputBridge : K2D.InputBridge
+    public class PlatformerInputBridge : K2D.InputBridge
     {   
         public override void Update()
         {
