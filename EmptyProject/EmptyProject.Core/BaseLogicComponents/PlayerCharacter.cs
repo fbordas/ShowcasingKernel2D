@@ -1,16 +1,33 @@
-﻿using EmptyProject.Core.BaseLogicComponents;
-using XVector = Microsoft.Xna.Framework.Vector2;
+﻿using XVector = Microsoft.Xna.Framework.Vector2;
 using MonoGame.Kernel2D.Animation;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System;
+using System.Reflection.Metadata;
 
 #pragma warning disable
 namespace EmptyProject.Core
 {
+    [Flags]
+    public enum PlayerState
+    {
+        Idle,
+        Dashing,
+        Running,
+        Jumping,
+        Falling,
+        Shooting,
+        Slashing,
+        TakingDamage,
+        Climbing,
+        WallSliding,
+        EnteringDoor
+    }
+
     public class PlayerCharacter
     {
-        private PlayerState CurrentState = PlayerState.Idle;
         public PlayerState GetState() => this.CurrentState;
+        private PlayerState CurrentState = PlayerState.Idle;
         private bool FacingRight = true;
         private XVector CurrentPosition;
         private AnimationPlayer Animator = null;
@@ -18,6 +35,8 @@ namespace EmptyProject.Core
         private Texture2D PlayerSpriteTexture = null;
         private readonly PhysicsValues _physics = PhysicsValues.Default();
         private SpriteBatch Batch = null;
+        private float DashElapsedTime = 0f;
+        private const float DashDuration = 616f; // 616 milliseconds for dash animation
 
         public PlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture)
         {
@@ -58,10 +77,15 @@ namespace EmptyProject.Core
             }
 
             // TODO: all this shit about dashing and jumping
+            #region dashing
             if (_input.DashPressed())
             {
                 CurrentState = PlayerState.Dashing;
+                if (Animator.CurrentAnimationName != "dash")
+                    DashElapsedTime = 0f;
+                    Animator.Play(Sprites.Animations["dash"]);
             }
+            #endregion
 
             if (_input.JumpPressed())
             {
@@ -72,10 +96,18 @@ namespace EmptyProject.Core
         public void Update(GameTime gameTime, PlatformerInputBridge input)
         {
             Animator.Update(gameTime);
-            if (CurrentState == PlayerState.Dashing && Animator.HasFinishedPlaying)
+            if (CurrentState == PlayerState.Dashing)
             {
-                Animator.Play(Sprites.Animations["idle"]);
-                CurrentState = PlayerState.Idle;
+                DashElapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                float speed = FacingRight ? _physics.DashSpeed : -_physics.DashSpeed;
+                CurrentPosition.X += speed;
+
+                if (DashElapsedTime >= DashDuration)
+                {
+                    CurrentState = PlayerState.Idle;
+                    Animator.Play(Sprites.Animations["idle"]);
+                }
             }
         }
 

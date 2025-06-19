@@ -1,19 +1,47 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using K2D = MonoGame.Kernel2D;
 
 namespace EmptyProject.Core
 {
     public class PlatformerInputBridge : K2D.InputBridge
-    {   
+    {
+        private readonly Dictionary<string, Keys[]> _keyMappings = new()
+        {
+            { "dash", new[] { Keys.LeftShift } },
+            { "jump", new[] { Keys.Space } },
+            { "move_left", new[] { Keys.A, Keys.Left } },
+            { "move_right", new[] { Keys.D, Keys.Right } }
+        };
+
+        private readonly Dictionary<string, Buttons[]> _padMappings = new()
+        {
+            { "dash", new[] { Buttons.RightShoulder } },
+            { "jump", new[] { Buttons.A } },
+            { "move_left", new[] { Buttons.DPadLeft } },
+            { "move_right", new[] { Buttons.DPadRight } }
+        };
+
         public override void Update()
         {
+            _previousKb = _kb;
+            _previousGp = _gp;
+
             _kb = Keyboard.GetState();
             _gp = GamePad.GetState(PlayerIndex.One);
         }
 
         public bool JumpPressed()
-            => _kb.IsKeyDown(Keys.Space) || (_gp.IsConnected && _gp.Buttons.A == ButtonState.Pressed);
+        { 
+            bool kbDownNow = _kb.IsKeyDown(Keys.Space);
+            bool kbDownBefore = _previousKb.IsKeyDown(Keys.Space);
+
+            bool gpDownNow = _gp.IsButtonDown(Buttons.A);
+            bool gpDownBefore = _previousGp.IsButtonDown(Buttons.A);
+
+            return (kbDownNow && !kbDownBefore) || (gpDownNow && !gpDownBefore);
+        }
 
         public bool MoveLeft()
             => _kb.IsKeyDown(Keys.Left) || _kb.IsKeyDown(Keys.A) || 
@@ -24,19 +52,16 @@ namespace EmptyProject.Core
                 _gp.IsButtonDown(Buttons.DPadRight) || _gp.IsButtonDown(Buttons.LeftThumbstickRight);
 
         public bool DashPressed()
-            => _kb.IsKeyDown(Keys.LeftShift) ||
-               (_gp.IsConnected && _gp.Buttons.RightShoulder == ButtonState.Pressed);
+        { 
+            bool kbDownNow = _kb.IsKeyDown(Keys.LeftShift) || _kb.IsKeyDown(Keys.RightShift);
+            bool kbDownBefore = _previousKb.IsKeyDown(Keys.LeftShift) || _previousKb.IsKeyDown(Keys.RightShift);
 
-        public bool IsIdle() => _kb.GetPressedKeyCount() == 0 &&
-                                _gp.Buttons.A == ButtonState.Released &&
-                                _gp.Buttons.B == ButtonState.Released &&
-                                _gp.Buttons.X == ButtonState.Released &&
-                                _gp.Buttons.Y == ButtonState.Released &&
-                                _gp.Buttons.LeftShoulder == ButtonState.Released &&
-                                _gp.Buttons.RightShoulder == ButtonState.Released &&
-                                _gp.DPad.Up == ButtonState.Released &&
-                                _gp.DPad.Down == ButtonState.Released &&
-                                _gp.DPad.Left == ButtonState.Released &&
-                                _gp.DPad.Right == ButtonState.Released;
+            bool gpDownNow = _gp.IsButtonDown(Buttons.RightShoulder);
+            bool gpDownBefore = _previousGp.IsButtonDown(Buttons.RightShoulder);
+
+            return (kbDownNow && !kbDownBefore) || (gpDownNow && !gpDownBefore);
+        }
+
+        public bool IsIdle() => !MoveLeft() && !MoveRight() && !JumpPressed() && !DashPressed();
     }
 }

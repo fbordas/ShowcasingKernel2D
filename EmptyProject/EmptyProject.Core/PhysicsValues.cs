@@ -11,7 +11,7 @@
         public static PhysicsValues Default() => new()
         {
             RunSpeed = 4.0f,
-            DashSpeed = 9.0f,
+            DashSpeed = 6.0f,
             JumpVelocity = 7.0f,
             JumpHeight = 2.2f,
             Gravity = -9.81f

@@ -7,6 +7,9 @@ namespace MonoGame.Kernel2D
         protected KeyboardState _kb;
         protected GamePadState _gp;
 
+        protected KeyboardState _previousKb;
+        protected GamePadState _previousGp;
+
         public abstract void Update();
     }
 }

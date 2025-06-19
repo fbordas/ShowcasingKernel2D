@@ -17,20 +17,4 @@ namespace EmptyProject.Core.BaseLogicComponents
         WallSliding,
         Dashing
     }
-
-    [Flags]
-    public enum PlayerState
-    { 
-        Idle,
-        Dashing,
-        Running,
-        Jumping,
-        Falling,
-        Shooting,
-        Slashing,
-        TakingDamage,
-        Climbing,
-        WallSliding,
-        EnteringDoor
-    }
 }
