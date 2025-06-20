@@ -3,7 +3,7 @@ using MonoGame.Kernel2D.Animation;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
-using System.Reflection.Metadata;
+using System.Linq;
 
 #pragma warning disable
 namespace EmptyProject.Core
@@ -36,7 +36,7 @@ namespace EmptyProject.Core
         private readonly PhysicsValues _physics = PhysicsValues.Default();
         private SpriteBatch Batch = null;
         private float DashElapsedTime = 0f;
-        private const float DashDuration = 616f; // 616 milliseconds for dash animation
+        private readonly float DashDuration;
 
         public PlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture)
         {
@@ -45,18 +45,28 @@ namespace EmptyProject.Core
             Batch = batch;
             Sprites = sprites;
             PlayerSpriteTexture = texture;
+            DashDuration = Sprites.Animations["dash"].Frames.Sum(f => f.Duration);
             Animator.Play(Sprites.Animations["idle"]);
         }
 
         public void HandleInput(PlatformerInputBridge _input)
         {
+            // Ignore all input if we're in the middle of a dash or jump.
+            if (CurrentState == PlayerState.Dashing || CurrentState == PlayerState.Jumping)
+                return;
+
+            // IDLE
             if (_input.IsIdle())
             {
-                CurrentState = PlayerState.Idle;
-                Animator.Play(Sprites.Animations["idle"]);
+                if (CurrentState != PlayerState.Idle)
+                {
+                    CurrentState = PlayerState.Idle;
+                    Animator.Play(Sprites.Animations["idle"]);
+                }
                 return;
             }
 
+            // LEFT/RIGHT movement
             if (_input.MoveLeft()) FacingRight = false;
             else if (_input.MoveRight()) FacingRight = true;
 
@@ -65,32 +75,29 @@ namespace EmptyProject.Core
             {
                 float speed = FacingRight ? _physics.RunSpeed : -_physics.RunSpeed;
                 CurrentPosition = new(CurrentPosition.X + speed, CurrentPosition.Y);
-            }
 
-            if (CurrentState != PlayerState.Dashing && CurrentState != PlayerState.Jumping)
-            {
                 if (CurrentState != PlayerState.Running)
+                {
                     CurrentState = PlayerState.Running;
-
-                if (Animator.CurrentAnimationName != "run")
                     Animator.Play(Sprites.Animations["run"]);
+                }
             }
 
-            // TODO: all this shit about dashing and jumping
-            #region dashing
-            if (_input.DashPressed())
+            // DASHING
+            if (_input.InputPressed("dash"))
             {
                 CurrentState = PlayerState.Dashing;
-                if (Animator.CurrentAnimationName != "dash")
-                    DashElapsedTime = 0f;
-                    Animator.Play(Sprites.Animations["dash"]);
+                DashElapsedTime = 0f;
+                Animator.Play(Sprites.Animations["dash"]);
             }
-            #endregion
 
-            if (_input.JumpPressed())
-            {
-                CurrentState = PlayerState.Jumping;
-            }
+
+            // TODO: Add jump initiation here
+            // JUMPING
+            //if (_input.InputHeld("jump"))
+            //{
+            //    CurrentState = PlayerState.Jumping;
+            //}
         }
 
         public void Update(GameTime gameTime, PlatformerInputBridge input)

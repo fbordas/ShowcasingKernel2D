@@ -40,7 +40,9 @@ namespace MonoGame.Kernel2D.Animation
 
         public void Update(GameTime gameTime)
         {
-            if (_currentAnim == null) { return; }
+            if (_currentAnim == null) return;
+            if (_currentAnimIndex >= _currentAnim.Frames.Count)
+                return; // ✅ safety check before accessing any frame
             _elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedTime >= _currentAnim.Frames[_currentAnimIndex].Duration)
             {
@@ -49,10 +51,13 @@ namespace MonoGame.Kernel2D.Animation
                 if (_currentAnimIndex >= _currentAnim.Frames.Count)
                 {
                     if (_currentAnim.Loop)
-                    { _currentAnimIndex = 0; }
-                    else { _currentAnimIndex = _currentAnim.Frames.Count; }
+                        _currentAnimIndex = 0;
+                    else
+                        _currentAnimIndex = _currentAnim
+                            .Frames.Count - 1; // ✅ cap at final valid frame
                 }
             }
         }
+
     }
 }

@@ -73,13 +73,6 @@ namespace EmptyProject.Core
             PollInput();
 
             player.Update(gameTime, _input);
-
-            //if (player.GetState() == PlayerState.Dashing && ap.HasFinishedPlaying)
-            //{ 
-            //    player.Play(sheet.Animations["idle"]);
-            //    _currentState = PlayerState.Idle;
-            //}
-
             BuildWindowTitle();
 
             base.Update(gameTime);

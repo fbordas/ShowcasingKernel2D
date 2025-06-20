@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using K2D = MonoGame.Kernel2D;
@@ -32,17 +33,6 @@ namespace EmptyProject.Core
             _gp = GamePad.GetState(PlayerIndex.One);
         }
 
-        public bool JumpPressed()
-        { 
-            bool kbDownNow = _kb.IsKeyDown(Keys.Space);
-            bool kbDownBefore = _previousKb.IsKeyDown(Keys.Space);
-
-            bool gpDownNow = _gp.IsButtonDown(Buttons.A);
-            bool gpDownBefore = _previousGp.IsButtonDown(Buttons.A);
-
-            return (kbDownNow && !kbDownBefore) || (gpDownNow && !gpDownBefore);
-        }
-
         public bool MoveLeft()
             => _kb.IsKeyDown(Keys.Left) || _kb.IsKeyDown(Keys.A) || 
                 _gp.IsButtonDown(Buttons.DPadLeft) || _gp.IsButtonDown(Buttons.LeftThumbstickLeft);
@@ -51,17 +41,22 @@ namespace EmptyProject.Core
             => _kb.IsKeyDown(Keys.Right) || _kb.IsKeyDown(Keys.D) || 
                 _gp.IsButtonDown(Buttons.DPadRight) || _gp.IsButtonDown(Buttons.LeftThumbstickRight);
 
-        public bool DashPressed()
-        { 
-            bool kbDownNow = _kb.IsKeyDown(Keys.LeftShift) || _kb.IsKeyDown(Keys.RightShift);
-            bool kbDownBefore = _previousKb.IsKeyDown(Keys.LeftShift) || _previousKb.IsKeyDown(Keys.RightShift);
+        public bool IsIdle() => !MoveLeft() && !MoveRight() && !InputPressed("dash") && !InputHeld("jump");
 
-            bool gpDownNow = _gp.IsButtonDown(Buttons.RightShoulder);
-            bool gpDownBefore = _previousGp.IsButtonDown(Buttons.RightShoulder);
-
-            return (kbDownNow && !kbDownBefore) || (gpDownNow && !gpDownBefore);
+        public bool InputPressed(string action)
+        {
+            return (_keyMappings.TryGetValue(action, out var keys) &&
+                keys.Any(k => _kb.IsKeyDown(k) && !_previousKb.IsKeyDown(k)))
+                || (_gp.IsConnected && _padMappings.TryGetValue(action, out var buttons) &&
+                buttons.Any(b => _gp.IsButtonDown(b) && !_previousGp.IsButtonDown(b)));
         }
 
-        public bool IsIdle() => !MoveLeft() && !MoveRight() && !JumpPressed() && !DashPressed();
+        public bool InputHeld(string action)
+        {
+            return (_keyMappings.TryGetValue(action, out var keys) && 
+                keys.Any(k => _kb.IsKeyDown(k))) || (_gp.IsConnected && 
+                _padMappings.TryGetValue(action, out var buttons) 
+                && buttons.Any(b => _gp.IsButtonDown(b)));
+        }
     }
 }
