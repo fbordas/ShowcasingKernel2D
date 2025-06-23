@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Kernel2D.Animation;
-using K2D = MonoGame.Kernel2D.Animation;
+using PPC = EmptyProject.Core.PlatformerPlayerCharacter;
 using XnaVector = Microsoft.Xna.Framework.Vector2;
 
 namespace EmptyProject.Core
@@ -123,7 +123,7 @@ namespace EmptyProject.Core
         private Spritesheet sheet = null;
         private SpriteFont _font = null;
         private readonly PlatformerInputBridge _input = new();
-        PlayerCharacter player = null;
+        PPC player = null;
 
 
         private void BuildWindowTitle()

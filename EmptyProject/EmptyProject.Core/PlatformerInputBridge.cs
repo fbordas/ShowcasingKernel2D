@@ -33,13 +33,9 @@ namespace EmptyProject.Core
             _gp = GamePad.GetState(PlayerIndex.One);
         }
 
-        public bool MoveLeft()
-            => _kb.IsKeyDown(Keys.Left) || _kb.IsKeyDown(Keys.A) || 
-                _gp.IsButtonDown(Buttons.DPadLeft) || _gp.IsButtonDown(Buttons.LeftThumbstickLeft);
-
-        public bool MoveRight()
-            => _kb.IsKeyDown(Keys.Right) || _kb.IsKeyDown(Keys.D) || 
-                _gp.IsButtonDown(Buttons.DPadRight) || _gp.IsButtonDown(Buttons.LeftThumbstickRight);
+        public bool MoveLeft() => InputHeld("move_left");
+ 
+        public bool MoveRight() => InputHeld("move_right");
 
         public bool IsIdle() => !MoveLeft() && !MoveRight() && !InputPressed("dash") && !InputHeld("jump");
 

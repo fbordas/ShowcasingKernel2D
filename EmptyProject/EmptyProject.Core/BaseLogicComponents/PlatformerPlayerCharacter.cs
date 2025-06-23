@@ -1,9 +1,9 @@
-﻿using XVector = Microsoft.Xna.Framework.Vector2;
-using MonoGame.Kernel2D.Animation;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Kernel2D.Animation;
+using XVector = Microsoft.Xna.Framework.Vector2;
 
 #pragma warning disable
 namespace EmptyProject.Core
@@ -14,7 +14,7 @@ namespace EmptyProject.Core
         Idle,
         Dashing,
         Running,
-        Jumping,
+        JumpingAscent,
         Falling,
         Shooting,
         Slashing,
@@ -24,21 +24,34 @@ namespace EmptyProject.Core
         EnteringDoor
     }
 
-    public class PlayerCharacter
+    public class PlatformerPlayerCharacter
     {
-        public PlayerState GetState() => this.CurrentState;
-        private PlayerState CurrentState = PlayerState.Idle;
-        private bool FacingRight = true;
-        private XVector CurrentPosition;
+        #region internal resources
         private AnimationPlayer Animator = null;
         private Spritesheet Sprites = null;
         private Texture2D PlayerSpriteTexture = null;
         private readonly PhysicsValues _physics = PhysicsValues.Default();
         private SpriteBatch Batch = null;
+        #endregion
+
+        #region player values
+        public PlayerState GetState() => this.CurrentState;
+        private PlayerState CurrentState = PlayerState.Idle;
+        private bool FacingRight = true;
+        #endregion
+
+        #region physics values
+        private XVector CurrentPosition;
         private float DashElapsedTime = 0f;
         private readonly float DashDuration;
+        private float JumpElapsedTime = 0f;
+        private readonly float JumpAscentDuration;
+        private float VerticalVelocity = 0f;
+        private const float Gravity = 0.5f;
+        private const float MaxFallSpeed = 3f;
+        #endregion
 
-        public PlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture)
+        public PlatformerPlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture)
         {
             CurrentPosition = position;
             Animator = new();
@@ -46,13 +59,15 @@ namespace EmptyProject.Core
             Sprites = sprites;
             PlayerSpriteTexture = texture;
             DashDuration = Sprites.Animations["dash"].Frames.Sum(f => f.Duration);
+            JumpAscentDuration = Sprites.Animations["jumpascend"].Frames.Sum(f => f.Duration);
             Animator.Play(Sprites.Animations["idle"]);
         }
 
         public void HandleInput(PlatformerInputBridge _input)
         {
-            // Ignore all input if we're in the middle of a dash or jump.
-            if (CurrentState == PlayerState.Dashing || CurrentState == PlayerState.Jumping)
+            // Ignore all input if in the middle of a dash or jump
+            // This is just initial behavior, will change later to allow composite actions
+            if (CurrentState == PlayerState.Dashing || CurrentState == PlayerState.JumpingAscent)
                 return;
 
             // IDLE
@@ -92,11 +107,11 @@ namespace EmptyProject.Core
             }
 
 
-            // TODO: Add jump initiation here
+            // TODO: Add jump management here
             // JUMPING
             //if (_input.InputHeld("jump"))
             //{
-            //    CurrentState = PlayerState.Jumping;
+            //    CurrentState = PlayerState.JumpingAscent;
             //}
         }
 

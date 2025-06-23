@@ -4,6 +4,15 @@
 	build into separate library maybe? for later reusability? idk
 		THIS IS HAPPENING, Kernel2D exists and it's going to be as full a pipeline library as i can make it
 
+character mobility
+	make mobility composite with multiple actions
+		- run, walk, jump, fall, etc.
+		- each action can have its own animation
+		- actions can be combined for more complex movements
+			- e.g. running + jumping = running jump
+			- e.g. walking + falling = walking fall
+			- e.g. running + falling = running fall
+
 resource locator and loader
 	after building everything in mgcb-editor, manage compiled media resources
 	access all media through resource manager

@@ -11,7 +11,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 1000
+                "Duration": 88
             },
             {
                 "Name": "Row000001Sprite000002",
@@ -21,7 +21,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 122
+                "Duration": 88
             },
             {
                 "Name": "Row000001Sprite000003",
@@ -31,7 +31,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 444
+                "Duration": 88
             },
             {
                 "Name": "Row000001Sprite000004",
@@ -41,7 +41,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 111
+                "Duration": 88
             },
             {
                 "Name": "Row000001Sprite000005",
@@ -51,7 +51,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 111
+                "Duration": 88
             },
             {
                 "Name": "Row000001Sprite000006",
@@ -61,13 +61,13 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 111
+                "Duration": 88
             }
         ]
     },
     {
         "Name": "runstart",
-        "Loop": true,
+        "Loop": false,
         "Frames": [
             {
                 "Name": "Row000002Sprite000001",
@@ -188,26 +188,26 @@
         ]
     },
     {
-        "Name": "jumping",
-        "Loop": true,
+        "Name": "jumpascend",
+        "Loop": false,
         "Frames": [
             {
                 "Name": "Row000003Sprite000001",
                 "Frame": {
-                    "X": 16,
+                    "X": 17,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
             },
             {
                 "Name": "Row000003Sprite000002",
                 "Frame": {
-                    "X": 72,
+                    "X": 73,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
             },
@@ -216,8 +216,8 @@
                 "Frame": {
                     "X": 122,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
             },
@@ -226,8 +226,8 @@
                 "Frame": {
                     "X": 172,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
             },
@@ -236,8 +236,8 @@
                 "Frame": {
                     "X": 223,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
             },
@@ -246,66 +246,72 @@
                 "Frame": {
                     "X": 275,
                     "Y": 167,
-                    "Width": 37,
-                    "Height": 50
+                    "Width": 36,
+                    "Height": 47
                 },
                 "Duration": 88
-            },
+            }
+        ]
+    },
+    {
+        "Name": "jumpdescend",
+        "Loop": true,
+        "Frames": [
             {
-                "Name": "Row000003Sprite000007",
+                "Name": "Row000004Sprite000001",
                 "Frame": {
                     "X": 333,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000003Sprite000008",
+                "Name": "Row000004Sprite000002",
                 "Frame": {
                     "X": 389,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000003Sprite000009",
+                "Name": "Row000004Sprite000003",
                 "Frame": {
                     "X": 443,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000003Sprite000010",
+                "Name": "Row000004Sprite000004",
                 "Frame": {
                     "X": 496,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000003Sprite000011",
+                "Name": "Row000004Sprite000005",
                 "Frame": {
                     "X": 555,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000003Sprite000012",
+                "Name": "Row000004Sprite000006",
                 "Frame": {
                     "X": 612,
-                    "Y": 167,
+                    "Y": 255,
                     "Width": 37,
                     "Height": 50
                 },
@@ -315,83 +321,83 @@
     },
     {
         "Name": "door",
-        "Loop": true,
+        "Loop": false,
         "Frames": [
             {
-                "Name": "Row000004Sprite000001",
+                "Name": "Row000005Sprite000001",
                 "Frame": {
                     "X": 20,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000002",
+                "Name": "Row000005Sprite000002",
                 "Frame": {
                     "X": 76,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000003",
+                "Name": "Row000005Sprite000003",
                 "Frame": {
                     "X": 136,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000004",
+                "Name": "Row000005Sprite000004",
                 "Frame": {
                     "X": 187,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000005",
+                "Name": "Row000005Sprite000005",
                 "Frame": {
                     "X": 242,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000006",
+                "Name": "Row000005Sprite000006",
                 "Frame": {
                     "X": 294,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000007",
+                "Name": "Row000005Sprite000007",
                 "Frame": {
                     "X": 344,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000004Sprite000008",
+                "Name": "Row000005Sprite000008",
                 "Frame": {
                     "X": 395,
-                    "Y": 277,
+                    "Y": 365,
                     "Width": 31,
                     "Height": 43
                 },
@@ -404,74 +410,74 @@
         "Loop": false,
         "Frames": [
             {
-                "Name": "Row000005Sprite000001",
+                "Name": "Row000006Sprite000001",
                 "Frame": {
                     "X": 291,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000002",
+                "Name": "Row000006Sprite000002",
                 "Frame": {
                     "X": 332,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000003",
+                "Name": "Row000006Sprite000003",
                 "Frame": {
                     "X": 385,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000004",
+                "Name": "Row000006Sprite000004",
                 "Frame": {
                     "X": 439,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000005",
+                "Name": "Row000006Sprite000005",
                 "Frame": {
                     "X": 488,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000006",
+                "Name": "Row000006Sprite000006",
                 "Frame": {
                     "X": 535,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
-                "Duration": 44
+                "Duration": 88
             },
             {
-                "Name": "Row000005Sprite000007",
+                "Name": "Row000006Sprite000007",
                 "Frame": {
                     "X": 580,
-                    "Y": 377,
+                    "Y": 465,
                     "Width": 38,
                     "Height": 38
                 },
-                "Duration": 44
+                "Duration": 88
             }
         ]
     },
@@ -480,140 +486,140 @@
         "Loop": false,
         "Frames": [
             {
-                "Name": "Row000006Sprite000001",
+                "Name": "Row000007Sprite000001",
                 "Frame": {
                     "X": 5,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000002",
+                "Name": "Row000007Sprite000002",
                 "Frame": {
                     "X": 59,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000003",
+                "Name": "Row000007Sprite000003",
                 "Frame": {
                     "X": 106,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000004",
+                "Name": "Row000007Sprite000004",
                 "Frame": {
                     "X": 158,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000005",
+                "Name": "Row000007Sprite000005",
                 "Frame": {
                     "X": 209,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000006",
+                "Name": "Row000007Sprite000006",
                 "Frame": {
                     "X": 261,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000007",
+                "Name": "Row000007Sprite000007",
                 "Frame": {
                     "X": 308,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000008",
+                "Name": "Row000007Sprite000008",
                 "Frame": {
                     "X": 354,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000009",
+                "Name": "Row000007Sprite000009",
                 "Frame": {
                     "X": 404,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000010",
+                "Name": "Row000007Sprite000010",
                 "Frame": {
                     "X": 458,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000011",
+                "Name": "Row000007Sprite000011",
                 "Frame": {
                     "X": 517,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000012",
+                "Name": "Row000007Sprite000012",
                 "Frame": {
                     "X": 571,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000013",
+                "Name": "Row000007Sprite000013",
                 "Frame": {
                     "X": 634,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000006Sprite000014",
+                "Name": "Row000007Sprite000014",
                 "Frame": {
                     "X": 696,
-                    "Y": 470,
+                    "Y": 558,
                     "Width": 39,
                     "Height": 48
                 },
@@ -623,43 +629,43 @@
     },
     {
         "Name": "hurt",
-        "Loop": true,
+        "Loop": false,
         "Frames": [
             {
-                "Name": "Row000007Sprite000001",
+                "Name": "Row000008Sprite000001",
                 "Frame": {
                     "X": 308,
-                    "Y": 598,
+                    "Y": 686,
                     "Width": 38,
                     "Height": 44
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000007Sprite000002",
+                "Name": "Row000008Sprite000002",
                 "Frame": {
                     "X": 352,
-                    "Y": 598,
+                    "Y": 686,
                     "Width": 38,
                     "Height": 44
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000007Sprite000003",
+                "Name": "Row000008Sprite000003",
                 "Frame": {
                     "X": 395,
-                    "Y": 598,
+                    "Y": 686,
                     "Width": 38,
                     "Height": 44
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000007Sprite000004",
+                "Name": "Row000008Sprite000004",
                 "Frame": {
                     "X": 438,
-                    "Y": 598,
+                    "Y": 686,
                     "Width": 38,
                     "Height": 44
                 },
@@ -672,40 +678,40 @@
         "Loop": true,
         "Frames": [
             {
-                "Name": "Row000008Sprite000001",
+                "Name": "Row000009Sprite000001",
                 "Frame": {
                     "X": 484,
-                    "Y": 710,
+                    "Y": 798,
                     "Width": 31,
                     "Height": 39
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000008Sprite000002",
+                "Name": "Row000009Sprite000002",
                 "Frame": {
                     "X": 526,
-                    "Y": 710,
+                    "Y": 798,
                     "Width": 31,
                     "Height": 39
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000008Sprite000003",
+                "Name": "Row000009Sprite000003",
                 "Frame": {
                     "X": 566,
-                    "Y": 710,
+                    "Y": 798,
                     "Width": 31,
                     "Height": 39
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000008Sprite000004",
+                "Name": "Row000009Sprite000004",
                 "Frame": {
                     "X": 605,
-                    "Y": 710,
+                    "Y": 798,
                     "Width": 31,
                     "Height": 39
                 },
@@ -718,80 +724,80 @@
         "Loop": false,
         "Frames": [
             {
-                "Name": "Row000009Sprite000001",
+                "Name": "Row000010Sprite000001",
                 "Frame": {
                     "X": 44,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000002",
+                "Name": "Row000010Sprite000002",
                 "Frame": {
                     "X": 121,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000003",
+                "Name": "Row000010Sprite000003",
                 "Frame": {
                     "X": 200,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000004",
+                "Name": "Row000010Sprite000004",
                 "Frame": {
                     "X": 281,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000005",
+                "Name": "Row000010Sprite000005",
                 "Frame": {
                     "X": 362,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000006",
+                "Name": "Row000010Sprite000006",
                 "Frame": {
                     "X": 438,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000007",
+                "Name": "Row000010Sprite000007",
                 "Frame": {
                     "X": 504,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000009Sprite000008",
+                "Name": "Row000010Sprite000008",
                 "Frame": {
                     "X": 572,
-                    "Y": 969,
+                    "Y": 889,
                     "Width": 50,
                     "Height": 30
                 },
@@ -801,91 +807,75 @@
     },
     {
         "Name": "crouchup",
-        "Loop": false,
-        "Frames": [
-            {
-                "Name": "Row000010Sprite000001",
-                "Frame": {
-                    "X": 292,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000002",
-                "Frame": {
-                    "X": 354,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000003",
-                "Frame": {
-                    "X": 413,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000004",
-                "Frame": {
-                    "X": 470,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000005",
-                "Frame": {
-                    "X": 530,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000006",
-                "Frame": {
-                    "X": 585,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            },
-            {
-                "Name": "Row000010Sprite000007",
-                "Frame": {
-                    "X": 638,
-                    "Y": 1073,
-                    "Width": 34,
-                    "Height": 43
-                },
-                "Duration": 88
-            }
-        ]
-    },
-    {
-        "Name": "armhangstart",
-        "Loop": false,
+        "Loop": true,
         "Frames": [
             {
                 "Name": "Row000011Sprite000001",
                 "Frame": {
-                    "X": 195,
-                    "Y": 1196,
-                    "Width": 35,
-                    "Height": 60
+                    "X": 292,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000002",
+                "Frame": {
+                    "X": 354,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000003",
+                "Frame": {
+                    "X": 413,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000004",
+                "Frame": {
+                    "X": 470,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000005",
+                "Frame": {
+                    "X": 530,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000006",
+                "Frame": {
+                    "X": 585,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000011Sprite000007",
+                "Frame": {
+                    "X": 638,
+                    "Y": 993,
+                    "Width": 34,
+                    "Height": 43
                 },
                 "Duration": 88
             }
@@ -896,40 +886,50 @@
         "Loop": true,
         "Frames": [
             {
-                "Name": "Row000011Sprite000002",
+                "Name": "Row000012Sprite000001",
+                "Frame": {
+                    "X": 195,
+                    "Y": 1116,
+                    "Width": 35,
+                    "Height": 60
+                },
+                "Duration": 88
+            },
+            {
+                "Name": "Row000012Sprite000002",
                 "Frame": {
                     "X": 265,
-                    "Y": 1196,
+                    "Y": 1116,
                     "Width": 35,
                     "Height": 60
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000011Sprite000003",
+                "Name": "Row000012Sprite000003",
                 "Frame": {
                     "X": 331,
-                    "Y": 1196,
+                    "Y": 1116,
                     "Width": 35,
                     "Height": 60
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000011Sprite000004",
+                "Name": "Row000012Sprite000004",
                 "Frame": {
                     "X": 394,
-                    "Y": 1196,
+                    "Y": 1116,
                     "Width": 35,
                     "Height": 60
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000011Sprite000005",
+                "Name": "Row000012Sprite000005",
                 "Frame": {
                     "X": 454,
-                    "Y": 1196,
+                    "Y": 1116,
                     "Width": 35,
                     "Height": 60
                 },
@@ -939,53 +939,53 @@
     },
     {
         "Name": "armhangturn",
-        "Loop": false,
+        "Loop": true,
         "Frames": [
             {
-                "Name": "Row000012Sprite000001",
+                "Name": "Row000013Sprite000001",
                 "Frame": {
                     "X": 177,
-                    "Y": 1326,
+                    "Y": 1246,
                     "Width": 25,
                     "Height": 56
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000012Sprite000002",
+                "Name": "Row000013Sprite000002",
                 "Frame": {
                     "X": 231,
-                    "Y": 1326,
+                    "Y": 1246,
                     "Width": 25,
                     "Height": 56
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000012Sprite000003",
+                "Name": "Row000013Sprite000003",
                 "Frame": {
                     "X": 299,
-                    "Y": 1326,
+                    "Y": 1246,
                     "Width": 25,
                     "Height": 56
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000012Sprite000004",
+                "Name": "Row000013Sprite000004",
                 "Frame": {
                     "X": 365,
-                    "Y": 1326,
+                    "Y": 1246,
                     "Width": 25,
                     "Height": 56
                 },
                 "Duration": 88
             },
             {
-                "Name": "Row000012Sprite000005",
+                "Name": "Row000013Sprite000005",
                 "Frame": {
                     "X": 427,
-                    "Y": 1326,
+                    "Y": 1246,
                     "Width": 25,
                     "Height": 56
                 },
