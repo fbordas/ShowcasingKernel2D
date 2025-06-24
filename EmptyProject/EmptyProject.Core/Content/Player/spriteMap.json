@@ -296,7 +296,13 @@
                     "Height": 50
                 },
                 "Duration": 88
-            },
+            }
+        ]
+    },
+    {
+        "Name": "jumpland",
+        "Loop": false,
+        "Frames": [
             {
                 "Name": "Row000004Sprite000005",
                 "Frame": {

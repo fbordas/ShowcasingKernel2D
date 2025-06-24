@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Kernel2D.Animation;
-using static System.Net.Mime.MediaTypeNames;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
 #pragma warning disable
@@ -54,10 +53,13 @@ namespace EmptyProject.Core
         private float deltaTime = 0f;
         private bool JumpInterrupted = false;
         private SpriteFont _font;
+        private bool IsGrounded = true;
+        private bool IsAirborne => CurrentState == PlayerState.JumpingAscent || CurrentState == PlayerState.Falling;
         #endregion
 
         public PlatformerPlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture, SpriteFont font)
         {
+            IsGrounded = CurrentPosition.Y == GroundLevel;
             _font = font;
             CurrentPosition = position;
             GroundLevel = position.Y;
@@ -72,13 +74,12 @@ namespace EmptyProject.Core
 
         public void HandleInput(PlatformerInputBridge _input)
         {
-            // Ignore all input if in the middle of a dash or jump
+            // Ignore all input if in the middle of a dash
             // This is just initial behavior, will change later to allow composite actions
-            if (CurrentState == PlayerState.Dashing || CurrentState == PlayerState.JumpingAscent)
-                return;
+            if (CurrentState == PlayerState.Dashing) return;
 
             // IDLE
-            if (_input.IsIdle() && CurrentPosition.Y == GroundLevel)
+            if (_input.IsIdle() && CurrentPosition.Y == GroundLevel) // LAND, GODDAMMIT
             {
                 if (CurrentState != PlayerState.Idle)
                 {
@@ -93,7 +94,7 @@ namespace EmptyProject.Core
             else if (_input.MoveRight()) FacingRight = true;
 
             bool moving = _input.MoveLeft() || _input.MoveRight();
-            if (moving)
+            if (moving && IsGrounded && !IsAirborne)
             {
                 float speed = FacingRight ? _physics.RunSpeed : -_physics.RunSpeed;
                 CurrentPosition = new(CurrentPosition.X + speed, CurrentPosition.Y);
@@ -128,6 +129,7 @@ namespace EmptyProject.Core
         public void Update(GameTime gameTime, PlatformerInputBridge input)
         {
             Animator.Update(gameTime);
+            IsGrounded = CurrentPosition.Y == GroundLevel;
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             DebugMsg($"Y: {CurrentPosition.Y} | State: {CurrentState}");
             if (CurrentState == PlayerState.Dashing)
@@ -165,7 +167,7 @@ namespace EmptyProject.Core
             if (CurrentState == PlayerState.Falling)
             {
                 VerticalVelocity += Gravity * deltaTime;
-                VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
+                VerticalVelocity = Math.Max(VerticalVelocity, MaxFallSpeed);
                 CurrentPosition.Y += VerticalVelocity;
                 if (CurrentPosition.Y >= GroundLevel)
                 {
@@ -190,13 +192,6 @@ namespace EmptyProject.Core
         }
 
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
-
-        private void DrawDebugString(string str)
-        {
-            Batch.Begin();
-            Batch.DrawString(_font, str, new XVector(10, 40), Color.Blue);
-            Batch.End();
-        }
 
         private void DebugMsg(string msg) => System.Diagnostics.Debug.WriteLine(msg);
 
