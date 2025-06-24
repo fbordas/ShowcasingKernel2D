@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Kernel2D.Animation;
+using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
 #pragma warning disable
@@ -47,8 +49,7 @@ namespace EmptyProject.Core
         private float JumpElapsedTime = 0f;
         private readonly float JumpAscentDuration;
         private float VerticalVelocity = 0f;
-        private const float Gravity = 9f;
-        private const float MaxFallSpeed = 3f;
+        private const float MaxFallSpeed = 20f;
         private readonly float GroundLevel;
         private float deltaTime = 0f;
         private bool JumpInterrupted = false;
@@ -131,7 +132,7 @@ namespace EmptyProject.Core
             Animator.Update(gameTime);
             IsGrounded = CurrentPosition.Y == GroundLevel;
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            DebugMsg($"Y: {CurrentPosition.Y} | State: {CurrentState}");
+            Debugger.DebugMessage($"Y: {CurrentPosition.Y} | State: {CurrentState}");
             if (CurrentState == PlayerState.Dashing)
             {
                 DashElapsedTime += deltaTime;
@@ -155,8 +156,6 @@ namespace EmptyProject.Core
                 if (JumpElapsedTime >= JumpAscentDuration)
                 {
                     CurrentState = PlayerState.Falling;
-                    Console.WriteLine($"Y: {CurrentPosition.Y} | State: {CurrentState}");
-
                     Animator.Play(Sprites.Animations["jumpdescend"]);
                     JumpElapsedTime = 0f;
                     JumpInterrupted = false; // Reset jump interruption state
@@ -166,16 +165,36 @@ namespace EmptyProject.Core
 
             if (CurrentState == PlayerState.Falling)
             {
-                VerticalVelocity += Gravity * deltaTime;
-                VerticalVelocity = Math.Max(VerticalVelocity, MaxFallSpeed);
+                VerticalVelocity += _physics.Gravity * deltaTime;
+                VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
                 CurrentPosition.Y += VerticalVelocity;
                 if (CurrentPosition.Y >= GroundLevel)
                 {
-                    CurrentPosition.Y = GroundLevel;// Reset to ground level
-                    CurrentState = PlayerState.Idle;
-                    Animator.Play(Sprites.Animations["idle"]);
-                    VerticalVelocity = 0f; // Reset vertical velocity
+                    Animator.Play(Sprites.Animations["jumpland"]);
+                    CurrentPosition.Y = GroundLevel;
+                    VerticalVelocity = 0f;
+                    if (CurrentState == PlayerState.Falling)
+                    {
+                        if (!input.MoveLeft() && input.MoveRight() && Animator.HasFinishedPlaying)
+                        {
+                            CurrentState = PlayerState.Idle;
+                            Animator.Play(Sprites.Animations["idle"]);
+                        }
+                        else
+                        {
+                            CurrentState = PlayerState.Running;
+                            Animator.Play(Sprites.Animations["run"]);
+                        }
+                    }
                 }
+            }
+
+            if (CurrentState == PlayerState.JumpingAscent || CurrentState == PlayerState.Falling)
+            {
+                float horizontal = 0f;
+                if (input.MoveLeft()) { horizontal -= 1f; }
+                if (input.MoveRight()) { horizontal += 1f; }
+                CurrentPosition.X += horizontal * _physics.AirborneSpeed;// * deltaTime;
             }
 
             if (CurrentPosition.Y < GroundLevel && CurrentState != PlayerState.JumpingAscent && CurrentState != PlayerState.Falling)
