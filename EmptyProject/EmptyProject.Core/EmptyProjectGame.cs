@@ -115,7 +115,7 @@ namespace EmptyProject.Core
             var rawspritemap = AnimationLoaderHelper.GetSpritesFromJson("spriteMap.json");
             sheet = AnimationLoaderHelper.TranslateIntoDomainModel(rawspritemap, playerTexture, "Zero");
 
-            player = new(new XnaVector(150, 400), sb, sheet, playerTexture);
+            player = new(new XnaVector(150, 400), sb, sheet, playerTexture, _font);
         }
 
         private SpriteBatch sb = null;

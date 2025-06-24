@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Kernel2D.Animation;
+using static System.Net.Mime.MediaTypeNames;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
 #pragma warning disable
@@ -49,17 +50,23 @@ namespace EmptyProject.Core
         private float VerticalVelocity = 0f;
         private const float Gravity = 0.5f;
         private const float MaxFallSpeed = 3f;
+        private float GroundLevel;
+        private float deltaTime = 0f;
+        private bool JumpInterrupted = false;
+        private SpriteFont _font;
         #endregion
 
-        public PlatformerPlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture)
+        public PlatformerPlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture, SpriteFont font)
         {
+            _font = font;
             CurrentPosition = position;
+            GroundLevel = position.Y;
             Animator = new();
             Batch = batch;
             Sprites = sprites;
             PlayerSpriteTexture = texture;
-            DashDuration = Sprites.Animations["dash"].Frames.Sum(f => f.Duration);
-            JumpAscentDuration = Sprites.Animations["jumpascend"].Frames.Sum(f => f.Duration);
+            DashDuration = Sprites.Animations["dash"].Frames.Sum(f => f.Duration) / 1000f;
+            JumpAscentDuration = Sprites.Animations["jumpascend"].Frames.Sum(f => f.Duration) / 1000f;
             Animator.Play(Sprites.Animations["idle"]);
         }
 
@@ -107,20 +114,24 @@ namespace EmptyProject.Core
             }
 
 
-            // TODO: Add jump management here
             // JUMPING
-            //if (_input.InputHeld("jump"))
-            //{
-            //    CurrentState = PlayerState.JumpingAscent;
-            //}
+            if (_input.InputHeld("jump"))
+            {
+                CurrentState = PlayerState.JumpingAscent;
+                Animator.Play(Sprites.Animations["jumpascend"]);
+            }
+
+            if (CurrentState == PlayerState.JumpingAscent && !_input.InputHeld("jump"))
+                JumpInterrupted = true;
         }
 
         public void Update(GameTime gameTime, PlatformerInputBridge input)
         {
             Animator.Update(gameTime);
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (CurrentState == PlayerState.Dashing)
             {
-                DashElapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                DashElapsedTime += deltaTime;
 
                 float speed = FacingRight ? _physics.DashSpeed : -_physics.DashSpeed;
                 CurrentPosition.X += speed;
@@ -131,6 +142,45 @@ namespace EmptyProject.Core
                     Animator.Play(Sprites.Animations["idle"]);
                 }
             }
+
+            if (CurrentState == PlayerState.JumpingAscent)
+            {
+                JumpElapsedTime += deltaTime;
+                VerticalVelocity = _physics.JumpVelocity * (JumpAscentDuration - JumpElapsedTime) / JumpAscentDuration;
+                VerticalVelocity = Math.Max(VerticalVelocity, 0f); // Prevent negative velocity
+                CurrentPosition.Y -= VerticalVelocity;
+                if (JumpElapsedTime >= JumpAscentDuration)
+                {
+                    CurrentState = PlayerState.Falling;
+                    DrawDebugString($"Y: {CurrentPosition.Y} | State: {CurrentState}");
+
+                    Animator.Play(Sprites.Animations["jumpdescend"]);
+                    JumpElapsedTime = 0f;
+                    JumpInterrupted = false; // Reset jump interruption state
+                }
+
+            }
+
+            if (CurrentState == PlayerState.Falling)
+            {
+                //throw new Exception(); // KABOOM!
+                VerticalVelocity += Gravity * deltaTime;
+                VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
+                CurrentPosition.Y += VerticalVelocity;
+                if (CurrentPosition.Y >= GroundLevel)
+                {
+                    CurrentPosition.Y = GroundLevel;// Reset to ground level
+                    CurrentState = PlayerState.Idle;
+                    Animator.Play(Sprites.Animations["idle"]);
+                    VerticalVelocity = 0f; // Reset vertical velocity
+                }
+            }
+
+            if (CurrentPosition.Y < GroundLevel && CurrentState != PlayerState.JumpingAscent && CurrentState != PlayerState.Falling)
+            {
+                CurrentState = PlayerState.Falling;
+                Animator.Play(Sprites.Animations["jumpdescend"]);
+            }
         }
 
         public void Draw(GameTime gameTime)
@@ -140,5 +190,13 @@ namespace EmptyProject.Core
         }
 
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
+
+        private void DrawDebugString(string str)
+        {
+            Batch.Begin();
+            Batch.DrawString(_font, str, new XVector(10, 40), Color.Blue);
+            Batch.End();
+
+        }
     }
 }

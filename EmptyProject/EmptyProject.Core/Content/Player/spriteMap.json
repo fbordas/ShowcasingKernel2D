@@ -11,7 +11,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 1000
             },
             {
                 "Name": "Row000001Sprite000002",
@@ -21,7 +21,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 166
             },
             {
                 "Name": "Row000001Sprite000003",
@@ -31,7 +31,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 444
             },
             {
                 "Name": "Row000001Sprite000004",
@@ -41,7 +41,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 166
             },
             {
                 "Name": "Row000001Sprite000005",
@@ -51,7 +51,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 166
             },
             {
                 "Name": "Row000001Sprite000006",
@@ -61,7 +61,7 @@
                     "Width": 34,
                     "Height": 41
                 },
-                "Duration": 88
+                "Duration": 166
             }
         ]
     },
@@ -467,7 +467,7 @@
                     "Width": 38,
                     "Height": 38
                 },
-                "Duration": 88
+                "Duration": 44
             },
             {
                 "Name": "Row000006Sprite000007",
@@ -477,7 +477,7 @@
                     "Width": 38,
                     "Height": 38
                 },
-                "Duration": 88
+                "Duration": 44
             }
         ]
     },
