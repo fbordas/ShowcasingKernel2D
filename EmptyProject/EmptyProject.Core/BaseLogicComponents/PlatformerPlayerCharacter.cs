@@ -48,9 +48,9 @@ namespace EmptyProject.Core
         private float JumpElapsedTime = 0f;
         private readonly float JumpAscentDuration;
         private float VerticalVelocity = 0f;
-        private const float Gravity = 0.5f;
+        private const float Gravity = 9f;
         private const float MaxFallSpeed = 3f;
-        private float GroundLevel;
+        private readonly float GroundLevel;
         private float deltaTime = 0f;
         private bool JumpInterrupted = false;
         private SpriteFont _font;
@@ -78,7 +78,7 @@ namespace EmptyProject.Core
                 return;
 
             // IDLE
-            if (_input.IsIdle())
+            if (_input.IsIdle() && CurrentPosition.Y == GroundLevel)
             {
                 if (CurrentState != PlayerState.Idle)
                 {
@@ -129,6 +129,7 @@ namespace EmptyProject.Core
         {
             Animator.Update(gameTime);
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            DebugMsg($"Y: {CurrentPosition.Y} | State: {CurrentState}");
             if (CurrentState == PlayerState.Dashing)
             {
                 DashElapsedTime += deltaTime;
@@ -152,7 +153,7 @@ namespace EmptyProject.Core
                 if (JumpElapsedTime >= JumpAscentDuration)
                 {
                     CurrentState = PlayerState.Falling;
-                    DrawDebugString($"Y: {CurrentPosition.Y} | State: {CurrentState}");
+                    Console.WriteLine($"Y: {CurrentPosition.Y} | State: {CurrentState}");
 
                     Animator.Play(Sprites.Animations["jumpdescend"]);
                     JumpElapsedTime = 0f;
@@ -163,7 +164,6 @@ namespace EmptyProject.Core
 
             if (CurrentState == PlayerState.Falling)
             {
-                //throw new Exception(); // KABOOM!
                 VerticalVelocity += Gravity * deltaTime;
                 VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
                 CurrentPosition.Y += VerticalVelocity;
@@ -196,7 +196,9 @@ namespace EmptyProject.Core
             Batch.Begin();
             Batch.DrawString(_font, str, new XVector(10, 40), Color.Blue);
             Batch.End();
-
         }
+
+        private void DebugMsg(string msg) => System.Diagnostics.Debug.WriteLine(msg);
+
     }
 }
