@@ -11,6 +11,7 @@ namespace MonoGame.Kernel2D.Animation
         private float _elapsedTime;
         public bool FacingRight = true;
         public string CurrentAnimationName = string.Empty;
+        private Action? _currentAnimFinishedCallback = null;
 
         public bool HasFinishedPlaying =>
             _currentAnim != null &&
@@ -28,21 +29,24 @@ namespace MonoGame.Kernel2D.Animation
         public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position) =>
             Draw(batch, tex, position, SpriteEffects.None);
 
-        public void Play(SpriteAnimation anim)
+        public void Play(SpriteAnimation anim, Action? onComplete = null)
         {
-            if (_currentAnim != anim)
+            if (_currentAnim != anim || _currentAnimIndex >= _currentAnim.Frames.Count)
             {
                 _currentAnim = anim;
                 _currentAnimIndex = 0;
+                _elapsedTime = 0f;
             }
             CurrentAnimationName = anim.Name;
+            _currentAnimFinishedCallback = onComplete;
         }
+
 
         public void Update(GameTime gameTime)
         {
             if (_currentAnim == null) return;
             if (_currentAnimIndex >= _currentAnim.Frames.Count)
-                return; // ✅ safety check before accessing any frame
+            { return; } // ✅ safety check before accessing any frame
             _elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedTime >= _currentAnim.Frames[_currentAnimIndex].Duration)
             {
@@ -53,8 +57,12 @@ namespace MonoGame.Kernel2D.Animation
                     if (_currentAnim.Loop)
                         _currentAnimIndex = 0;
                     else
+                    {
                         _currentAnimIndex = _currentAnim
                             .Frames.Count - 1; // ✅ cap at final valid frame
+                        _currentAnimFinishedCallback?.Invoke();
+                        _currentAnimFinishedCallback = null; // ✅ reset callback after use
+                    }
                 }
             }
         }

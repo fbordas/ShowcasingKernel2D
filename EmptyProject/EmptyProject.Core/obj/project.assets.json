@@ -356,23 +356,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\FernandoRafaelBordas\\.nuget\\packages\\": {},
+    "C:\\Users\\fbord\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FernandoRafaelBordas\\source\\repos\\EmptyProject\\EmptyProject\\EmptyProject.Core\\EmptyProject.Core.csproj",
+      "projectUniqueName": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\EmptyProject\\EmptyProject.Core\\EmptyProject.Core.csproj",
       "projectName": "EmptyProject.Core",
-      "projectPath": "C:\\Users\\FernandoRafaelBordas\\source\\repos\\EmptyProject\\EmptyProject\\EmptyProject.Core\\EmptyProject.Core.csproj",
-      "packagesPath": "C:\\Users\\FernandoRafaelBordas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FernandoRafaelBordas\\source\\repos\\EmptyProject\\EmptyProject\\EmptyProject.Core\\obj\\",
+      "projectPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\EmptyProject\\EmptyProject.Core\\EmptyProject.Core.csproj",
+      "packagesPath": "C:\\Users\\fbord\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\EmptyProject\\EmptyProject.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\FernandoRafaelBordas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fbord\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -381,15 +381,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "c:\\program files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\FernandoRafaelBordas\\source\\repos\\EmptyProject\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj": {
-              "projectPath": "C:\\Users\\FernandoRafaelBordas\\source\\repos\\EmptyProject\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj"
+            "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj": {
+              "projectPath": "C:\\Users\\fbord\\source\\repos\\TohnoCoding\\LearningMonoGame\\MonoGame.2DKernel\\MonoGame.Kernel2D.csproj"
             }
           }
         }
@@ -432,7 +432,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
