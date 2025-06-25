@@ -188,7 +188,7 @@ namespace EmptyProject.Core
                 {
                     CurrentPosition.Y = GroundLevel;
                     VerticalVelocity = 0f;
-                    //JumpHeld = false;
+                    JumpHeld = false;
                     if (input.MoveLeft() || input.MoveRight())
                     {
                         CurrentState = PlayerState.Running;
@@ -224,12 +224,6 @@ namespace EmptyProject.Core
             {
                 CurrentState = PlayerState.Falling;
                 Animator.Play(Sprites.Animations["jumpdescend"]);
-            }
-
-            if (IsGrounded && !input.MoveLeft() && !input.MoveRight() && CurrentState != PlayerState.Landing)
-            {
-                CurrentState = PlayerState.Idle;
-                Animator.Play(Sprites.Animations["idle"]);
             }
         }
 
