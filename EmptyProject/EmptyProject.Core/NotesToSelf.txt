@@ -26,3 +26,6 @@ build preview toolkit using SIP for sprite resources maybe?
 	maybe standalone add-on?
 
 SIP output structure spec *already changed*
+
+SIP rework into an actual full-featured WinForms tool
+	change ListView for DataGridView, more flexibility, more fine-grained control

@@ -1,58 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using K2D = MonoGame.Kernel2D;
 
 namespace EmptyProject.Core
 {
     public class PlatformerInputBridge : K2D.InputBridge
     {
-        private readonly Dictionary<string, Keys[]> _keyMappings = new()
+        #region constructor w/ lookup dictionaries
+        public PlatformerInputBridge()
         {
-            { "dash", new[] { Keys.LeftShift } },
-            { "jump", new[] { Keys.Space } },
-            { "move_left", new[] { Keys.A, Keys.Left } },
-            { "move_right", new[] { Keys.D, Keys.Right } }
-        };
+            _keyMappings.Add("dash", [Keys.LeftShift]);
+            _keyMappings.Add("jump", [Keys.Space]);
+            _keyMappings.Add("move_left", [Keys.A, Keys.Left]);
+            _keyMappings.Add("move_right", [Keys.D, Keys.Right]);
 
-        private readonly Dictionary<string, Buttons[]> _padMappings = new()
-        {
-            { "dash", new[] { Buttons.RightShoulder } },
-            { "jump", new[] { Buttons.A } },
-            { "move_left", new[] { Buttons.DPadLeft } },
-            { "move_right", new[] { Buttons.DPadRight } }
-        };
+            _padMappings.Add("dash", [Buttons.RightShoulder]);
+            _padMappings.Add("jump", [Buttons.A]);
+            _padMappings.Add("move_left", [Buttons.DPadLeft]);
+            _padMappings.Add("move_right", [Buttons.DPadRight]);
+        }
+        #endregion
+
+        #region shortcuts/shorthands
+        public bool MoveLeft() => GetInputState("move_left") == K2D.InputState.Held;
+ 
+        public bool MoveRight() => GetInputState("move_right") == K2D.InputState.Held;
+
+        public bool IsIdle() => !MoveLeft() && !MoveRight() &&
+            (GetInputState("dash") == K2D.InputState.None) &&
+            (GetInputState("jump") == K2D.InputState.None);
+
+        public bool InputPressed(string action) =>
+            GetInputState(action) == K2D.InputState.Pressed;
+
+        public bool InputHeld(string action) =>
+            GetInputState(action) == K2D.InputState.Held;
+        #endregion
 
         public override void Update()
         {
-            _previousKb = _kb;
-            _previousGp = _gp;
-
-            _kb = Keyboard.GetState();
-            _gp = GamePad.GetState(PlayerIndex.One);
-        }
-
-        public bool MoveLeft() => InputHeld("move_left");
- 
-        public bool MoveRight() => InputHeld("move_right");
-
-        public bool IsIdle() => !MoveLeft() && !MoveRight() && !InputPressed("dash") && !InputHeld("jump");
-
-        public bool InputPressed(string action)
-        {
-            return (_keyMappings.TryGetValue(action, out var keys) &&
-                keys.Any(k => _kb.IsKeyDown(k) && !_previousKb.IsKeyDown(k)))
-                || (_gp.IsConnected && _padMappings.TryGetValue(action, out var buttons) &&
-                buttons.Any(b => _gp.IsButtonDown(b) && !_previousGp.IsButtonDown(b)));
-        }
-
-        public bool InputHeld(string action)
-        {
-            return (_keyMappings.TryGetValue(action, out var keys) && 
-                keys.Any(k => _kb.IsKeyDown(k))) || (_gp.IsConnected && 
-                _padMappings.TryGetValue(action, out var buttons) 
-                && buttons.Any(b => _gp.IsButtonDown(b)));
+            base.Update();
         }
     }
 }

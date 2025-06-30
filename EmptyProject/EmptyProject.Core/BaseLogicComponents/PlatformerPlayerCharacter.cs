@@ -109,7 +109,7 @@ namespace EmptyProject.Core
             if (moving && IsGrounded && !IsAirborne)
             {
                 float speed = FacingRight ? _physics.RunSpeed : -_physics.RunSpeed;
-                CurrentPosition = new(CurrentPosition.X + speed, CurrentPosition.Y);
+                CurrentPosition = new(CurrentPosition.X + (speed * deltaTime), CurrentPosition.Y);
 
                 if (CurrentState != PlayerState.Running)
                 {
@@ -147,14 +147,14 @@ namespace EmptyProject.Core
         {
             Animator.Update(gameTime);
             IsGrounded = CurrentPosition.Y == GroundLevel;
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds / 1000f;
             Debugger.DebugMessage($"Y: {CurrentPosition.Y} | State: {CurrentState}");
             if (CurrentState == PlayerState.Dashing)
             {
                 DashElapsedTime += deltaTime;
 
                 float speed = FacingRight ? _physics.DashSpeed : -_physics.DashSpeed;
-                CurrentPosition.X += speed;
+                CurrentPosition.X += speed * deltaTime;
 
                 if (DashElapsedTime >= DashDuration)
                 {
@@ -217,7 +217,7 @@ namespace EmptyProject.Core
                 float horizontal = 0f;
                 if (input.MoveLeft()) { horizontal -= 1f; }
                 if (input.MoveRight()) { horizontal += 1f; }
-                CurrentPosition.X += horizontal * _physics.AirborneSpeed;// * deltaTime;
+                CurrentPosition.X += horizontal * _physics.AirborneSpeed * deltaTime;
             }
 
             if (CurrentPosition.Y < GroundLevel && CurrentState != PlayerState.Jumping && CurrentState != PlayerState.Falling)
@@ -227,15 +227,11 @@ namespace EmptyProject.Core
             }
         }
 
-        public void Draw(GameTime gameTime)
-        {
+        public void Draw(GameTime gameTime) =>
             Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition, 
                 FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
-        }
-
+        
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
-
-        private void DebugMsg(string msg) => System.Diagnostics.Debug.WriteLine(msg);
 
     }
 }

@@ -11,9 +11,9 @@ namespace SIP_Implementation
             InitializeComponent();
         }
 
-        List<SpriteRegion> regions;
+        List<SpriteRegion> regions = [];
 
-        private void bLoad_Click(object sender, EventArgs e)
+        private void BtnLoad_Click(object sender, EventArgs e)
         {
             if (tbYTolerance.Text.Trim() == string.Empty)
             {
@@ -80,7 +80,7 @@ namespace SIP_Implementation
             }
         }
 
-        private void spriteBox_Paint(object sender, PaintEventArgs e)
+        private void SpriteBox_Paint(object sender, PaintEventArgs e)
         {
             if (regions == null || regions.Count == 0) return;
 

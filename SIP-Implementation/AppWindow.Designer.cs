@@ -28,13 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
             boxOpen = new OpenFileDialog();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            panel1 = new Panel();
-            spriteBox = new PictureBox();
             panel3 = new Panel();
+            dgv = new DataGridView();
+            clGroup = new DataGridViewTextBoxColumn();
+            clLoop = new DataGridViewCheckBoxColumn();
+            clName = new DataGridViewTextBoxColumn();
+            clX = new DataGridViewTextBoxColumn();
+            clY = new DataGridViewTextBoxColumn();
+            clHeight = new DataGridViewTextBoxColumn();
+            clWidth = new DataGridViewTextBoxColumn();
+            clLength = new DataGridViewTextBoxColumn();
+            panel4 = new Panel();
             listCols = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -45,6 +60,8 @@
             tbYTolerance = new MaskedTextBox();
             lbFound = new Label();
             label2 = new Label();
+            panel1 = new Panel();
+            spriteBox = new PictureBox();
             tabPage2 = new TabPage();
             jsonOut = new TextBox();
             tabPage3 = new TabPage();
@@ -53,10 +70,12 @@
             label1 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
+            panel4.SuspendLayout();
+            panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spriteBox).BeginInit();
-            panel3.SuspendLayout();
-            panel2.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -77,51 +96,126 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(701, 619);
+            tabControl1.Size = new Size(1098, 634);
             tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(panel1);
             tabPage1.Controls.Add(panel3);
+            tabPage1.Controls.Add(panel1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(693, 591);
+            tabPage1.Size = new Size(1090, 606);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Preview";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            panel1.AutoScroll = true;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(spriteBox);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(316, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(374, 585);
-            panel1.TabIndex = 7;
-            // 
-            // spriteBox
-            // 
-            spriteBox.Location = new Point(0, 0);
-            spriteBox.Name = "spriteBox";
-            spriteBox.Size = new Size(205, 176);
-            spriteBox.TabIndex = 7;
-            spriteBox.TabStop = false;
-            spriteBox.Paint += spriteBox_Paint;
-            // 
             // panel3
             // 
-            panel3.Controls.Add(listCols);
-            panel3.Controls.Add(panel2);
+            panel3.Controls.Add(dgv);
+            panel3.Controls.Add(panel4);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(313, 585);
+            panel3.Size = new Size(636, 600);
             panel3.TabIndex = 9;
+            // 
+            // dgv
+            // 
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv.Columns.AddRange(new DataGridViewColumn[] { clGroup, clLoop, clName, clX, clY, clHeight, clWidth, clLength });
+            dgv.Dock = DockStyle.Fill;
+            dgv.EditMode = DataGridViewEditMode.EditOnF2;
+            dgv.Location = new Point(0, 266);
+            dgv.Name = "dgv";
+            dgv.Size = new Size(636, 334);
+            dgv.TabIndex = 12;
+            // 
+            // clGroup
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clGroup.DefaultCellStyle = dataGridViewCellStyle1;
+            clGroup.HeaderText = "Group";
+            clGroup.MaxInputLength = 50;
+            clGroup.Name = "clGroup";
+            // 
+            // clLoop
+            // 
+            clLoop.HeaderText = "Loop?";
+            clLoop.Name = "clLoop";
+            clLoop.Resizable = DataGridViewTriState.False;
+            clLoop.Width = 45;
+            // 
+            // clName
+            // 
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clName.DefaultCellStyle = dataGridViewCellStyle2;
+            clName.HeaderText = "Frame Name";
+            clName.MaxInputLength = 50;
+            clName.Name = "clName";
+            // 
+            // clX
+            // 
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clX.DefaultCellStyle = dataGridViewCellStyle3;
+            clX.HeaderText = "X Pos.";
+            clX.Name = "clX";
+            clX.ReadOnly = true;
+            clX.Resizable = DataGridViewTriState.False;
+            clX.Width = 65;
+            // 
+            // clY
+            // 
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clY.DefaultCellStyle = dataGridViewCellStyle4;
+            clY.HeaderText = "Y Pos.";
+            clY.Name = "clY";
+            clY.ReadOnly = true;
+            clY.Resizable = DataGridViewTriState.False;
+            clY.Width = 65;
+            // 
+            // clHeight
+            // 
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clHeight.DefaultCellStyle = dataGridViewCellStyle5;
+            clHeight.HeaderText = "Height";
+            clHeight.Name = "clHeight";
+            clHeight.ReadOnly = true;
+            clHeight.Resizable = DataGridViewTriState.False;
+            clHeight.Width = 65;
+            // 
+            // clWidth
+            // 
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clWidth.DefaultCellStyle = dataGridViewCellStyle6;
+            clWidth.HeaderText = "Width";
+            clWidth.Name = "clWidth";
+            clWidth.ReadOnly = true;
+            clWidth.Resizable = DataGridViewTriState.False;
+            clWidth.Width = 65;
+            // 
+            // clLength
+            // 
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clLength.DefaultCellStyle = dataGridViewCellStyle7;
+            clLength.HeaderText = "Duration";
+            clLength.MaxInputLength = 5;
+            clLength.Name = "clLength";
+            clLength.Resizable = DataGridViewTriState.False;
+            clLength.Width = 65;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(listCols);
+            panel4.Controls.Add(panel2);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(636, 266);
+            panel4.TabIndex = 9;
             // 
             // listCols
             // 
@@ -131,10 +225,11 @@
             listCols.GridLines = true;
             listCols.Location = new Point(0, 83);
             listCols.Name = "listCols";
-            listCols.Size = new Size(313, 502);
-            listCols.TabIndex = 4;
+            listCols.Size = new Size(636, 183);
+            listCols.TabIndex = 9;
             listCols.UseCompatibleStateImageBehavior = false;
             listCols.View = View.Details;
+            listCols.Visible = false;
             // 
             // columnHeader1
             // 
@@ -165,8 +260,8 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(313, 83);
-            panel2.TabIndex = 8;
+            panel2.Size = new Size(636, 83);
+            panel2.TabIndex = 10;
             // 
             // bLoad
             // 
@@ -176,7 +271,6 @@
             bLoad.TabIndex = 3;
             bLoad.Text = "Load image";
             bLoad.UseVisualStyleBackColor = true;
-            bLoad.Click += bLoad_Click;
             // 
             // tbYTolerance
             // 
@@ -205,13 +299,34 @@
             label2.TabIndex = 8;
             label2.Text = "Y-axis Tolerance:";
             // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(spriteBox);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1084, 600);
+            panel1.TabIndex = 7;
+            // 
+            // spriteBox
+            // 
+            spriteBox.Location = new Point(0, 0);
+            spriteBox.Name = "spriteBox";
+            spriteBox.Size = new Size(205, 176);
+            spriteBox.TabIndex = 7;
+            spriteBox.TabStop = false;
+            spriteBox.Paint += SpriteBox_Paint;
+            // 
             // tabPage2
             // 
             tabPage2.Controls.Add(jsonOut);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(693, 591);
+            tabPage2.Size = new Size(1090, 606);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "JSON Output";
             tabPage2.UseVisualStyleBackColor = true;
@@ -225,7 +340,7 @@
             jsonOut.Name = "jsonOut";
             jsonOut.ReadOnly = true;
             jsonOut.ScrollBars = ScrollBars.Vertical;
-            jsonOut.Size = new Size(687, 585);
+            jsonOut.Size = new Size(1084, 600);
             jsonOut.TabIndex = 0;
             // 
             // tabPage3
@@ -233,7 +348,7 @@
             tabPage3.Controls.Add(xmlOut);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(693, 591);
+            tabPage3.Size = new Size(1090, 606);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "XML Output";
             tabPage3.UseVisualStyleBackColor = true;
@@ -247,7 +362,7 @@
             xmlOut.Name = "xmlOut";
             xmlOut.ReadOnly = true;
             xmlOut.ScrollBars = ScrollBars.Vertical;
-            xmlOut.Size = new Size(693, 591);
+            xmlOut.Size = new Size(1090, 606);
             xmlOut.TabIndex = 1;
             // 
             // tabPage4
@@ -255,7 +370,7 @@
             tabPage4.Controls.Add(label1);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(693, 591);
+            tabPage4.Size = new Size(1090, 606);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "About";
             tabPage4.UseVisualStyleBackColor = true;
@@ -272,7 +387,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(701, 619);
+            ClientSize = new Size(1098, 634);
             Controls.Add(tabControl1);
             MinimumSize = new Size(717, 658);
             Name = "AppWindow";
@@ -280,11 +395,13 @@
             Text = "SIP Implementation Sample";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)spriteBox).EndInit();
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
+            panel4.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)spriteBox).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
@@ -297,24 +414,34 @@
         private OpenFileDialog boxOpen;
         private TabControl tabControl1;
         private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TextBox jsonOut;
+        private TabPage tabPage3;
+        private TextBox xmlOut;
+        private TabPage tabPage4;
+        private Label label1;
+        private Panel panel1;
+        private PictureBox spriteBox;
+        private Panel panel3;
+        private DataGridView dgv;
+        private Panel panel4;
         private ListView listCols;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
-        private Button bLoad;
-        private TabPage tabPage2;
-        private TextBox jsonOut;
-        private TabPage tabPage3;
-        private TextBox xmlOut;
-        private Label lbFound;
-        private TabPage tabPage4;
-        private Label label1;
-        private Panel panel1;
-        private PictureBox spriteBox;
-        private MaskedTextBox tbYTolerance;
-        private Label label2;
         private Panel panel2;
-        private Panel panel3;
+        private Button bLoad;
+        private MaskedTextBox tbYTolerance;
+        private Label lbFound;
+        private Label label2;
+        private DataGridViewTextBoxColumn clGroup;
+        private DataGridViewCheckBoxColumn clLoop;
+        private DataGridViewTextBoxColumn clName;
+        private DataGridViewTextBoxColumn clX;
+        private DataGridViewTextBoxColumn clY;
+        private DataGridViewTextBoxColumn clHeight;
+        private DataGridViewTextBoxColumn clWidth;
+        private DataGridViewTextBoxColumn clLength;
     }
 }
