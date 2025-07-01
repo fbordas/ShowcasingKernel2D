@@ -22,8 +22,8 @@ namespace MonoGame.Kernel2D
         protected KeyboardState _kb;
         protected GamePadState _gp;
 
-        protected KeyboardState _previousKb;
-        protected GamePadState _previousGp;
+        protected KeyboardState _prevKb;
+        protected GamePadState _prevGp;
 
         protected PlayerIndex _player = PlayerIndex.One;
 
@@ -56,9 +56,9 @@ namespace MonoGame.Kernel2D
         /// False otherwise.</returns>
         protected bool WasActionDownLastFrame(string action) =>
             _keyMappings.TryGetValue(action, out var keys) &&
-                keys.Any(k => _previousKb.IsKeyDown(k)) ||
+                keys.Any(k => _prevKb.IsKeyDown(k)) ||
             _padMappings.TryGetValue(action, out var buttons) &&
-                buttons.Any(b => _previousGp.IsButtonDown(b));
+                buttons.Any(b => _prevGp.IsButtonDown(b));
 
         /// <summary>
         /// Gets the input state of a given mapped action. The action to look up
@@ -90,8 +90,8 @@ namespace MonoGame.Kernel2D
         /// </summary>
         public virtual void Update()
         {
-            _previousKb = _kb;
-            _previousGp = _gp;
+            _prevKb = _kb;
+            _prevGp = _gp;
 
             _kb = Keyboard.GetState();
             _gp = GamePad.GetState(_player);

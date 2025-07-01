@@ -84,7 +84,7 @@ namespace EmptyProject.Core
 
         private void PollInput()
         {
-            player.HandleInput(_input); 
+            player.ProcessPlayerActions(_input); 
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Kernel2D;
 using MonoGame.Kernel2D.Animation;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
@@ -31,7 +31,7 @@ namespace EmptyProject.Core
     {
         #region internal resources
         private AnimationPlayer Animator = null;
-        private Spritesheet Sprites = null;
+        private Spritesheet SpriteSet = null;
         private Texture2D PlayerSpriteTexture = null;
         private readonly PhysicsValues _physics = PhysicsValues.Default();
         private SpriteBatch Batch = null;
@@ -62,176 +62,174 @@ namespace EmptyProject.Core
         private bool IsLanding = false;
         #endregion
 
-        #region input checks
-        private bool JumpInterrupted = false;
-        private bool JumpHeld = false;
-        #endregion
-
+        #region basic functions
         public PlatformerPlayerCharacter(XVector position, SpriteBatch batch, Spritesheet sprites, Texture2D texture, SpriteFont font)
         {
-            IsGrounded = CurrentPosition.Y == GroundLevel;
             _font = font;
             CurrentPosition = position;
             GroundLevel = position.Y;
+            IsGrounded = CurrentPosition.Y == GroundLevel;
             Animator = new();
             Batch = batch;
-            Sprites = sprites;
+            SpriteSet = sprites;
             PlayerSpriteTexture = texture;
-            DashDuration = Sprites.Animations["dash"].Frames.Sum(f => f.Duration) / 1000f;
-            JumpAscentDuration = Sprites.Animations["jumpascend"].Frames.Sum(f => f.Duration) / 1000f;
-            Animator.Play(Sprites.Animations["idle"]);
+            DashDuration = SpriteSet.Animations["dash"].Frames.Sum(f => f.Duration) / 1000f;
+            JumpAscentDuration = SpriteSet.Animations["jumpascend"].Frames.Sum(f => f.Duration) / 1000f;
+            Animator.Play(SpriteSet.Animations["idle"]);
         }
 
-        public void HandleInput(PlatformerInputBridge _input)
+        public void Draw(GameTime gameTime) =>
+            Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition,
+                FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+        #endregion
+
+        public void Play(SpriteAnimation anim) => Animator.Play(anim);
+
+        public void ProcessPlayerActions(PlatformerInputBridge input)
         {
-            if (CurrentState == PlayerState.Landing) return;
-
-            // Ignore all input if in the middle of a dash
-            // This is just initial behavior, will change later to allow composite actions
-            if (CurrentState == PlayerState.Dashing) return;
-
-            // IDLE
-            if (_input.IsIdle() && CurrentPosition.Y == GroundLevel) // LAND, GODDAMMIT
+            if (input.IsIdle() && IsGrounded)
             {
                 if (CurrentState != PlayerState.Idle)
                 {
                     CurrentState = PlayerState.Idle;
-                    Animator.Play(Sprites.Animations["idle"]);
+                    Animator.Play(SpriteSet.Animations["idle"]);
                 }
                 return;
             }
 
-            // LEFT/RIGHT movement
-            if (_input.MoveLeft()) FacingRight = false;
-            else if (_input.MoveRight()) FacingRight = true;
+            // Run
+            if (input.MoveLeft()) FacingRight = false;
+            else if (input.MoveRight()) FacingRight = true;
 
-            bool moving = _input.MoveLeft() || _input.MoveRight();
-            if (moving && IsGrounded && !IsAirborne)
+            if ((input.MoveLeft() || input.MoveRight()) && IsGrounded && !IsAirborne)
             {
                 float speed = FacingRight ? _physics.RunSpeed : -_physics.RunSpeed;
-                CurrentPosition = new(CurrentPosition.X + (speed * deltaTime), CurrentPosition.Y);
+                CurrentPosition.X += speed * deltaTime;
 
                 if (CurrentState != PlayerState.Running)
                 {
                     CurrentState = PlayerState.Running;
-                    Animator.Play(Sprites.Animations["run"]);
+                    Animator.Play(SpriteSet.Animations["run"]);
                 }
             }
 
-            // DASHING
-            if (_input.InputPressed("dash"))
+            // Dash
+            if (input.GetInputState("dash") == InputState.Pressed)
             {
                 CurrentState = PlayerState.Dashing;
                 DashElapsedTime = 0f;
-                Animator.Play(Sprites.Animations["dash"]);
+                Animator.Play(SpriteSet.Animations["dash"]);
             }
 
-
-            // JUMPING
-            if (_input.InputHeld("jump") && CurrentState != PlayerState.Falling)
+            // Jump
+            if (input.GetInputState("jump") == InputState.Pressed && IsGrounded)
             {
-                if (!JumpHeld)
-                {
-                    CurrentState = PlayerState.Jumping;
-                    Animator.Play(Sprites.Animations["jumpascend"]);
-                    JumpHeld = true;
-                }
+                CurrentState = PlayerState.Jumping;
+                Animator.Play(SpriteSet.Animations["jumpascend"]);
             }
-
-            if (CurrentState == PlayerState.Jumping && !_input.InputHeld("jump")) JumpInterrupted = true;
-
-            if (!_input.InputHeld("jump")) JumpHeld = false;
         }
 
         public void Update(GameTime gameTime, PlatformerInputBridge input)
-        {
+        { 
             Animator.Update(gameTime);
-            IsGrounded = CurrentPosition.Y == GroundLevel;
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds / 1000f;
-            Debugger.DebugMessage($"Y: {CurrentPosition.Y} | State: {CurrentState}");
-            if (CurrentState == PlayerState.Dashing)
+            // this will need rewriting once collisions start being considered
+            IsGrounded = CurrentPosition.Y == GroundLevel;
+
+            switch (CurrentState)
             {
-                DashElapsedTime += deltaTime;
-
-                float speed = FacingRight ? _physics.DashSpeed : -_physics.DashSpeed;
-                CurrentPosition.X += speed * deltaTime;
-
-                if (DashElapsedTime >= DashDuration)
-                {
-                    CurrentState = PlayerState.Idle;
-                    Animator.Play(Sprites.Animations["idle"]);
-                }
+                case PlayerState.Dashing:
+                    ExecuteDash();
+                    break;
+                case PlayerState.Jumping:
+                    ExecuteJump();
+                    break;
+                case PlayerState.Falling:
+                    ExecuteFall(input);
+                    break;
             }
 
-            if (CurrentState == PlayerState.Jumping)
-            {
-                JumpElapsedTime += deltaTime;
-                VerticalVelocity = _physics.JumpVelocity * (JumpAscentDuration - JumpElapsedTime) / JumpAscentDuration;
-                VerticalVelocity = Math.Max(VerticalVelocity, 0f);
-                CurrentPosition.Y -= VerticalVelocity;
-                if (JumpInterrupted || JumpElapsedTime >= JumpAscentDuration)
-                {
-                    CurrentState = PlayerState.Falling;
-                    Animator.Play(Sprites.Animations["jumpdescend"]);
-                    JumpElapsedTime = 0f;
-                    JumpInterrupted = false;
-                }
-            }
-
-
-            if (CurrentState == PlayerState.Falling)
-            {
-                VerticalVelocity += _physics.Gravity * deltaTime;
-                VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
-                CurrentPosition.Y += VerticalVelocity;
-                if (CurrentPosition.Y >= GroundLevel)
-                {
-                    CurrentPosition.Y = GroundLevel;
-                    VerticalVelocity = 0f;
-                    JumpHeld = false;
-                    if (input.MoveLeft() || input.MoveRight())
-                    {
-                        CurrentState = PlayerState.Running;
-                        Animator.Play(Sprites.Animations["jumplandrun"], () =>
-                            {
-                                CurrentState = PlayerState.Running;
-                                Animator.Play(Sprites.Animations["run"]);
-                            }
-                        );
-                    }
-                    else
-                    {
-                        CurrentState = PlayerState.Idle;
-                        Animator.Play(Sprites.Animations["jumplandidle"], () =>
-                            {
-                                CurrentState = PlayerState.Idle;
-                                Animator.Play(Sprites.Animations["idle"]);
-                            }
-                        );
-                    }
-                }
-            }
-
-            if (CurrentState == PlayerState.Jumping || CurrentState == PlayerState.Falling)
-            {
-                float horizontal = 0f;
-                if (input.MoveLeft()) { horizontal -= 1f; }
-                if (input.MoveRight()) { horizontal += 1f; }
-                CurrentPosition.X += horizontal * _physics.AirborneSpeed * deltaTime;
-            }
-
-            if (CurrentPosition.Y < GroundLevel && CurrentState != PlayerState.Jumping && CurrentState != PlayerState.Falling)
+            if (CurrentPosition.Y < GroundLevel &&
+                CurrentState != PlayerState.Jumping &&
+                CurrentState != PlayerState.Falling)
             {
                 CurrentState = PlayerState.Falling;
-                Animator.Play(Sprites.Animations["jumpdescend"]);
+                Animator.Play(SpriteSet.Animations["jumpdescend"]);
+            }
+
+            ApplyAirborneHorizontalMovement(input);
+        }
+
+        #region special actions
+        private void ExecuteDash()
+        {
+            DashElapsedTime += deltaTime;
+            float speed = FacingRight ? _physics.DashSpeed : -_physics.DashSpeed;
+            CurrentPosition.X += speed * deltaTime;
+            if (DashElapsedTime >= DashDuration)
+            {
+                CurrentState = PlayerState.Idle;
+                Animator.Play(SpriteSet.Animations["idle"]);
             }
         }
 
-        public void Draw(GameTime gameTime) =>
-            Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition, 
-                FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
-        
-        public void Play(SpriteAnimation anim) => Animator.Play(anim);
+        private void ExecuteJump()
+        {
+            JumpElapsedTime += deltaTime;
+            VerticalVelocity = _physics.JumpVelocity *
+                (JumpAscentDuration - JumpElapsedTime) / JumpAscentDuration;
+            VerticalVelocity = Math.Max(VerticalVelocity, 0f);
+            CurrentPosition.Y -= VerticalVelocity;
+            if (JumpElapsedTime >= JumpAscentDuration)
+            {
+                CurrentState = PlayerState.Falling;
+                Animator.Play(SpriteSet.Animations["jumpdescend"]);
+                JumpElapsedTime = 0f;
+            }
+        }
 
+        private void ExecuteFall(PlatformerInputBridge input)
+        {
+            VerticalVelocity += _physics.Gravity * deltaTime;
+            VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
+            CurrentPosition.Y += VerticalVelocity;
+            if (CurrentPosition.Y >= GroundLevel)
+            {
+                CurrentPosition.Y = GroundLevel;
+                VerticalVelocity = 0f;
+                if (input.MoveLeft() || input.MoveRight())
+                {
+                    CurrentState = PlayerState.Running;
+                    Animator.Play(SpriteSet.Animations["jumplandrun"], () =>
+                    {
+                        CurrentState = PlayerState.Running;
+                        Animator.Play(SpriteSet.Animations["run"]);
+                    }
+                    );
+                }
+                else
+                {
+                    CurrentState = PlayerState.Idle;
+                    Animator.Play(SpriteSet.Animations["jumplandidle"], () =>
+                    {
+                        CurrentState = PlayerState.Idle;
+                        Animator.Play(SpriteSet.Animations["idle"]);
+                    }
+                    );
+                }
+            }
+        }
+
+        private void ApplyAirborneHorizontalMovement(PlatformerInputBridge input)
+        {
+            if (CurrentState != PlayerState.Jumping && CurrentState != PlayerState.Falling)
+            { return; }
+
+            float horizontal = 0f;
+            if (input.MoveLeft()) { horizontal -= 1f; }
+            if (input.MoveRight()) { horizontal += 1f; }
+            CurrentPosition.X += horizontal * _physics.AirborneSpeed * deltaTime;
+        }
+        #endregion
     }
 }

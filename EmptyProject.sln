@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyProject.Core", "EmptyP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyProject.WindowsDX", "EmptyProject\EmptyProject.WindowsDX\EmptyProject.WindowsDX.csproj", "{8D238081-76D8-4081-8777-A920CF0F0C04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteCollectionToMap", "SpriteCollectionToMap\SpriteCollectionToMap.csproj", "{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Kernel2D", "MonoGame.2DKernel\MonoGame.Kernel2D.csproj", "{451728F7-6B76-4AC6-B54A-EA0F0F48F47A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIP-Implementation", "SIP-Implementation\SIP-Implementation.csproj", "{C18D2ADB-A702-1CCA-D1BB-02940EEFE270}"
@@ -27,10 +25,6 @@ Global
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D238081-76D8-4081-8777-A920CF0F0C04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A3B13B4-5C6D-48A4-8FB8-D4BAD65A7DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{451728F7-6B76-4AC6-B54A-EA0F0F48F47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{451728F7-6B76-4AC6-B54A-EA0F0F48F47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{451728F7-6B76-4AC6-B54A-EA0F0F48F47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
