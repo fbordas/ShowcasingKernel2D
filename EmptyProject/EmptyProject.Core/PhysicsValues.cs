@@ -7,16 +7,16 @@
         public float JumpVelocity;
         public float JumpHeight;
         public float Gravity;
-        public float AirborneSpeed;
+        public float GravityDecay;
 
         public static PhysicsValues Default() => new()
         {
-            RunSpeed = 4.0f,
-            DashSpeed = 6.0f,
+            RunSpeed = 200f,
+            DashSpeed = 350f,
             JumpVelocity = 7.0f,
             JumpHeight = 2.2f,
             Gravity = 22f,
-            AirborneSpeed = 4.0f
+            GravityDecay = 0.2f
         };
     }
 }
