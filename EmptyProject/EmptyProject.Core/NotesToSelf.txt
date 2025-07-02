@@ -3,15 +3,14 @@
 	make it easier to run through the entire animation pipeline
 	build into separate library maybe? for later reusability? idk
 		THIS IS HAPPENING, Kernel2D exists and it's going to be as full a pipeline library as i can make it
+		K2D won't just be for animations, it'll be a 2D pipeline tool for as many scenarios as i can make it work with
 
 character mobility
-	make mobility composite with multiple actions
-		- run, walk, jump, fall, etc.
-		- each action can have its own animation
-		- actions can be combined for more complex movements
-			- e.g. running + jumping = running jump
-			- e.g. walking + falling = walking fall
-			- e.g. running + falling = running fall
+	make mobility composite with multiple actions -- DONE
+	INITIAL FSM IS IMPLEMENTED AND STATEFUL MANAGEMENT IS NOW A THING
+		next step is... collisions? backgrounds? not sure
+			more complex actions like attacking, wallsliding, getting hurt etc. to come later,
+			first i need to fully understand and make work the world surrounding the entity
 
 resource locator and loader
 	after building everything in mgcb-editor, manage compiled media resources
@@ -25,7 +24,6 @@ build preview toolkit using SIP for sprite resources maybe?
 	not sure how this'd fit in with rest of engine and dev timeline
 	maybe standalone add-on?
 
-SIP output structure spec *already changed*
-
 SIP rework into an actual full-featured WinForms tool
 	change ListView for DataGridView, more flexibility, more fine-grained control
+	expand TEA into as full-featured a GUI for SIP as possible under knowledge
