@@ -18,12 +18,17 @@ namespace MonoGame.Kernel2D.Animation
             !_currentAnim.Loop &&
             _currentAnimIndex >= _currentAnim.Frames.Count;
 
-        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx)
+        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx) =>
+            Draw(batch, tex, position, fx, Color.White);
+
+        public SpriteAnimation? GetCurrentAnimation() => _currentAnim;
+
+        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx, Color tint)
         {
             if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
-            batch.Draw(tex, position, frame.SourceRectangle, Color.White, 0f, origin, 2, fx, 0);
+            batch.Draw(tex, position, frame.SourceRectangle, tint, 0f, origin, 2, fx, 0);
         }
 
         public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position) =>
@@ -66,6 +71,5 @@ namespace MonoGame.Kernel2D.Animation
                 }
             }
         }
-
     }
 }

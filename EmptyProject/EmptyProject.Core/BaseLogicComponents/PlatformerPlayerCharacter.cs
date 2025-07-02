@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,6 +32,24 @@ namespace EmptyProject.Core
 
     public class PlatformerPlayerCharacter
     {
+        #region afterimage stuff
+        private struct AfterImage
+        {
+            public Vector2 Position;
+            public SpriteEffects Flip;
+            public SpriteAnimation Animation;
+            public float Timer;
+        }
+
+        private readonly List<AfterImage> AfterImages = new();
+        private const float AfterImageInterval = 0.03f;
+        private const float AfterImageLifetime = 0.2f;
+        private float AfterImageTimer = 0f;
+        private int AfterImageIndex = 0;
+        private float AfterImageSeparation = 0f;
+        #endregion
+
+
         #region internal resources
         private AnimationPlayer Animator = null;
         private Spritesheet SpriteSet = null;
@@ -93,9 +112,18 @@ namespace EmptyProject.Core
         #endregion
 
         #region framework + helper functions
-        public void Draw(GameTime gameTime) =>
+        public void Draw(GameTime gameTime)
+        {
+            foreach (var img in AfterImages)
+            {
+                float alpha = MathHelper.Clamp(img.Timer / AfterImageLifetime, 0f, 1f);
+                Color tint = Color.DarkRed * alpha;
+                Animator.Draw(Batch, PlayerSpriteTexture, img.Position, img.Flip, tint);
+            }
+
             Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition,
                 FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+        }
 
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
 
@@ -155,11 +183,35 @@ namespace EmptyProject.Core
             Animator.Update(gameTime);
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             IsGrounded = CurrentPosition.Y == GroundLevel;
-            Debugger.DebugMessage($"CurrentPosition.X: {CurrentPosition.X} | CurrentPosition.Y: {CurrentPosition.Y}");
-            Debugger.DebugMessage($"CurrentState: {CurrentState} | TotalGameTime.Milliseconds: {gameTime.TotalGameTime.TotalMilliseconds}");
+            Debugger.DebugMessage
+                ($"CurrentPosition.X: {CurrentPosition.X} | CurrentPosition.Y: {CurrentPosition.Y}");
+            Debugger.DebugMessage($"CurrentState: {CurrentState} | " +
+                "$TotalGameTime.Milliseconds: {gameTime.TotalGameTime.TotalMilliseconds}");
             if (HasState(PlayerState.Dashing)) { ExecuteDash(input); }
             if (HasState(PlayerState.Jumping)) { ExecuteJump(input); }
             if (HasState(PlayerState.Falling)) { ExecuteFall(input); }
+
+            if (HasState(PlayerState.Dashing))
+            {
+                AfterImageTimer -= deltaTime;
+                if (AfterImageTimer <= 0f)
+                {
+                    AfterImageTimer = AfterImageInterval;
+
+                    // Overwrite existing image, or expand list until limit
+                    if (AfterImages.Count < 5) { AfterImages.Add(new AfterImage()); }
+                    float trailOffset = AfterImageSeparation * AfterImages.Count;
+                    float shadowX = CurrentPosition.X - (FacingRight ? trailOffset : -trailOffset);
+                    AfterImages[AfterImageIndex] = new AfterImage
+                    {
+                        Position = new(shadowX, CurrentPosition.Y),
+                        Flip = FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
+                        Animation = Animator.GetCurrentAnimation(),
+                        Timer = AfterImageLifetime
+                    };
+                    AfterImageIndex = (AfterImageIndex + 1) % AfterImages.Count;
+                }
+            }
 
             if (CurrentPosition.Y < GroundLevel &&
                 !HasState(PlayerState.Jumping) &&
@@ -169,6 +221,14 @@ namespace EmptyProject.Core
                 AddState(PlayerState.Falling);
                 Play(SpriteSet.Animations["jumpdescend"]);
             }
+
+            for (int i = 0; i < AfterImages.Count; i++)
+            {
+                AfterImage img = AfterImages[i];
+                img.Timer -= deltaTime;
+                AfterImages[i] = img; // Struct reassignment (for value types)
+            }
+
             ApplyHorizontalMovement(input);
         }
 
