@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace EmptyProject.Core.BaseLogicComponents.Helpers
+namespace PlatformerGameProject.Core.Helpers
 {
     public static class Helpers
     {
@@ -12,7 +12,8 @@ namespace EmptyProject.Core.BaseLogicComponents.Helpers
             public SpriteObject(string name, Rectangle sourceArea)
             {
                 Name = name;
-                Frame = new SpriteFrame(sourceArea.X, sourceArea.Y, sourceArea.Width, sourceArea.Height);
+                Frame = new SpriteFrame(sourceArea.X, sourceArea.Y,
+                    sourceArea.Width, sourceArea.Height);
             }
         }
 

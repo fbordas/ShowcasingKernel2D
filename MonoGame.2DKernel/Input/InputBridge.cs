@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGame.Kernel2D
+namespace MonoGame.Kernel2D.Input
 {
     /// <summary>
     /// Describes the current state of a given input.

@@ -1,5 +1,9 @@
-﻿using System.Windows.Forms;
-using EmptyProject.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Microsoft.Xna.Framework;
+using PlatformerGameProject.Core;
+using PuzzleGameProject.Core;
 
 internal class Program
 {
@@ -14,8 +18,13 @@ internal class Program
         // Configure the application to be DPI-aware for better display scaling.
         Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
-        // Create an instance of the game and start the game loop.
-        using var game = new EmptyProjectGame();
-        game.Run();
+        int i = 0;
+        List<Type> _types =
+        [
+            typeof(PlatformerGame),
+            typeof(PuzzleGame)
+        ];
+        using var executable = (Game)Activator.CreateInstance(_types[i])!;
+        executable.Run();
     }
 }

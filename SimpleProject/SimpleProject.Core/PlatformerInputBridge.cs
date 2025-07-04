@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using MonoGame.Kernel2D.Input;
 using K2D = MonoGame.Kernel2D;
 
-namespace EmptyProject.Core
+namespace PlatformerGameProject.Core
 {
-    public class PlatformerInputBridge : K2D.InputBridge
+    public class PlatformerInputBridge : InputBridge
     {
         #region constructor w/ lookup dictionaries
         /// <summary>
@@ -29,35 +30,35 @@ namespace EmptyProject.Core
         /// Moves the entity left.
         /// </summary>
         /// <returns>True if the input state triggers left movement, False otherwise.</returns>
-        public bool MoveLeft() => GetInputState("move_left") == K2D.InputState.Held;
+        public bool MoveLeft() => GetInputState("move_left") == InputState.Held;
  
         /// <summary>
         /// Moves the entity right.
         /// </summary>
         /// <returns>True if the input state triggers right movement, False otherwise.</returns>
-        public bool MoveRight() => GetInputState("move_right") == K2D.InputState.Held;
+        public bool MoveRight() => GetInputState("move_right") == InputState.Held;
 
         /// <summary>
         /// Whether the entity is currently immobile and no inputs are being processed.
         /// </summary>
         /// <returns>True if the input state is currently fully released, False otherwise.</returns>
         public bool IsIdle() => !MoveLeft() && !MoveRight() &&
-            (GetInputState("dash") == K2D.InputState.None) &&
-            (GetInputState("jump") == K2D.InputState.None);
+            (GetInputState("dash") == InputState.None) &&
+            (GetInputState("jump") == InputState.None);
 
         /// <summary>
         /// Whether an input has been pressed in the current frame.
         /// </summary>
         /// <param name="action">The action to look up in the input dictionaries.</param>
         /// <returns>True if the lookup produces a valid result; False otherwise.</returns>
-        public bool InputPressed(string action) => GetInputState(action) == K2D.InputState.Pressed;
+        public bool InputPressed(string action) => GetInputState(action) == InputState.Pressed;
 
         /// <summary>
         /// Whether an input has been held for more than the current frame.
         /// </summary>
         /// <param name="action">The action to look up in the input dictionaries.</param>
         /// <returns>True if the lookup produces a valid result; False otherwise.</returns>
-        public bool InputHeld(string action) => GetInputState(action) == K2D.InputState.Held;
+        public bool InputHeld(string action) => GetInputState(action) == InputState.Held;
         #endregion
 
         private bool _jumpTriggered = false;
@@ -101,10 +102,10 @@ namespace EmptyProject.Core
         {
             base.Update();
 
-            if (GetInputState("jump") == K2D.InputState.Pressed)
+            if (GetInputState("jump") == InputState.Pressed)
             { _jumpTriggered = true; }
 
-            if (GetInputState("dash") == K2D.InputState.Pressed)
+            if (GetInputState("dash") == InputState.Pressed)
             { _dashTriggered = true; }
         }
     }

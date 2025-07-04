@@ -3,39 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Kernel2D;
 using MonoGame.Kernel2D.Animation;
+using MonoGame.Kernel2D.Input;
+using MonoGame.Kernel2D.Physics;
+using K2DEntities = MonoGame.Kernel2D.Entities;
+using PlayerState = MonoGame.Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
-#pragma warning disable
-namespace EmptyProject.Core
+namespace PlatformerGameProject.Core.Components
 {
-    /// <summary>
-    /// Part of the entity FSM to determine what it's currently "doing".
-    /// </summary>
-    [Flags]
-    public enum PlayerState
-    {
-        None            = 0,
-        Idle            = 1 << 0,  // 1
-        Running         = 1 << 1,  // 2
-        Dashing         = 1 << 2,  // 4
-        Jumping         = 1 << 3,  // 8
-        Falling         = 1 << 4,  // 16
-        Landing         = 1 << 5,  // 32
-        Shooting        = 1 << 6,  // 64
-        Slashing        = 1 << 7,  // 128
-        TakingDamage    = 1 << 8,  // 256
-        Climbing        = 1 << 9,  // 512
-        WallSliding     = 1 << 10, // 1024
-        EnteringDoor    = 1 << 11, // 2048
-    }
-
     /// <summary>
     /// A sidescrolling platformer player entity.
     /// </summary>
-    public class PlatformerPlayerCharacter
+    public class PlatformerPlayerCharacter : K2DEntities.PlatformerPlayer2D
     {
         #region afterimage stuff
         /// <summary>
@@ -43,33 +24,30 @@ namespace EmptyProject.Core
         /// </summary>
         private struct AfterImage
         {
-            public Vector2 Position;
+            public XVector Position;
             public SpriteEffects Flip;
             public SpriteAnimation Animation;
             public float Timer;
         }
-
         private readonly List<AfterImage> AfterImages = [];
         private const float AfterImageInterval = 0.08f;
         private const float AfterImageLifetime = 0.2f;
         private float AfterImageTimer = 0f;
         private int AfterImageIndex = 0;
-        private float AfterImageSeparation = 0f;
+        private float AfterImageSeparation = 1f;
         #endregion
-
 
         #region internal resources
         private AnimationPlayer Animator = null;
         private Spritesheet SpriteSet = null;
         private Texture2D PlayerSpriteTexture = null;
-        private readonly PhysicsValues _physics = PhysicsValues.Default();
+        private readonly Platformer2DPhysics 
+            _physics = Platformer2DPhysics.Default();
         private SpriteBatch Batch = null;
         private SpriteFont _font;
         #endregion
 
         #region physics values
-        private bool FacingRight = true;
-        private XVector CurrentPosition;
         private float DashElapsedTime = 0f;
         private readonly float DashDuration;
         private float JumpElapsedTime = 0f;
@@ -77,50 +55,8 @@ namespace EmptyProject.Core
         private float VerticalVelocity = 0f;
         private const float MaxFallSpeed = 7f;
         private readonly float GroundLevel;
-        private float deltaTime = 0f;
         private float AirborneSpeed =>
             HasState(PlayerState.Dashing) ? _physics.DashSpeed : _physics.RunSpeed;
-        #endregion
-
-        #region physics states
-        private bool IsAirborne =>
-            HasState(PlayerState.Jumping) || HasState(PlayerState.Falling);
-        private bool IsGrounded = false;
-        private bool JumpCut = false;
-        #endregion
-
-        #region state helpers
-        /// <summary>
-        /// Current state of the entity. Provides maneuverability for
-        /// the entity FSM.
-        /// </summary>
-        private PlayerState CurrentState;
-        /// <summary>
-        /// Gets the current state of the entity.
-        /// </summary>
-        /// <returns>The current state of the entity.</returns>
-        public PlayerState GetState() => this.CurrentState;
-        /// <summary>
-        /// Checks if a state is currently active in the FSM.
-        /// </summary>
-        /// <param name="state">The state to check for.</param>
-        /// <returns>True if the state is active, False otherwise.</returns>
-        private bool HasState(PlayerState state) => (CurrentState & state) != 0;
-        /// <summary>
-        /// Adds a state to the current state in the FSM.
-        /// </summary>
-        /// <param name="state">The state to add.</param>
-        private void AddState(PlayerState state) => CurrentState |= state;
-        /// <summary>
-        /// Removes a state from the current state collection.
-        /// </summary>
-        /// <param name="state">The state to remove.</param>
-        private void RemoveState(PlayerState state) => CurrentState &= ~state;
-        /// <summary>
-        /// Resets all states and sets a specific state.
-        /// </summary>
-        /// <param name="state">The state to set.</param>
-        private void SetState(PlayerState state) => CurrentState = state;
         #endregion
 
         #region init
@@ -159,7 +95,8 @@ namespace EmptyProject.Core
         /// Uses the built-in <see cref="AnimationPlayer"/> to draw the entity
         /// onscreen.
         /// </summary>
-        /// <param name="gameTime">The time state of the game.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values used
+        /// for game updates.</param>
         public void Draw(GameTime gameTime)
         {
             foreach (var img in AfterImages)
@@ -178,15 +115,6 @@ namespace EmptyProject.Core
         /// </summary>
         /// <param name="anim"></param>
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
-
-        /// <summary>
-        /// Removes all grounded states from the FSM.
-        /// </summary>
-        private void ClearGroundedStates()
-        {
-            RemoveState(PlayerState.Idle);
-            RemoveState(PlayerState.Running);
-        }
         #endregion
 
         /// <summary>
@@ -247,7 +175,8 @@ namespace EmptyProject.Core
         /// <summary>
         /// Updates the current state of the entity object.
         /// </summary>
-        /// <param name="gameTime">The time state of the game.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values used
+        /// for game updates.</param>
         /// <param name="input">The <see cref="PlatformerInputBridge"/>
         /// to accept and process user inputs from.</param>
         public void Update(GameTime gameTime, PlatformerInputBridge input)
@@ -256,7 +185,7 @@ namespace EmptyProject.Core
             Animator.Update(gameTime);
 
             // calculate delta time (in case rendering speed isn't stable)
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             IsGrounded = CurrentPosition.Y == GroundLevel;
 
             // output debug info
@@ -274,14 +203,14 @@ namespace EmptyProject.Core
             // add some nifty aftereffects for dashing
             if (HasState(PlayerState.Dashing))
             {
-                AfterImageTimer -= deltaTime;
+                AfterImageTimer -= DeltaTime;
                 if (AfterImageTimer <= 0f)
                 {
                     AfterImageTimer = AfterImageInterval;
 
                     // overwrite existing image, or expand list until limit
                     if (AfterImages.Count < 5) { AfterImages.Add(new AfterImage()); }
-                    float trailOffset = AfterImageSeparation * AfterImages.Count;
+                    float trailOffset = AfterImageSeparation * AfterImageIndex;
                     float shadowX = CurrentPosition.X - 
                         (FacingRight ? trailOffset : -trailOffset);
                     AfterImages[AfterImageIndex] = new AfterImage
@@ -310,7 +239,7 @@ namespace EmptyProject.Core
             for (int i = 0; i < AfterImages.Count; i++)
             {
                 AfterImage img = AfterImages[i];
-                img.Timer -= deltaTime;
+                img.Timer -= DeltaTime;
                 AfterImages[i] = img; // struct reassignment (for value types)
             }
 
@@ -327,7 +256,7 @@ namespace EmptyProject.Core
         private void ExecuteDash(PlatformerInputBridge input)
         {
             // by itself, dashing can only last a specific amount of time
-            DashElapsedTime += deltaTime;
+            DashElapsedTime += DeltaTime;
 
             // set player state and display corresponding animation
             // when dash is triggered
@@ -351,7 +280,7 @@ namespace EmptyProject.Core
         private void ExecuteJump(PlatformerInputBridge input)
         {
             // by itself, jumping can only last a specific amount of time
-            JumpElapsedTime += deltaTime;
+            JumpElapsedTime += DeltaTime;
 
             // check if jump was interrupted before reaching max height
             if (!JumpCut && input.GetInputState("jump") == InputState.Released)
@@ -364,7 +293,8 @@ namespace EmptyProject.Core
 
             // calculate and apply vertical velocity
             VerticalVelocity = Math.Max(VerticalVelocity, 0f);
-            CurrentPosition.Y -= VerticalVelocity;
+            CurrentPosition = new
+                (CurrentPosition.X, CurrentPosition.Y - VerticalVelocity);
 
             // set player state and display corresponding animation when
             // jump is triggered, and clear any related flags and counters
@@ -387,14 +317,15 @@ namespace EmptyProject.Core
         private void ExecuteFall(PlatformerInputBridge input)
         {
             // calculate applied gravity and vertical velocity
-            VerticalVelocity += _physics.Gravity * deltaTime;
+            VerticalVelocity += _physics.Gravity * DeltaTime;
             VerticalVelocity = Math.Min(VerticalVelocity, MaxFallSpeed);
-            CurrentPosition.Y += VerticalVelocity;
+            CurrentPosition = new
+                (CurrentPosition.X, CurrentPosition.Y + VerticalVelocity);
 
             // set sprite to grounded if Y position has reached ground level
             if (CurrentPosition.Y >= GroundLevel)
             {
-                CurrentPosition.Y = GroundLevel;
+                CurrentPosition = new(CurrentPosition.X, GroundLevel);
                 VerticalVelocity = 0f;
                 SetState(PlayerState.None); // ensures fall artifacts are cleared
 
@@ -441,7 +372,8 @@ namespace EmptyProject.Core
                 {
                     float inPlaceSpeed = FacingRight ?
                         _physics.DashSpeed : -_physics.DashSpeed;
-                    CurrentPosition.X += inPlaceSpeed * deltaTime;
+                    CurrentPosition = new 
+                        (CurrentPosition.X + inPlaceSpeed * DeltaTime, CurrentPosition.Y);
                 }
                 return;
             }
@@ -449,7 +381,8 @@ namespace EmptyProject.Core
             // move entity according to state and direction
             float speed = HasState(PlayerState.Dashing)
                 ? _physics.DashSpeed : _physics.RunSpeed;
-            CurrentPosition.X += horizontal * speed * deltaTime;
+            CurrentPosition = new
+                (CurrentPosition.X + horizontal * speed * DeltaTime, CurrentPosition.Y);
         }
     }
 }

@@ -7,22 +7,22 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using K2D = MonoGame.Kernel2D.Animation;
 
-namespace EmptyProject.Core.BaseLogicComponents
+namespace PlatformerGameProject.Core.Helpers
 {
     public static class AnimationLoaderHelper
     {
-        internal static List<SpriteRow> GetSpritesFromJson(string path)
+        internal static List<SpriteGroup> GetSpritesFromJson(string path)
         {
             if (!File.Exists(path)) { throw new FileNotFoundException(); }
             try
             {
-                var spriteMap = JsonSerializer.Deserialize<List<SpriteRow>>(File.ReadAllText(path));
+                var spriteMap = JsonSerializer.Deserialize<List<SpriteGroup>>(File.ReadAllText(path));
                 return spriteMap;
             }
             catch (Exception) { throw; }
         }
 
-        internal static K2D.Spritesheet TranslateIntoDomainModel(List<SpriteRow> rows, Texture2D playerTexture,
+        internal static K2D.Spritesheet TranslateIntoDomainModel(List<SpriteGroup> rows, Texture2D playerTexture,
             string sheetName)
         {
             var sheet = new K2D.Spritesheet
@@ -81,13 +81,13 @@ namespace EmptyProject.Core.BaseLogicComponents
         public SpriteFrame() { }
     }
 
-    internal class SpriteRow
+    internal class SpriteGroup
     {
         public string Name { get; set; }
         public List<SpriteObject> Frames { get; set; }
         public bool Loop { get; set; } = true; // Default to true if not specified
-        public SpriteRow(string name, List<SpriteObject> frames)
+        public SpriteGroup(string name, List<SpriteObject> frames)
         { Name = name; Frames = frames; }
-        public SpriteRow() { }
+        public SpriteGroup() { }
     }
 }

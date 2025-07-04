@@ -1,6 +1,6 @@
-﻿namespace EmptyProject.Core
+﻿namespace MonoGame.Kernel2D.Physics
 {
-    internal struct PhysicsValues
+    public struct Platformer2DPhysics
     {
         public float RunSpeed;
         public float DashSpeed;
@@ -9,7 +9,7 @@
         public float Gravity;
         public float GravityDecay;
 
-        public static PhysicsValues Default() => new()
+        public static Platformer2DPhysics Default() => new()
         {
             RunSpeed = 200f,
             DashSpeed = 350f,
