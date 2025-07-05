@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Kernel2D.Animation;
 using PlatformerGameProject.Core.Helpers;
-using PPC = PlatformerGameProject.Core.Components.PlatformerPlayerCharacter;
+using PlatformerInputBridge = MonoGame.Kernel2D.Input.PlatformerInputBridge;
+using PPC = PlatformerGameProject.Core.PlatformerPlayerCharacter;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
 namespace PlatformerGameProject.Core
@@ -57,10 +58,20 @@ namespace PlatformerGameProject.Core
             _graphics.IsFullScreen = false;
             _graphics.PreferredBackBufferWidth = 1500;
             _graphics.ApplyChanges();
+            _input.RegisterKeyMapping("dash", [Keys.LeftShift]);
+            _input.RegisterKeyMapping("jump", [Keys.Space]);
+            _input.RegisterKeyMapping("move_left", [Keys.A, Keys.Left]);
+            _input.RegisterKeyMapping("move_right", [Keys.D, Keys.Right]);
+            _input.RegisterPadMapping("dash", [Buttons.RightShoulder]);
+            _input.RegisterPadMapping("jump", [Buttons.A]);
+            _input.RegisterPadMapping("move_left", [Buttons.DPadLeft]);
+            _input.RegisterPadMapping("move_right", [Buttons.DPadRight]);
 
             base.Initialize();
         }
         #endregion
+
+
 
         /// <summary>
         /// Updates the game's logic, called once per frame.
@@ -73,6 +84,7 @@ namespace PlatformerGameProject.Core
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             _input.Update();
             PollInput();
 

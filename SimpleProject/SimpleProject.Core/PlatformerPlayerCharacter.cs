@@ -11,7 +11,7 @@ using PlayerState = MonoGame.Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
-namespace PlatformerGameProject.Core.Components
+namespace PlatformerGameProject.Core
 {
     /// <summary>
     /// A sidescrolling platformer player entity.
@@ -55,8 +55,6 @@ namespace PlatformerGameProject.Core.Components
         private float VerticalVelocity = 0f;
         private const float MaxFallSpeed = 7f;
         private readonly float GroundLevel;
-        private float AirborneSpeed =>
-            HasState(PlayerState.Dashing) ? _physics.DashSpeed : _physics.RunSpeed;
         #endregion
 
         #region init
@@ -68,9 +66,10 @@ namespace PlatformerGameProject.Core.Components
         /// the entity with.</param>
         /// <param name="sprites">The <see cref="Spritesheet"/> to use
         /// to draw sprites onscreen.</param>
-        /// <param name="texture">The image resource to draw the entity
-        /// with.</param>
-        /// <param name="font">A font to use to draw text onscreen.</param>
+        /// <param name="texture">The <see cref="Texture2D"/> image
+        /// resource to draw the entity with.</param>
+        /// <param name="font">A <see cref="SpriteFont"/> to use to draw
+        /// text onscreen.</param>
         public PlatformerPlayerCharacter(XVector position, SpriteBatch batch,
             Spritesheet sprites, Texture2D texture, SpriteFont font)
         {
@@ -113,7 +112,8 @@ namespace PlatformerGameProject.Core.Components
         /// Plays a given <see cref="SpriteAnimation"/> using the
         /// built-in <see cref="AnimationPlayer"/>.
         /// </summary>
-        /// <param name="anim"></param>
+        /// <param name="anim">The <see cref="SpriteAnimation"/>
+        /// to play.</param>
         public void Play(SpriteAnimation anim) => Animator.Play(anim);
         #endregion
 
