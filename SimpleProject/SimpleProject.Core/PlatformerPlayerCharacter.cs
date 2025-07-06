@@ -16,7 +16,7 @@ namespace PlatformerGameProject.Core
     /// <summary>
     /// A sidescrolling platformer player entity.
     /// </summary>
-    public class PlatformerPlayerCharacter : K2DEntities.PlatformerPlayer2D
+    public class PlatformerPlayerCharacter : K2DEntities.Platformer2DCharacter
     {
         #region afterimage stuff
         /// <summary>
@@ -101,7 +101,7 @@ namespace PlatformerGameProject.Core
             foreach (var img in AfterImages)
             {
                 float alpha = MathHelper.Clamp(img.Timer / AfterImageLifetime, 0f, 1f);
-                Color tint = Color.DarkRed * alpha;
+                Color tint = Color.DarkRed * alpha * 0.4f; // extra value for transparency
                 Animator.Draw(Batch, PlayerSpriteTexture, img.Position, img.Flip, tint);
             }
             Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition,
@@ -312,8 +312,9 @@ namespace PlatformerGameProject.Core
         /// <summary>
         /// Executes the falling action. Can overlap with dash action.
         /// </summary>
-        /// <param name="input">The <see cref="PlatformerInputBridge"/> to
-        /// process the current input from.</param>
+        /// <param name="input">
+        /// The <see cref="PlatformerInputBridge"/> to process inputs from.
+        /// </param>
         private void ExecuteFall(PlatformerInputBridge input)
         {
             // calculate applied gravity and vertical velocity

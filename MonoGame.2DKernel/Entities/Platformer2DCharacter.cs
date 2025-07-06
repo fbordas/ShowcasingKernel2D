@@ -72,7 +72,7 @@ namespace MonoGame.Kernel2D.Entities
     /// <summary>
     /// Base class for a 2D platformer player entity in a game.
     /// </summary>
-    public abstract class PlatformerPlayer2D
+    public abstract class Platformer2DCharacter
     {
         /// <summary>
         /// Unique identifier for the entity in the game world.

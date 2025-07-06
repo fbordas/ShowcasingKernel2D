@@ -5,7 +5,7 @@ using MonoGame.Kernel2D.Input;
 
 namespace MonoGame.Kernel2D.Screens
 {
-    public abstract class MenuScreen : ScreenBase
+    public abstract class OptionsScreen : ScreenBase
     {
         public MenuInputBridge _input { get; protected set; } = new();
     }

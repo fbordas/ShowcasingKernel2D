@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using MonoGame.Kernel2D.Input;
 
 namespace MonoGame.Kernel2D.Screens
 {
-    public abstract class GameScreen
+    public abstract class GameScreen : ScreenBase
     {
-        public virtual void LoadContent(ContentManager content) { }
-        public virtual void UnloadContent() { }
-        public virtual void Update(GameTime gameTime) { }
-        public virtual void Draw(SpriteBatch batch) { }
+        public PlatformerInputBridge _input { get; protected set; } = new();
+
+
     }
 }
