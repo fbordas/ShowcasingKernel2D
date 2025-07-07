@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 
+#pragma warning disable
 namespace MonoGame.Kernel2D.Input
 {
     /// <summary>
@@ -30,6 +32,8 @@ namespace MonoGame.Kernel2D.Input
         protected readonly Dictionary<string, Keys[]> _keyMappings = [];
         protected readonly Dictionary<string, Buttons[]> _padMappings = [];
 
+
+        
         /// <summary>
         /// Determines if the button/key for the specified action is currently
         /// considered as "pressed" at the time of input polling. The action
@@ -61,6 +65,65 @@ namespace MonoGame.Kernel2D.Input
                 buttons.Any(b => _prevGp.IsButtonDown(b));
 
         /// <summary>
+        /// Registers a key mapping for a specific action. The action must be
+        /// a valid string and the keys array must not be null or empty. If the
+        /// action already exists, it will be overwritten with the new keys
+        /// mapping.
+        /// </summary>
+        /// <param name="action">
+        /// The action to register the key mapping for. Must be a valid string.
+        /// </param>
+        /// <param name="keys">
+        /// The array of keys to map to the action. Must not be null or empty.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the action is null, empty, or the keys array is null or empty.
+        /// </exception>
+        public void RegisterKeyMapping(string action, Keys[] keys)
+        {
+            if (string.IsNullOrEmpty(action))
+            { 
+                throw new ArgumentException("Action must be a valid string.",
+                    nameof(action));
+            }
+            if (keys == null || keys.Length == 0)
+            {
+                throw new ArgumentException("Keys array must not be null or empty.",
+                    nameof(keys));
+            }
+            _keyMappings[action] = keys;
+        }
+
+        /// <summary>
+        /// Registers a new gamepad button mapping for a given action. The action must
+        /// be a valid string and the buttons array must not be null or empty. If the
+        /// action /// already exists, it will be overwritten with the new buttons mapping.
+        /// </summary>
+        /// <param name="action">
+        /// The action to register the button mapping for. Must be a valid string.
+        /// </param>
+        /// <param name="buttons">
+        /// The array of gamepad buttons to map to the action. Must not be null or empty.
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the action is null, empty, or the buttons array is null or empty.
+        /// </exception>
+        public void RegisterButtonMapping(string action, Buttons[] buttons)
+        {
+            if (string.IsNullOrEmpty(action))
+            {
+                throw new ArgumentException("Action must be a valid string.",
+                    nameof(action));
+            }
+            if (buttons == null || buttons.Length == 0)
+            {
+                throw new ArgumentException("Buttons array must not be null or empty.",
+                    nameof(buttons));
+            }
+            _padMappings[action] = buttons;
+        }
+
+        /// <summary>
         /// Gets the input state of a given mapped action. The action to look up
         /// must exist in the actions dictionary of the current concrete input bridge.
         /// </summary>
@@ -73,7 +136,7 @@ namespace MonoGame.Kernel2D.Input
                 var ae = 
                     new ArgumentException($"Action '{action}' not found in input mappings.",
                     nameof(action));
-                System.Diagnostics.Debug.WriteLine(ae.ToString());
+                Debugger.WriteLine(ae.ToString());
                 throw ae;
             }
             bool isDownNow = IsActionDownNow(action);

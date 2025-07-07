@@ -1,4 +1,6 @@
-﻿animation manager API
+﻿REMINDER TO SELF: STOP FUCKING HOARDING IDEAS AND NOT TRASHING AND DISCARDING WHAT DOESN'T WORK
+
+animation manager API
 	abstract/encapsulate animation process?
 	make it easier to run through the entire animation pipeline
 	build into separate library maybe? for later reusability? idk
@@ -8,16 +10,17 @@
 character mobility
 	make mobility composite with multiple actions -- DONE
 	INITIAL FSM IS IMPLEMENTED AND STATEFUL MANAGEMENT IS NOW A THING
-		next step is... collisions? backgrounds? not sure
+		~~next step is... collisions? backgrounds? not sure~~
 			more complex actions like attacking, wallsliding, getting hurt etc. to come later,
 			first i need to fully understand and make work the world surrounding the entity
+		next step is SCREENS
+			basic splash > title > options screen sequence, looping back from options to title
+			title > game screen sequence to follow
 
 resource locator and loader
 	after building everything in mgcb-editor, manage compiled media resources
 	access all media through resource manager
 	build into separate library? for later reusability? idk
-
-STOP FUCKING HOARDING IDEAS AND NOT TRASHING AND DISCARDING WHAT DOESN'T WORK
 
 build preview toolkit using SIP for sprite resources maybe?
 	would be solid pipeline tool
@@ -32,15 +35,14 @@ SIP rework into an actual full-featured WinForms tool
 	single file .spritemap output for portability
 	multi-file "MGCB-ready" output for injection into MGCB pipeline
 	need to further polish SIP and TEA to make this a reality
+	WTF THIS IS A THING?!
+		Random suggestion for later
+		You could build .spritemap export as pure JSON with embedded base64, but if you ever
+		want to go full toolchain-proper™, look into the System.IO.Packaging namespace — it
+		lets you make .zip-like custom archives with inner paths and content types.
 
-WTF THIS IS A THING?!
-	Random suggestion for later
-	You could build .spritemap export as pure JSON with embedded base64, but if you ever
-	want to go full toolchain-proper™, look into the System.IO.Packaging namespace — it
-	lets you make .zip-like custom archives with inner paths and content types.
-
-	That would let .spritemap behave a bit like .docx or .xlsx: a zipped container with:
-		sprites/image.png
-		sprites/atlas.json
-		sprites/atlas.xml
-		meta/info.json
+		That would let .spritemap behave a bit like .docx or .xlsx: a zipped container with:
+			sprites/image.png
+			sprites/atlas.json
+			sprites/atlas.xml
+			meta/info.json

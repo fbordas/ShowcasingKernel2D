@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 
 namespace MonoGame.Kernel2D.Input
 {
@@ -7,20 +8,35 @@ namespace MonoGame.Kernel2D.Input
     /// </summary>
     public class MenuInputBridge : InputBridge
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MenuInputBridge"/> class.
-        /// </summary>
-        public MenuInputBridge() { }
+        private protected enum MenuAction
+        {
+            AcceptOrSelect,
+            CancelOrReturn
+        }
+
+        private readonly Dictionary<MenuAction, string> _actionNames = new()
+        {
+            { MenuAction.AcceptOrSelect, "select" },
+            { MenuAction.CancelOrReturn, "cancel" }
+        };
 
         /// <summary>
         /// The action string to identify the select input.
         /// </summary>
-        public string SelectActionName { get; protected set; } = "select";
+        public string AcceptOrSelectActionName
+        {
+            get => _actionNames[MenuAction.AcceptOrSelect];
+            set => RenameAction(MenuAction.AcceptOrSelect, value);
+        }
 
         /// <summary>
         /// The action string to identify the cancel input.
         /// </summary>
-        public string CancelActionName { get; protected set; } = "cancel";
+        public string CancelOrReturnActionName
+        { 
+            get => _actionNames[MenuAction.CancelOrReturn];
+            set => RenameAction(MenuAction.CancelOrReturn, value);
+        }
 
         /// <summary>
         /// Sets the action string to identify the select input.
@@ -36,7 +52,7 @@ namespace MonoGame.Kernel2D.Input
             if (string.IsNullOrEmpty(action))
                 throw new ArgumentException("Action must be a valid string.",
                     nameof(action));
-            SelectActionName = action;
+            AcceptOrSelectActionName = action;
         }
 
         /// <summary>
@@ -53,57 +69,54 @@ namespace MonoGame.Kernel2D.Input
             if (string.IsNullOrEmpty(action))
                 throw new ArgumentException("Action must be a valid string.",
                     nameof(action));
-            CancelActionName = action;
+            CancelOrReturnActionName = action;
+        }
+
+        private void RenameAction(MenuAction action, string newName)
+        {
+            if (!_actionNames.TryGetValue(action, out string? oldname))
+            {
+                var ae = new ArgumentException
+                    ($"Action '{action}' not found in input mappings.",
+                    nameof(action));
+                Debugger.WriteLine(ae.ToString());
+                throw ae;
+            }
+            if (string.IsNullOrEmpty(newName))
+            {
+                var ae = new ArgumentException
+                    ("New action name must be a valid string.", nameof(newName));
+                Debugger.WriteLine(ae.ToString());
+                throw ae;
+            }
+            if (_keyMappings.TryGetValue(oldname, out var keys))
+            {
+                _keyMappings.Remove(oldname);
+                _keyMappings[newName] = keys;
+            }
+            if (_padMappings.TryGetValue(oldname, out var buttons))
+            {
+                _padMappings.Remove(oldname);
+                _padMappings[newName] = buttons;
+            }
+            _actionNames[action] = newName;
         }
 
         /// <summary>
-        /// Registers a key mapping for a specific action.
+        /// Initializes a new instance of the <see cref="MenuInputBridge"/> class.
         /// </summary>
-        /// <param name="action">
-        /// The action to register the key mapping for.
-        /// </param>
-        /// <param name="keys">
-        /// The array of keys to map to the action.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the action is not a valid action name or if the keys
-        /// array is null or empty.
-        /// </exception>
-        public void RegisterKeyMapping(string action, Keys[] keys)
+        public MenuInputBridge()
         {
-            if (string.IsNullOrEmpty(action)
-                || action != SelectActionName || action != CancelActionName)
-                throw new ArgumentException("Action must be a valid action name.",
-                    nameof(action));
-            if (keys == null || keys.Length == 0)
-                throw new ArgumentException("Keys must not be null or empty.",
-                    nameof(keys));
-            _keyMappings[action] = keys;
+            AcceptOrSelectActionName =
+                MenuAction.AcceptOrSelect.ToString().ToLowerInvariant();
+            CancelOrReturnActionName =
+                MenuAction.CancelOrReturn.ToString().ToLowerInvariant();
+            foreach (var kvp in _actionNames)
+            {
+                _keyMappings[kvp.Value] = Array.Empty<Keys>();
+                _padMappings[kvp.Value] = Array.Empty<Buttons>();
+            }
         }
 
-        /// <summary>
-        /// Registers a pad mapping for a specific action.
-        /// </summary>
-        /// <param name="action">
-        /// The action to register the pad mapping for.
-        /// </param>
-        /// <param name="buttons">
-        /// The array of buttons to map to the action.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the action is not a valid action name or if the buttons
-        /// array is null or empty.
-        /// </exception>
-        public void RegisterPadMapping(string action, Buttons[] buttons)
-        {
-            if (string.IsNullOrEmpty(action)
-                || action != SelectActionName || action != CancelActionName)
-                throw new ArgumentException("Action must be a valid action name.",
-                    nameof(action));
-            if (buttons == null || buttons.Length == 0)
-                throw new ArgumentException("Buttons must not be null or empty.",
-                    nameof(buttons));
-            _padMappings[action] = buttons;
-        }
     }
 }

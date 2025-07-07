@@ -1,4 +1,4 @@
-﻿using XnaRectangle = Microsoft.Xna.Framework.Rectangle;
+﻿using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace MonoGame.Kernel2D.Animation
 {
@@ -13,10 +13,10 @@ namespace MonoGame.Kernel2D.Animation
         /// </summary>
         public string Name { get; set; } = string.Empty;
         /// <summary>
-        /// The source <see cref="XnaRectangle"> within the texture
+        /// The source <see cref="XRectangle"> within the texture
         /// that defines the area of the sprite to be drawn.
         /// </summary>
-        public XnaRectangle SourceRectangle { get; set; }
+        public XRectangle SourceRectangle { get; set; }
         /// <summary>
         /// The duration for which this frame should be displayed,
         /// in milliseconds.

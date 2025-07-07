@@ -136,7 +136,7 @@
             A class for exporting a collection of sprite regions to JSON or XML.
             </summary>
         </member>
-        <member name="M:SpriteImageParser.Core.SpriteRegionExporter.SerializeToJson(System.Collections.Generic.List{SpriteImageParser.Core.SpriteRegion},System.String,System.Nullable{System.Single},System.Int32)">
+        <member name="M:SpriteImageParser.Core.SpriteRegionExporter.SerializeToJson(System.Collections.Generic.List{SpriteImageParser.Core.SpriteRegion},System.String,System.Nullable{System.Single},System.Int32,System.String)">
             <summary>
             Serializes a list of sprite regions to a JSON string.
             </summary>
