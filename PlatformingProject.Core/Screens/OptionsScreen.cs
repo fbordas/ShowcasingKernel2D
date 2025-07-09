@@ -5,7 +5,7 @@ using MonoGame.Kernel2D.Drawing;
 using MonoGame.Kernel2D.Input;
 using MonoGame.Kernel2D.Screens;
 
-namespace PlatformerGameProject.Core.Screens
+namespace PlatformingProject.Core.Screens
 {
     internal class OptionsScreen : SettingsScreen
     {

@@ -2,7 +2,7 @@
 using MonoGame.Kernel2D.Animation;
 using Microsoft.Xna.Framework.Content;
 
-namespace PlatformerGameProject.Core.Helpers
+namespace PlatformingProject.Core.Helpers
 {
     internal class SpritesheetLoader
     {

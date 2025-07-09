@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Kernel2D.Screens;
 
-namespace PlatformerGameProject.Core.Screens
+namespace PlatformingProject.Core.Screens
 {
     internal class PlatformerGameTestScreen : GameScreen
     {

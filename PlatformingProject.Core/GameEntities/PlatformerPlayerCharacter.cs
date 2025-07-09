@@ -11,7 +11,7 @@ using PlayerState = MonoGame.Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
-namespace PlatformerGameProject.Core.GameEntities
+namespace PlatformingProject.Core.GameEntities
 {
     /// <summary>
     /// A sidescrolling platformer player entity.

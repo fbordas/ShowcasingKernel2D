@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace PlatformerGameProject.Core.Helpers
+namespace PlatformingProject.Core.Helpers
 {
     public static class Helpers
     {
