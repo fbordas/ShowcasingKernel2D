@@ -72,6 +72,15 @@ namespace MonoGame.Kernel2D.Input
             CancelOrReturnActionName = action;
         }
 
+        /// <summary>
+        /// Renames an action in the input mappings.
+        /// </summary>
+        /// <param name="action">
+        /// The action to rename. Must be a valid <see cref="MenuAction"/>.
+        /// </param>
+        /// <param name="newName">
+        /// The new name for the action. Must be a valid string.
+        /// </param>
         private void RenameAction(MenuAction action, string newName)
         {
             if (!_actionNames.TryGetValue(action, out string? oldname))
@@ -111,12 +120,14 @@ namespace MonoGame.Kernel2D.Input
                 MenuAction.AcceptOrSelect.ToString().ToLowerInvariant();
             CancelOrReturnActionName =
                 MenuAction.CancelOrReturn.ToString().ToLowerInvariant();
-            foreach (var kvp in _actionNames)
-            {
-                _keyMappings[kvp.Value] = Array.Empty<Keys>();
-                _padMappings[kvp.Value] = Array.Empty<Buttons>();
-            }
+            _keyMappings[MenuAction.AcceptOrSelect.ToString()] = 
+            [ Keys.Enter ];
+            _keyMappings[MenuAction.CancelOrReturn.ToString()] = 
+            [ Keys.Back ];
+            _padMappings[MenuAction.AcceptOrSelect.ToString()] = 
+            [ Buttons.A, Buttons.Start ];
+            _padMappings[MenuAction.CancelOrReturn.ToString()] = 
+            [ Buttons.B ];
         }
-
     }
 }

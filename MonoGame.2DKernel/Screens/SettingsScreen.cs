@@ -3,10 +3,10 @@ using MonoGame.Kernel2D.Input;
 
 namespace MonoGame.Kernel2D.Screens
 {
-    public abstract class MenuScreen : ScreenBase
+    public abstract class SettingsScreen : ScreenBase
     {
         public MenuInputBridge Input { get; protected set; } = new();
 
-        public MenuScreen(ContentManager content) => _content = content;
+        public SettingsScreen(ContentManager content) => _content = content;
     }
 }

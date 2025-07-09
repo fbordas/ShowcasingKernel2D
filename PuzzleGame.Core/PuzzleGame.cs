@@ -30,7 +30,7 @@ namespace PuzzleGameProject.Core
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _manager.LoadScreen(new MainMenuScreen(), Content);
+            //_manager.ChangeScreen(new MainMenuScreen(), Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -50,7 +50,7 @@ namespace PuzzleGameProject.Core
         {
             GraphicsDevice.Clear(Color.LightGray);
 
-            _manager.Draw(_spriteBatch);
+            //_manager.Draw(_spriteBatch);
 
             // TODO: Add your drawing code here
 

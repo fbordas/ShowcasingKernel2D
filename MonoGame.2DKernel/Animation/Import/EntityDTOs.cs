@@ -1,14 +1,22 @@
 ﻿namespace MonoGame.Kernel2D.Animation.Import
 {
     /// <summary>
-    /// Data Transfer Objects (DTOs) for importing spritesheets and animations.
+    /// Represents a spritesheet, which is a collection of animations
+    /// that can be used in a game. Each spritesheet contains a texture
+    /// representing the image of the spritesheet and a collection of
+    /// animations that define how the sprites are animated.
     /// </summary>
-    public class SpritesheetDTO
+    internal class SpritesheetDTO
     {
         /// <summary>
         /// The name of the spritesheet, typically the filename without extension.
         /// </summary>
         public string Name { get; set; } = string.Empty;
+        /// <summary>
+        /// The path to the texture file that contains the spritesheet image
+        /// inside the MGCB content file.
+        /// </summary>
+        public string Texture { get; set; } = string.Empty;
         /// <summary>
         /// The collection of animations associated with this spritesheet.
         /// </summary>
@@ -18,7 +26,7 @@
     /// <summary>
     /// Represents a sprite animation, which consists of multiple frames.
     /// </summary>
-    public class SpriteAnimationDTO
+    internal class SpriteAnimationDTO
     {
         /// <summary>
         /// The name of the animation, typically used to identify it in code.
@@ -38,7 +46,7 @@
     /// Represents a single frame in an animation, including its name, rectangle area
     /// in the spritesheet, and duration.
     /// </summary>
-    public class AnimationFrameDTO
+    internal class AnimationFrameDTO
     {
         /// <summary>
         /// The name of the frame, typically used to identify it in code.

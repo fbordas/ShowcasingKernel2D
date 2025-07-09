@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using MonoGame.Kernel2D.Drawing;
 
 namespace MonoGame.Kernel2D.Screens
 {
@@ -14,6 +15,22 @@ namespace MonoGame.Kernel2D.Screens
         /// the name of the derived class.
         /// </summary>
         public virtual string ID => GetType().Name;
+
+        /// <summary>
+        /// Event that is raised when the screen requests to exit the game.
+        /// </summary>
+        public event Action? ExitRequested = null;
+
+        /// <summary>
+        /// Invokes the <see cref="ExitRequested"/> event to signal that the
+        /// screen wants to exit the game.
+        /// </summary>
+        protected void OnExitRequested() => ExitRequested?.Invoke();
+
+        /// <summary>
+        /// The content manager used to load and manage game assets.
+        /// </summary>
+        protected ContentManager? _content = null;
 
         /// <summary>
         /// Loads the content for the screen using the provided
@@ -37,13 +54,17 @@ namespace MonoGame.Kernel2D.Screens
         /// </param>
         public virtual void Update(GameTime gameTime) { }
 
+        public virtual void Update(GameTime gameTime, ContentManager content)
+        { Update(gameTime); }
+
         /// <summary>
         /// Draws the screen using the provided <see cref="SpriteBatch"/>.
         /// </summary>
-        /// <param name="batch">
-        /// The <see cref="SpriteBatch"/> to use for drawing the screen's
-        /// content.
+        /// <param name="context"
+        /// The <see cref="DrawContext"/> that contains the drawing parameters
+        /// such as the sprite batch, transform matrix, graphics device, game
+        /// time, and font.
         /// </param>
-        public virtual void Draw(SpriteBatch batch) { }
+        public virtual void Draw(DrawContext context) { }
     }
 }

@@ -289,8 +289,8 @@ namespace MonoGame.Kernel2D.Input
             // Register default key mappings for platformer actions.
             foreach (var kvp in _actionNames)
             {
-                _keyMappings[kvp.Value] = Array.Empty<Keys>();
-                _padMappings[kvp.Value] = Array.Empty<Buttons>();
+                _keyMappings[kvp.Value] = [];
+                _padMappings[kvp.Value] = [];
             }
         }
     }

@@ -29,11 +29,42 @@ namespace MonoGame.Kernel2D.Input
 
         protected PlayerIndex _player = PlayerIndex.One;
 
-        protected readonly Dictionary<string, Keys[]> _keyMappings = [];
-        protected readonly Dictionary<string, Buttons[]> _padMappings = [];
+        /// <summary>
+        /// Reserved action identifiers. Triple underscores before and after prevent
+        /// collisions with user-defined actions. Do NOT rename without refactoring
+        /// all bridge logic.
+        /// </summary>
+        private const string
+            UpDirection = "___up___",
+            DownDirection = "___down___",
+            LeftDirection = "___left___",
+            RightDirection = "___right___",
+            AcceptAction = "___ok___";
 
+        public string DefaultUpAction => UpDirection;
+        public string DefaultDownAction => DownDirection;
+        public string DefaultLeftAction => LeftDirection;
+        public string DefaultRightAction => RightDirection;
+        public string DefaultAcceptAction => AcceptAction;
 
-        
+        protected readonly Dictionary<string, Keys[]> _keyMappings = new()
+        {
+            { UpDirection, [Keys.Up, Keys.W] },
+            { LeftDirection, [Keys.Left, Keys.A] },
+            { DownDirection, [Keys.Down, Keys.S] },
+            { RightDirection, [Keys.Right, Keys.D] },
+            { AcceptAction, [Keys.Enter] }
+
+        };
+        protected readonly Dictionary<string, Buttons[]> _padMappings = new()
+        {
+            { UpDirection, [Buttons.DPadUp, Buttons.LeftThumbstickUp] },
+            { LeftDirection, [Buttons.DPadLeft, Buttons.LeftThumbstickLeft] },
+            { DownDirection, [Buttons.DPadDown, Buttons.LeftThumbstickDown] },
+            { RightDirection, [Buttons.DPadRight, Buttons.LeftThumbstickRight] },
+            { AcceptAction, [Buttons.Start] }
+        };
+
         /// <summary>
         /// Determines if the button/key for the specified action is currently
         /// considered as "pressed" at the time of input polling. The action
