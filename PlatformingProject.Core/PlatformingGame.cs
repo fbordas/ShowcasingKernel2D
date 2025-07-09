@@ -53,7 +53,8 @@ namespace PlatformingProject.Core
             BuildWindowTitle();
 
             //_manager.CurrentScreen.ExitRequested ??= Exit;
-
+            _manager.CurrentScreen.ExitRequested += Exit;
+            
             base.Update(gameTime);
         }
 

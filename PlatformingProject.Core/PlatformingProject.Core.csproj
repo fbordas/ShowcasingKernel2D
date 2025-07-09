@@ -3,6 +3,9 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="PlatformerGame_OLD.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Player\zero_base.json" />
   </ItemGroup>
   <ItemGroup>
