@@ -29,5 +29,27 @@ namespace MonoGame.Kernel2D.Drawing
             GameTime = gameTime;
             Font = font;
         }
+
+        public Vector2 CenterHorizontally(string text, float scale, float y)
+        {
+            float textWidth = Font.MeasureString(text).X * scale;
+            float screenWidth = Graphics.Viewport.Width;
+            return new Vector2((screenWidth - textWidth) / 2f, y);
+        }
+
+        public Vector2 CenterVertically(string text, float scale, float x)
+        {
+            float textHeight = Font.MeasureString(text).Y * scale;
+            float screenHeight = Graphics.Viewport.Height;
+            return new Vector2(x, (screenHeight - textHeight) / 2f);
+        }
+
+        public Vector2 CenterScreen(string text, float scale)
+        {
+            Vector2 size = Font.MeasureString(text) * scale;
+            Vector2 screen = new(Graphics.Viewport.Width, Graphics.Viewport.Height);
+            return (screen - size) / 2f;
+        }
+
     }
 }

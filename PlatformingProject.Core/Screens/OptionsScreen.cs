@@ -17,11 +17,11 @@ namespace PlatformingProject.Core.Screens
         {
             base.Draw(context);
             context.Graphics.Clear(Color.DarkGray);
-            string optionsText = "this is an options screen";
-            context.SpriteBatch.Begin(transformMatrix: context.TransformMatrix);
-            context.SpriteBatch.DrawString(context.Font, optionsText, new Vector2(100, 100), Color.White,
-                0, new Vector2(0,0), 5f, SpriteEffects.None, 0);
-            context.SpriteBatch.End();
+            string optionsText = "This should be an options screen\nbut there's nothing here quite yet";
+            float textScaling = 3f;
+            var location = context.CenterHorizontally(optionsText, textScaling, 100);
+            context.SpriteBatch.DrawString(context.Font, optionsText, location, Color.White,
+                0, new Vector2(0,0), textScaling, SpriteEffects.None, 0);
         }
 
         public override void Update(GameTime gameTime)

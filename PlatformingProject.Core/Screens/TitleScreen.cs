@@ -13,11 +13,11 @@ namespace PlatformingProject.Core.Screens
         private readonly List<string> MenuItems = ["Start Game", "Options", "Exit"];
 
         private int _selectedIndex = 0;
-        private readonly string titleText = "this is a title screen";
+        private readonly string titleText = "THIS IS A TITLE SCREEN";
 
         public override string ID => "TitleScreen";
 
-        public override void Update(GameTime gameTime, ContentManager content)
+        public override void Update(GameTime gameTime)
         {
             Input.Update();
             if (Input.GetInputState(Input.DefaultDownAction) == InputState.Pressed)
@@ -28,8 +28,10 @@ namespace PlatformingProject.Core.Screens
             {
                 switch (_selectedIndex)
                 {
-                    case 0: ScreenManager.Instance.ChangeScreen("Game", content); break;
-                    case 1: ScreenManager.Instance.ChangeScreen("Options", content); break;
+                    case 0: 
+                        ScreenManager.Instance.ChangeScreen("GameplayScreen", _content); break;
+                    case 1: 
+                        ScreenManager.Instance.ChangeScreen("OptionsScreen", _content); break;
                     case 2: OnExitRequested(); break;
                 }
             }
@@ -39,12 +41,16 @@ namespace PlatformingProject.Core.Screens
         {
             base.Draw(context);
             context.Graphics.Clear(Color.Navy);
-            context.SpriteBatch.Begin(transformMatrix: context.TransformMatrix);
-            context.SpriteBatch.DrawString(context.Font, titleText, new Vector2(500, 100), Color.White,
-                0, new Vector2(0,0), 6f, SpriteEffects.None, 0);
+            float titleScaling = 3f;
+            float menuScaling = 1.5f;
+            var titleLocation = context.CenterHorizontally(titleText, titleScaling, 100);
+            var menuLocation = context.CenterHorizontally(MenuItems[_selectedIndex], menuScaling, 400);
+
+
+            context.SpriteBatch.DrawString(context.Font, titleText, titleLocation, Color.White,
+                0, new Vector2(0,0), titleScaling, SpriteEffects.None, 0);
             context.SpriteBatch.DrawString(context.Font, MenuItems[_selectedIndex],
-                new Vector2(100, 400), Color.Yellow, 0, new Vector2(0, 0), 2f, SpriteEffects.None, 0);
-            context.SpriteBatch.End();
+                menuLocation, Color.Yellow, 0, new Vector2(0, 0), menuScaling, SpriteEffects.None, 0);
         }
 
         public TitleScreen(ContentManager content) : base(content) => _content = content;

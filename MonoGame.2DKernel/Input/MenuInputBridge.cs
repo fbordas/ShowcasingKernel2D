@@ -120,13 +120,13 @@ namespace MonoGame.Kernel2D.Input
                 MenuAction.AcceptOrSelect.ToString().ToLowerInvariant();
             CancelOrReturnActionName =
                 MenuAction.CancelOrReturn.ToString().ToLowerInvariant();
-            _keyMappings[MenuAction.AcceptOrSelect.ToString()] = 
+            _keyMappings[MenuAction.AcceptOrSelect.ToString().ToLowerInvariant()] = 
             [ Keys.Enter ];
-            _keyMappings[MenuAction.CancelOrReturn.ToString()] = 
+            _keyMappings[MenuAction.CancelOrReturn.ToString().ToLowerInvariant()] = 
             [ Keys.Back ];
-            _padMappings[MenuAction.AcceptOrSelect.ToString()] = 
+            _padMappings[MenuAction.AcceptOrSelect.ToString().ToLowerInvariant()] = 
             [ Buttons.A, Buttons.Start ];
-            _padMappings[MenuAction.CancelOrReturn.ToString()] = 
+            _padMappings[MenuAction.CancelOrReturn.ToString().ToLowerInvariant()] = 
             [ Buttons.B ];
         }
     }

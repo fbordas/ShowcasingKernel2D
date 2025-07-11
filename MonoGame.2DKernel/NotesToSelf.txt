@@ -14,8 +14,9 @@ character mobility
 			more complex actions like attacking, wallsliding, getting hurt etc. to come later,
 			first i need to fully understand and make work the world surrounding the entity
 		next step is SCREENS
-			basic splash > title > options screen sequence, looping back from options to title
-			title > game screen sequence to follow
+							basic splash > title > options screen sequence, looping back from options to title
+							title > game screen sequence to follow
+							THIS IS DONE THIS IS DONE THIS IS BLOODY BLOODY DONE YAAAAAAY 💪🏻💪🏻💪🏻💪🏻💪🏻💪🏻
 
 resource locator and loader
 	after building everything in mgcb-editor, manage compiled media resources
@@ -40,7 +41,6 @@ SIP rework into an actual full-featured WinForms tool
 		You could build .spritemap export as pure JSON with embedded base64, but if you ever
 		want to go full toolchain-proper™, look into the System.IO.Packaging namespace — it
 		lets you make .zip-like custom archives with inner paths and content types.
-
 		That would let .spritemap behave a bit like .docx or .xlsx: a zipped container with:
 			sprites/image.png
 			sprites/atlas.json

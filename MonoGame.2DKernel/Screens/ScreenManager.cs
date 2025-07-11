@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Kernel2D.Drawing;
+using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 
 namespace MonoGame.Kernel2D.Screens
 {
@@ -21,12 +22,24 @@ namespace MonoGame.Kernel2D.Screens
                 _currentScreen = nextScreen;
                 _currentScreen.LoadContent(content);
             }
-            else { throw new KeyNotFoundException($"Screen '{screenName}' not found."); }
+            else
+            { 
+                Debugger.WriteLine($"Screen '{screenName}' not found in ScreenManager.");
+                throw new KeyNotFoundException($"Screen '{screenName}' not found."); 
+            }
         }
 
         public void Update(GameTime gameTime) => _currentScreen?.Update(gameTime);
 
-        public void Draw(DrawContext context) => _currentScreen?.Draw(context);
+        public void Draw(DrawContext context)
+        { 
+            if (_currentScreen == null)
+            {
+                Debugger.WriteLine($"No current screen set in ScreenManager");
+                return;
+            }
+            _currentScreen!.Draw(context);
+        }
 
         public static ScreenManager Instance
         {

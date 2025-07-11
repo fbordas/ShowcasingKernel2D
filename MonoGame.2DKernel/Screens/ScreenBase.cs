@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using MonoGame.Kernel2D.Drawing;
+using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MonoGame.Kernel2D.Screens
 {
@@ -39,7 +41,7 @@ namespace MonoGame.Kernel2D.Screens
         /// <param name="content">
         /// The <see cref="ContentManager"/> to use for loading content.
         /// </param>
-        public virtual void LoadContent(ContentManager content) { }
+        public virtual void LoadContent(ContentManager content) => _content = content;
 
         /// <summary>
         /// Unloads the content for the screen.
@@ -54,9 +56,6 @@ namespace MonoGame.Kernel2D.Screens
         /// </param>
         public virtual void Update(GameTime gameTime) { }
 
-        public virtual void Update(GameTime gameTime, ContentManager content)
-        { Update(gameTime); }
-
         /// <summary>
         /// Draws the screen using the provided <see cref="SpriteBatch"/>.
         /// </summary>
@@ -65,6 +64,7 @@ namespace MonoGame.Kernel2D.Screens
         /// such as the sprite batch, transform matrix, graphics device, game
         /// time, and font.
         /// </param>
-        public virtual void Draw(DrawContext context) { }
+        public virtual void Draw(DrawContext context) => 
+            Debugger.WriteLine($"Screen drawing: {this.ID}");
     }
 }
