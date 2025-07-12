@@ -9,19 +9,25 @@ namespace PlatformingProject.Core.Screens
 {
     internal class OptionsScreen : SettingsScreen
     {
-        public OptionsScreen(ContentManager content) : base(content) => _content = content;
+        private SpriteFont _font;
+
+        public OptionsScreen(ContentManager content, SpriteFont font) : base(content)
+        {
+            _content = content;
+            _font = font;
+        }
 
         public override string ID => "OptionsScreen";
 
         public override void Draw(DrawContext context)
         {
             base.Draw(context);
-            context.Graphics.Clear(Color.DarkGray);
+            context.Graphics.Clear(Color.IndianRed);
             string optionsText = "This should be an options screen\nbut there's nothing here quite yet";
             float textScaling = 3f;
-            var location = context.CenterHorizontally(optionsText, textScaling, 100);
-            context.SpriteBatch.DrawString(context.Font, optionsText, location, Color.White,
-                0, new Vector2(0,0), textScaling, SpriteEffects.None, 0);
+            var location = context.CenterTextHorizontally(_font, optionsText, textScaling, 100);    
+            context.DrawingQueue.Enqueue(new TextDrawCommand(_font, optionsText, location,
+                Color.White, 0, Vector2.Zero, textScaling, SpriteEffects.None, 0));
         }
 
         public override void Update(GameTime gameTime)

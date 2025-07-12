@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Kernel2D.Drawing;
 using MonoGame.Kernel2D.Screens;
+using MonoGame.Kernel2D.Screens.ScreenTransitions;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 
 namespace PlatformingProject.Core.Screens
@@ -11,6 +12,9 @@ namespace PlatformingProject.Core.Screens
     {
         private double _elapsedTime = 0;
         private const double _displayDuration = 3000; // Display for 3 seconds
+        private SpriteFont _font;
+
+        public SplashScreen(SpriteFont font) => _font = font;
 
         public override string ID => "SplashScreen";
         public override void Update(GameTime gameTime)
@@ -20,7 +24,9 @@ namespace PlatformingProject.Core.Screens
             _elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedTime >= _displayDuration)
             {
-                ScreenManager.Instance.ChangeScreen("TitleScreen", _content);
+                var transIn = new FadeTransition(2f, true, Color.White);
+                var transOut = new FadeTransition(2f, false, Color.White);
+                ScreenManager.Instance.ChangeScreen("TitleScreen", _content, new ScreenTransitionPair(transIn, transOut));
             }
             // Logic to transition to the next screen after a delay or user input
         }
@@ -31,10 +37,10 @@ namespace PlatformingProject.Core.Screens
             context.Graphics.Clear(Color.LightGray);
             string splashText = "SPLASH SCREEN WOOOOOOOO";
             float textScaling = 4.5f;
-            var location = context.CenterScreen(splashText, textScaling);
+            var location = context.CenterTextOnscreen(_font, splashText, textScaling);
 
-            context.SpriteBatch.DrawString(context.Font, splashText, location, Color.Black,
-                0, new Vector2(0,0), textScaling, SpriteEffects.None, 0);
+            context.DrawingQueue.Enqueue(new TextDrawCommand(_font, splashText, location,
+                Color.Black, 0, Vector2.Zero, textScaling, SpriteEffects.None, 0));
         }
     }
 }

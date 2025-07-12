@@ -6,6 +6,7 @@ using MonoGame.Kernel2D.Animation;
 using MonoGame.Kernel2D.Drawing;
 using MonoGame.Kernel2D.Input;
 using MonoGame.Kernel2D.Screens;
+using MonoGame.Kernel2D.Screens.ScreenTransitions;
 using PlatformingProject.Core.Screens;
 using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
 
@@ -39,12 +40,13 @@ namespace PlatformingProject.Core
         {
             sb = new SpriteBatch(GraphicsDevice);
             _font = Content.Load<SpriteFont>("Fonts/Hud");
+            whitepixel = Content.Load<Texture2D>("GlobalAssets/whitepixel");
 
             // TODO: use this.Content to load your game content here
 
-            _manager.RegisterScreen("SplashScreen", new SplashScreen());
-            _manager.RegisterScreen("TitleScreen", new TitleScreen(Content));
-            _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content));
+            _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
+            _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
+            _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content, _font));
             _manager.RegisterScreen("GameplayScreen", new PlatformerGameTestScreen(Content));
             _manager.ChangeScreen("SplashScreen", Content);
         }
@@ -79,24 +81,22 @@ namespace PlatformingProject.Core
             Debugger.WriteLine($"Game.Draw()   | {gameTime.TotalGameTime.TotalMilliseconds}");
             GraphicsDevice.Clear(Color.Gray);
             base.Draw(gameTime);
-            context ??= new DrawContext(sb, Matrix.Identity, GraphicsDevice, gameTime, _font);
 
-            if (context.SpriteBatch == null)
+            context ??= new DrawContext
+                (drawingqueue, Matrix.Identity, GraphicsDevice, gameTime, whitepixel);
+
+            if (context.DrawingQueue == null)
             {
                 Debugger.WriteLine("SpriteBatch in DrawContext currently null!");
-                return;
-            }
-            if (context.Font == null)
-            {
-                Debugger.WriteLine("Font in DrawContext currently null!");
                 return;
             }
 
             //string display = Window.Title;
 
-            sb.Begin();
-            //player.Draw(gameTime);
+            context.DrawingQueue.ClearQueue();
             _manager.Draw(context);
+            sb.Begin(transformMatrix: context.TransformMatrix);
+            context.DrawingQueue.Flush(sb);
             sb.End();
 
             base.Draw(gameTime);
@@ -138,5 +138,7 @@ namespace PlatformingProject.Core
         private readonly PlatformerInputBridge _input = new();
         private ScreenManager _manager = null;
         private DrawContext context;
+        private readonly DrawQueue drawingqueue = new();
+        private Texture2D whitepixel = null;
     }
 }

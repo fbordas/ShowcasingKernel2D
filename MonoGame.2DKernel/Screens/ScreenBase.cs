@@ -34,6 +34,8 @@ namespace MonoGame.Kernel2D.Screens
         /// </summary>
         protected ContentManager? _content = null;
 
+        public ContentManager? GetContent() => _content;
+
         /// <summary>
         /// Loads the content for the screen using the provided
         /// <see cref="ContentManager"/>.
@@ -46,7 +48,7 @@ namespace MonoGame.Kernel2D.Screens
         /// <summary>
         /// Unloads the content for the screen.
         /// </summary>
-        public virtual void UnloadContent() { }
+        public virtual void UnloadContent() => _content = null;
 
         /// <summary>
         /// Updates the screen with the given <see cref="GameTime"/>.

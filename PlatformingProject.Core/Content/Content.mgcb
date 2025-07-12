@@ -20,10 +20,17 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Hud.spritefont
 
-#begin Fonts/Roboto-Bold.ttf
-/importer:
-/processor:
-/build:Fonts/Roboto-Bold.ttf
+#begin GlobalAssets/whitepixel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GlobalAssets/whitepixel.png
 
 #begin Player/zero_base.gif
 /importer:TextureImporter

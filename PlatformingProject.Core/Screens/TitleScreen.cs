@@ -11,9 +11,16 @@ namespace PlatformingProject.Core.Screens
     internal class TitleScreen : MenuScreen
     {
         private readonly List<string> MenuItems = ["Start Game", "Options", "Exit"];
+        private SpriteFont _font;
 
         private int _selectedIndex = 0;
         private readonly string titleText = "THIS IS A TITLE SCREEN";
+
+        public TitleScreen(ContentManager content, SpriteFont font) : base(content)
+        {
+            _content = content;
+            _font = font;
+        }
 
         public override string ID => "TitleScreen";
 
@@ -43,16 +50,12 @@ namespace PlatformingProject.Core.Screens
             context.Graphics.Clear(Color.Navy);
             float titleScaling = 3f;
             float menuScaling = 1.5f;
-            var titleLocation = context.CenterHorizontally(titleText, titleScaling, 100);
-            var menuLocation = context.CenterHorizontally(MenuItems[_selectedIndex], menuScaling, 400);
-
-
-            context.SpriteBatch.DrawString(context.Font, titleText, titleLocation, Color.White,
-                0, new Vector2(0,0), titleScaling, SpriteEffects.None, 0);
-            context.SpriteBatch.DrawString(context.Font, MenuItems[_selectedIndex],
-                menuLocation, Color.Yellow, 0, new Vector2(0, 0), menuScaling, SpriteEffects.None, 0);
+            var titleLocation = context.CenterTextHorizontally(_font, titleText, titleScaling, 100);
+            var menuLocation = context.CenterTextHorizontally(_font, MenuItems[_selectedIndex], menuScaling, 400);
+            context.DrawingQueue.Enqueue(new TextDrawCommand(_font, titleText, titleLocation,
+                Color.White, 0, Vector2.Zero, titleScaling, SpriteEffects.None, 0));
+            context.DrawingQueue.Enqueue(new TextDrawCommand(_font, MenuItems[_selectedIndex], menuLocation,
+                Color.Yellow, 0, Vector2.Zero, menuScaling, SpriteEffects.None, 0));
         }
-
-        public TitleScreen(ContentManager content) : base(content) => _content = content;
     }
 }
