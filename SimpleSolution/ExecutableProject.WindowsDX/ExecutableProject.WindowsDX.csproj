@@ -18,15 +18,17 @@
     <DefineConstants>$(DefineConstants);DIRECTX</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PlatformingProject.Core\PlatformingProject.Core.csproj" />
     <ProjectReference Include="..\..\PuzzleGame.Core\PuzzleGameProject.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\net8.0-windows\Content\NewFolder\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
