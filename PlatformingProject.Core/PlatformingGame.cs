@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Kernel2D.Animation;
-using MonoGame.Kernel2D.Drawing;
-using MonoGame.Kernel2D.Input;
-using MonoGame.Kernel2D.Screens;
-using MonoGame.Kernel2D.Screens.ScreenTransitions;
+using Kernel2D.Animation;
+using Kernel2D.Drawing;
+using Kernel2D.Input;
+using Kernel2D.Screens;
+using Kernel2D.Screens.ScreenTransitions;
 using PlatformingProject.Core.Screens;
-using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
+using Debugger = Kernel2D.Helpers.DebugHelpers;
 
 namespace PlatformingProject.Core
 {
@@ -44,11 +44,13 @@ namespace PlatformingProject.Core
 
             // TODO: use this.Content to load your game content here
 
+            var transIn = new FadeTransition(3f, true, Color.White);
+
             _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
             _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
             _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content, _font));
             _manager.RegisterScreen("GameplayScreen", new PlatformerGameTestScreen(Content));
-            _manager.ChangeScreen("SplashScreen", Content);
+            _manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(transIn, null));
         }
 
         protected override void Update(GameTime gameTime)

@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Kernel2D.Drawing;
-using MonoGame.Kernel2D.Input;
-using MonoGame.Kernel2D.Screens;
+using Kernel2D.Drawing;
+using Kernel2D.Input;
+using Kernel2D.Screens;
 
 namespace PlatformingProject.Core.Screens
 {
     internal class OptionsScreen : SettingsScreen
     {
-        private SpriteFont _font;
+        private readonly SpriteFont _font;
 
         public OptionsScreen(ContentManager content, SpriteFont font) : base(content)
         {
@@ -22,7 +22,7 @@ namespace PlatformingProject.Core.Screens
         public override void Draw(DrawContext context)
         {
             base.Draw(context);
-            context.Graphics.Clear(Color.IndianRed);
+            context.Graphics.Clear(Color.DarkRed);
             string optionsText = "This should be an options screen\nbut there's nothing here quite yet";
             float textScaling = 3f;
             var location = context.CenterTextHorizontally(_font, optionsText, textScaling, 100);    

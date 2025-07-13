@@ -1,5 +1,5 @@
-﻿using MonoGame.Kernel2D.Helpers;
-using MonoGame.Kernel2D.Animation;
+﻿using Kernel2D.Helpers;
+using Kernel2D.Animation;
 using Microsoft.Xna.Framework.Content;
 
 namespace PlatformingProject.Core.Helpers

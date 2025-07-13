@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Kernel2D.Drawing;
-using MonoGame.Kernel2D.Screens;
-using MonoGame.Kernel2D.Screens.ScreenTransitions;
-using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
+using Kernel2D.Drawing;
+using Kernel2D.Screens;
+using Kernel2D.Screens.ScreenTransitions;
+using Debugger = Kernel2D.Helpers.DebugHelpers;
 
 namespace PlatformingProject.Core.Screens
 {
@@ -12,7 +12,7 @@ namespace PlatformingProject.Core.Screens
     {
         private double _elapsedTime = 0;
         private const double _displayDuration = 3000; // Display for 3 seconds
-        private SpriteFont _font;
+        private readonly SpriteFont _font;
 
         public SplashScreen(SpriteFont font) => _font = font;
 
@@ -24,9 +24,10 @@ namespace PlatformingProject.Core.Screens
             _elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedTime >= _displayDuration)
             {
-                var transIn = new FadeTransition(2f, true, Color.White);
-                var transOut = new FadeTransition(2f, false, Color.White);
-                ScreenManager.Instance.ChangeScreen("TitleScreen", _content, new ScreenTransitionPair(transIn, transOut));
+                var transOut = new FadeTransition(0.5f, false, Color.Black);
+                var transIn = new FadeTransition(0.5f, true, Color.Black);
+                ScreenManager.Instance.ChangeScreen("TitleScreen", _content,
+                    new ScreenTransitionPair(transIn, transOut));
             }
             // Logic to transition to the next screen after a delay or user input
         }

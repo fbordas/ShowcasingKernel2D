@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
@@ -11,9 +11,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.2DKernel\MonoGame.Kernel2D.csproj" />
+    <Folder Include="Content\GlobalAssets\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\GlobalAssets\" />
+    <ProjectReference Include="..\Kernel2D\Kernel2D.csproj" />
   </ItemGroup>
 </Project>

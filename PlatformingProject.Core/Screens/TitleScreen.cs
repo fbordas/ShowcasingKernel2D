@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Kernel2D.Drawing;
-using MonoGame.Kernel2D.Input;
-using MonoGame.Kernel2D.Screens;
+using Kernel2D.Drawing;
+using Kernel2D.Input;
+using Kernel2D.Screens;
 
 namespace PlatformingProject.Core.Screens
 {

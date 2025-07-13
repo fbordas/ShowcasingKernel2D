@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Kernel2D.Animation;
-using MonoGame.Kernel2D.Input;
-using MonoGame.Kernel2D.Physics;
-using K2DEntities = MonoGame.Kernel2D.Entities;
-using PlayerState = MonoGame.Kernel2D.Entities.PlatformerPlayerState;
-using Debugger = MonoGame.Kernel2D.Helpers.DebugHelpers;
+using Kernel2D.Animation;
+using Kernel2D.Input;
+using Kernel2D.Physics;
+using K2DEntities = Kernel2D.Entities;
+using PlayerState = Kernel2D.Entities.PlatformerPlayerState;
+using Debugger = Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 
 namespace PlatformingProject.Core.GameEntities
