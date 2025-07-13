@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Kernel2D.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Kernel2D.Animation
@@ -18,11 +19,17 @@ namespace Kernel2D.Animation
         /// will be working for.</param>
         /// <param name="animation">The animation to play immediately upon
         /// registration.</param>
-        public void Register(string key, SpriteAnimation animation)
+        /// <returns>
+        /// 
+        /// </returns>
+        public bool Register(string key, SpriteAnimation animation)
         {
+            if (_players.ContainsKey(key)) return false;
+
             var player = new AnimationPlayer();
             _players.Add(key, player);
             player.Play(animation);
+            return true;
         }
 
         /// <summary>
@@ -31,6 +38,10 @@ namespace Kernel2D.Animation
         /// <param name="key">The key, or name, of the entity the animation player
         /// needs to look for.</param>
         /// <param name="animation">The animation to play.</param>
+        /// <param name="onComplete">
+        /// A callback to execute after playback is completed. Can be null if nothing
+        /// is desired to run post-completion.
+        /// </param>
         public void Play(string key, SpriteAnimation animation, Action? onComplete = null)
         {
             if (_players.TryGetValue(key, out var player))
@@ -51,23 +62,27 @@ namespace Kernel2D.Animation
         /// <summary>
         /// Draws all registered animation players using the specified sprite batch and texture.
         /// </summary>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to use to draw onscreen.</param>
+        /// <param name="context">
+        /// The <see cref="DrawContext"/> to enqueue the drawing onscreen to.
+        /// </param>
         /// <param name="tex">The <see cref="Texture2D"/> to get the elements to be drawn.</param>
         /// <param name="positions">A table of keys of entities to draw, and the positions
         /// where each will be drawn onscreen.</param>
-        public void Draw(SpriteBatch batch, Texture2D tex, Dictionary<string, Vector2> positions)
+        public void Draw(DrawContext context, Texture2D tex, Dictionary<string, Vector2> positions)
         {
             foreach (var (key, player) in _players)
             {
                 if (positions.TryGetValue(key, out var pos))
-                    player.Draw(batch, tex, pos);
+                    player.Draw(context, tex, pos);
             }
         }
 
         /// <summary>
         /// Draws a specific animation player associated with the given key at the specified position.
         /// </summary>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to use to draw onscreen.</param>
+        /// <param name="context">
+        /// The <see cref="DrawContext"/> to enqueue the drawing onscreen to.
+        /// </param>
         /// <param name="tex">The <see cref="Texture2D"/> to get the elements to be drawn.</param>
         /// <param name="position">The <see cref="Vector2"/> coordinates of where to draw
         /// the entity.</param>
@@ -75,12 +90,12 @@ namespace Kernel2D.Animation
         /// to draw the specified texture.</param>
         /// <param name="facingRight">Optional: True if the entity is facing right, False
         /// otherwise.</param>
-        public void Draw(SpriteBatch batch, Texture2D tex, Vector2 position, 
+        public void Draw(DrawContext context, Texture2D tex, Vector2 position,
             string key, bool facingRight = true)
         {
             if (_players.TryGetValue(key, out var player))
-            { 
-                player.Draw(batch, tex, position, 
+            {
+                player.Draw(context, tex, position,
                     facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
             }
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Kernel2D.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using XnaVector = Microsoft.Xna.Framework.Vector2;
 
@@ -16,6 +17,8 @@ namespace Kernel2D.Animation
         /// Indicates whether the animation being drawn is facing right. This is used to determine
         /// the <see cref="SpriteEffects"/> to apply.
         /// </summary>
+        /// <remarks>Might need deprecation? Better for consumer to use it and AnimationPlayer
+        /// just plays what it's told to.</remarks>
         public bool FacingRight = true;
         /// <summary>
         /// The name of the current animation being played by this player.
@@ -40,18 +43,26 @@ namespace Kernel2D.Animation
         public bool IsPlaying => !HasFinishedPlaying;
 
         /// <summary>
+        /// The current animation frame being drawn.
+        /// </summary>
+        public AnimationFrame? CurrentFrame => _currentAnimIndex < _currentAnim?.Frames.Count
+                ? _currentAnim.Frames[_currentAnimIndex] : null;
+
+        /// <summary>
         /// Draws the current animation frame using the specified sprite batch, texture,
         /// position, and sprite effects. Tint is assumed to be <see cref="Color.White"/>
         /// to render without any special coloring.
         /// </summary>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to render through.</param>
+        /// <param name="context">
+        /// The <see cref="DrawContext"/> to enqueue the drawing onscreen to.
+        /// </param>
         /// <param name="tex">The <see cref="Texture2D"/> to display.</param>
         /// <param name="position">The <see cref="XnaVector"/> representing the coordinates
         /// to draw at.</param>
         /// <param name="fx">Any <see cref="SpriteEffects"/> to apply to the current
         /// render.</param>
-        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx) =>
-            Draw(batch, tex, position, fx, Color.White);
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx)
+            => Draw(context, tex, position, fx, Color.White);
 
         /// <summary>
         /// Gets the current animation being played by this player.
@@ -60,10 +71,12 @@ namespace Kernel2D.Animation
         public SpriteAnimation? GetCurrentAnimation() => _currentAnim;
 
         /// <summary>
-        /// Draws the current animation frame using the specified sprite batch, texture,
+        /// Draws the current animation frame using the specified context, texture,
         /// position, sprite effects and tint.
         /// </summary>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to render through.</param>
+        /// <param name="context">
+        /// The <see cref="DrawContext"/> to enqueue the drawing onscreen to.
+        /// </param>
         /// <param name="tex">The <see cref="Texture2D"/> to display.</param>
         /// <param name="position">The <see cref="XnaVector"/> representing the coordinates
         /// to draw at.</param>
@@ -74,12 +87,14 @@ namespace Kernel2D.Animation
         /// <remarks>The origin point is set to the bottom center of the sprite frame
         /// to support consistent ground aligning during vertical actions and states like
         /// jumping and falling.</remarks>
-        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position, SpriteEffects fx, Color tint)
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx, Color tint)
         {
             if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
-            batch.Draw(tex, position, frame.SourceRectangle, tint, 0f, origin, 2, fx, 0);
+            var drawCommand = new SpriteDrawCommand
+                (tex, position, frame.SourceRectangle, tint, 0f, origin, new(2f, 2f), fx, 0);
+            context.DrawingQueue.Enqueue(drawCommand);
         }
 
         /// <summary>
@@ -87,12 +102,14 @@ namespace Kernel2D.Animation
         /// and position. No <see cref="SpriteEffects"/> are applied, and the tint
         /// is assumed to be <see cref="Color.White"/> to render without any special coloring.
         /// </summary>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to render through.</param>
+        /// <param name="context">
+        /// The <see cref="DrawContext"/> to enqueue the drawing onscreen to.
+        /// </param>
         /// <param name="tex">The <see cref="Texture2D"/> to display.</param>
         /// <param name="position">The <see cref="XnaVector"/> representing the coordinates
         /// to draw at.</param>
-        public void Draw(SpriteBatch batch, Texture2D tex, XnaVector position) =>
-            Draw(batch, tex, position, SpriteEffects.None);
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position) =>
+            Draw(context, tex, position, SpriteEffects.None);
 
         /// <summary>
         /// Starts playback of the specified animation, resetting its progress and optionally
@@ -141,6 +158,19 @@ namespace Kernel2D.Animation
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Fully stops the playback of any animations and resets the animation player
+        /// to a default state.
+        /// </summary>
+        public void Stop()
+        {
+            _currentAnim = null;
+            _currentAnimIndex = 0;
+            _elapsedTime = 0f;
+            _currentAnimFinishedCallback = null;
+            CurrentAnimationName = string.Empty;
         }
     }
 }

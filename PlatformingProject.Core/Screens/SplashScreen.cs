@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Kernel2D.Drawing;
+﻿using Kernel2D.Drawing;
 using Kernel2D.Screens;
 using Kernel2D.Screens.ScreenTransitions;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Debugger = Kernel2D.Helpers.DebugHelpers;
 
 namespace PlatformingProject.Core.Screens
@@ -24,8 +25,8 @@ namespace PlatformingProject.Core.Screens
             _elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedTime >= _displayDuration)
             {
-                var transOut = new FadeTransition(0.5f, false, Color.Black);
-                var transIn = new FadeTransition(0.5f, true, Color.Black);
+                var transOut = new FadeTransition(0.5f, true, Color.Black);
+                var transIn = new FadeTransition(0.5f, false, Color.Black);
                 ScreenManager.Instance.ChangeScreen("TitleScreen", _content,
                     new ScreenTransitionPair(transIn, transOut));
             }

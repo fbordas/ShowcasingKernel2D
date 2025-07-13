@@ -50,7 +50,7 @@ namespace PlatformingProject.Core
             _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
             _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content, _font));
             _manager.RegisterScreen("GameplayScreen", new PlatformerGameTestScreen(Content));
-            _manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(transIn, null));
+            _manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(null, transIn));
         }
 
         protected override void Update(GameTime gameTime)

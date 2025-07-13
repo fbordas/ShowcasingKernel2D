@@ -18,17 +18,17 @@ namespace Kernel2D.Screens.ScreenTransitions
         /// <param name="duration">
         /// The duration of the transition in seconds.
         /// </param>
-        /// <param name="fadeIn">
-        /// If true, the transition will fade in; if false, it will fade out.
+        /// <param name="fadeOut">
+        /// If true, the transition will fade out; if false, it will fade in.
         /// </param>
         /// <param name="fadeColor">
         /// The color to use for the fade effect. This will be multiplied by the
         /// alpha value based on the transition progress.
         /// </param>
-        public FadeTransition(float duration, bool fadeIn, Color fadeColor)
+        public FadeTransition(float duration, bool fadeOut, Color fadeColor)
             : base(duration)
         {
-            _fadeIn = fadeIn;
+            _fadeIn = fadeOut;
             _fadeColor = fadeColor;
         }
 

@@ -10,6 +10,7 @@ using K2DEntities = Kernel2D.Entities;
 using PlayerState = Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
+using Kernel2D.Drawing;
 
 namespace PlatformingProject.Core.GameEntities
 {
@@ -43,8 +44,8 @@ namespace PlatformingProject.Core.GameEntities
         private Texture2D PlayerSpriteTexture = null;
         private readonly Platformer2DPhysics 
             _physics = Platformer2DPhysics.Default();
-        private SpriteBatch Batch = null;
         private SpriteFont _font;
+        public DrawContext _drawContext { get; private set; }
         #endregion
 
         #region physics values
@@ -58,27 +59,15 @@ namespace PlatformingProject.Core.GameEntities
         #endregion
 
         #region init
-        /// <summary>
-        /// Creates a new instance of the player character entity.
-        /// </summary>
-        /// <param name="position">The position to spawn on.</param>
-        /// <param name="batch">The <see cref="SpriteBatch"/> to draw
-        /// the entity with.</param>
-        /// <param name="sprites">The <see cref="Spritesheet"/> to use
-        /// to draw sprites onscreen.</param>
-        /// <param name="texture">The <see cref="Texture2D"/> image
-        /// resource to draw the entity with.</param>
-        /// <param name="font">A <see cref="SpriteFont"/> to use to draw
-        /// text onscreen.</param>
-        public PlatformerPlayerCharacter(XVector position, SpriteBatch batch,
+        public PlatformerPlayerCharacter(XVector position, DrawContext context,
             Spritesheet sprites, Texture2D texture, SpriteFont font)
         {
             SetState(PlayerState.Idle);
             _font = font;
             CurrentPosition = position;
-            GroundLevel = position.Y;
+            GroundLevel= position.Y;
             Animator = new();
-            Batch = batch;
+            _drawContext = context;
             SpriteSet = sprites;
             PlayerSpriteTexture = texture;
             DashDuration =
@@ -102,11 +91,14 @@ namespace PlatformingProject.Core.GameEntities
             {
                 float alpha = MathHelper.Clamp(img.Timer / AfterImageLifetime, 0f, 1f);
                 Color tint = Color.DarkRed * alpha * 0.4f; // extra value for transparency
-                Animator.Draw(Batch, PlayerSpriteTexture, img.Position, img.Flip, tint);
+                Animator.Draw(_drawContext, PlayerSpriteTexture, img.Position, img.Flip, tint);
             }
-            Animator.Draw(Batch, PlayerSpriteTexture, CurrentPosition,
+            Animator.Draw(_drawContext, PlayerSpriteTexture, CurrentPosition,
                 FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
         }
+
+        public void SetDrawContextIfUnset(DrawContext context)
+        { if (_drawContext == null) _drawContext = context; }
 
         /// <summary>
         /// Plays a given <see cref="SpriteAnimation"/> using the
