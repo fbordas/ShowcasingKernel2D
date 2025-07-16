@@ -4,7 +4,7 @@ using Kernel2D.Screens;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using PlatformingProject.Core.GameEntities;
 
@@ -12,7 +12,14 @@ namespace PlatformingProject.Core.Screens
 {
     internal class PlatformerGameTestScreen : GameScreen
     {
-        public PlatformerGameTestScreen(ContentManager content) : base(content) => _content = content;
+        public PlatformerGameTestScreen(ContentManager content) : base(content)
+        {
+            _content = content;
+            Input.RegisterButtonMapping(Input.MoveLeftActionName, [Buttons.LeftThumbstickLeft, Buttons.DPadLeft]);
+            Input.RegisterButtonMapping(Input.MoveRightActionName, [Buttons.LeftThumbstickRight, Buttons.DPadRight]);
+            Input.RegisterButtonMapping(Input.JumpActionName, [Buttons.A]);
+            Input.RegisterButtonMapping(Input.DashActionName, [Buttons.RightShoulder]);
+        }
 
         public override string ID => "GameplayScreen";
 
@@ -22,12 +29,10 @@ namespace PlatformingProject.Core.Screens
         {
             base.LoadContent(content);
 
-            var texture = _content.Load<Texture2D>("Player/zero_base");
             var sheet = EntitySpritesheetLoader.LoadEntitySpritesheet
-                <PlatformerGameTestScreen>("Player.zero_base", _content);
-            var font = _content.Load<SpriteFont>("Fonts/Hud");
+                <PlatformingGame>("Player.zero_base", _content);
 
-            _player = new(new(100f, 400f), null!, sheet, texture, font);
+            _player = new(new(100, 400), null!, sheet);
         }
 
         public override void Update(GameTime gameTime)
@@ -35,6 +40,7 @@ namespace PlatformingProject.Core.Screens
             base.Update(gameTime);
 
             Input.Update();
+            _player.ProcessPlayerActions(Input);
             _player.Update(gameTime, Input);
         }
 

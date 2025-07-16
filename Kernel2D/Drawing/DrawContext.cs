@@ -83,7 +83,7 @@ namespace Kernel2D.Drawing
         }
 
         /// <summary>
-        /// Centers the text horizontally on the screen at a specified vertical position.
+        /// Centers text horizontally on the screen at a specified vertical position.
         /// </summary>
         /// <param name="font">
         /// The <see cref="SpriteFont"/> used to measure the text width.
@@ -109,7 +109,7 @@ namespace Kernel2D.Drawing
         }
 
         /// <summary>
-        /// Centers the text vertically on the screen at a specified horizontal position.
+        /// Centers text vertically on the screen at a specified horizontal position.
         /// </summary>
         /// <param name="font">
         /// The <see cref="SpriteFont"/> used to measure the text height.
@@ -135,7 +135,7 @@ namespace Kernel2D.Drawing
         }
 
         /// <summary>
-        /// Centers the text on the screen based on the provided font, text, and scale.
+        /// Centers text on the screen based on the provided font, text, and scale.
         /// </summary>
         /// <param name="font">
         /// The <see cref="SpriteFont"/> used to measure the text size.
@@ -153,6 +153,57 @@ namespace Kernel2D.Drawing
         public Vector2 CenterTextOnscreen(SpriteFont font, string text, float scale)
         {
             Vector2 size = font.MeasureString(text) * scale;
+            Vector2 screen = new(Graphics.Viewport.Width, Graphics.Viewport.Height);
+            return (screen - size) / 2f;
+        }
+
+        /// <summary>
+        /// Centers an image horizontally on the screen at a specified vertical position.
+        /// </summary>
+        /// <param name="texture">The <see cref="Texture2D"/> to center.</param>
+        /// <param name="scale">The scale factor to apply to the image size
+        /// when measuring its dimensions.</param>
+        /// <param name="y">The vertical position on the screen where the image
+        /// should be centered.</param>
+        /// <returns>A <see cref="Vector2"/> representing the position where the image
+        /// should be drawn to center it horizontally on the screen at the specified
+        /// vertical position.</returns>
+        public Vector2 CenterImageHorizontally(Texture2D texture, float scale, float y)
+        {
+            float textureWidth = texture.Width * scale;
+            float screenWidth = Graphics.Viewport.Width;
+            return new Vector2((screenWidth - textureWidth) / 2f, y);
+        }
+
+        /// <summary>
+        /// Centers an image vertically on the screen at a specified horizontal position.
+        /// </summary>
+        /// <param name="texture">The <see cref="Texture2D"/> to center.</param>
+        /// <param name="scale">The scale factor to apply to the image size
+        /// when measuring its dimensions.</param>
+        /// <param name="x">The horizontal position on the screen where the image
+        /// should be centered.</param>
+        /// <returns>A <see cref="Vector2"/> representing the position where the image
+        /// should be drawn to center it vertically on the screen at the specified
+        /// horizontal position.</returns>
+        public Vector2 CenterImageVertically(Texture2D texture, float scale, float x)
+        {
+            float textureHeight = texture.Height * scale;
+            float screenHeight = Graphics.Viewport.Height;
+            return new Vector2(x, (screenHeight - textureHeight) / 2f);
+        }
+
+        /// <summary>
+        /// Centers an image on the screen.
+        /// </summary>
+        /// <param name="texture">The <see cref="Texture2D"/> to center.</param>
+        /// <param name="scale">The scale factor to apply to the image size when
+        /// measuring its dimensions.</param>
+        /// <returns>A <see cref="Vector2"/> representing the position where the
+        /// image should be drawn to center it on the screen.</returns>
+        public Vector2 CenterImageOnScreen(Texture2D texture, float scale)
+        { 
+            Vector2 size = new(texture.Width * scale, texture.Height * scale);
             Vector2 screen = new(Graphics.Viewport.Width, Graphics.Viewport.Height);
             return (screen - size) / 2f;
         }

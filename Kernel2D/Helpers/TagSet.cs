@@ -1,4 +1,5 @@
-﻿namespace Kernel2D.Helpers
+﻿#pragma warning disable
+namespace Kernel2D.Helpers
 {
     public class TagSet
     {

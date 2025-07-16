@@ -44,7 +44,6 @@ namespace PlatformingProject.Core.GameEntities
         private Texture2D PlayerSpriteTexture = null;
         private readonly Platformer2DPhysics 
             _physics = Platformer2DPhysics.Default();
-        private SpriteFont _font;
         public DrawContext _drawContext { get; private set; }
         #endregion
 
@@ -60,16 +59,15 @@ namespace PlatformingProject.Core.GameEntities
 
         #region init
         public PlatformerPlayerCharacter(XVector position, DrawContext context,
-            Spritesheet sprites, Texture2D texture, SpriteFont font)
+            Spritesheet sprites)
         {
             SetState(PlayerState.Idle);
-            _font = font;
             CurrentPosition = position;
             GroundLevel= position.Y;
             Animator = new();
             _drawContext = context;
             SpriteSet = sprites;
-            PlayerSpriteTexture = texture;
+            PlayerSpriteTexture = sprites.Texture;
             DashDuration =
                 SpriteSet.Animations["dash"].Frames.Sum(f => f.Duration) / 1000f;
             JumpAscentDuration =
@@ -86,19 +84,18 @@ namespace PlatformingProject.Core.GameEntities
         /// <param name="gameTime">Provides a snapshot of timing values used
         /// for game updates.</param>
         public void Draw(GameTime gameTime)
-        {
+        { 
             foreach (var img in AfterImages)
             {
                 float alpha = MathHelper.Clamp(img.Timer / AfterImageLifetime, 0f, 1f);
-                Color tint = Color.DarkRed * alpha * 0.4f; // extra value for transparency
+                Color tint = Color.DarkRed * alpha * 0.8f; // extra value for transparency
                 Animator.Draw(_drawContext, PlayerSpriteTexture, img.Position, img.Flip, tint);
             }
             Animator.Draw(_drawContext, PlayerSpriteTexture, CurrentPosition,
                 FacingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
         }
 
-        public void SetDrawContextIfUnset(DrawContext context)
-        { if (_drawContext == null) _drawContext = context; }
+        public void SetDrawContextIfUnset(DrawContext context) => _drawContext ??= context;
 
         /// <summary>
         /// Plays a given <see cref="SpriteAnimation"/> using the

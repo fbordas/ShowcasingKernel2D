@@ -30,7 +30,8 @@ namespace PlatformingProject.Core
         {
             // TODO: Add your initialization logic here
             _graphics.IsFullScreen = false;
-            _graphics.PreferredBackBufferWidth = 1500;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 768;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -39,12 +40,12 @@ namespace PlatformingProject.Core
         protected override void LoadContent()
         {
             sb = new SpriteBatch(GraphicsDevice);
-            _font = Content.Load<SpriteFont>("Fonts/Hud");
-            whitepixel = Content.Load<Texture2D>("GlobalAssets/whitepixel");
+            _font = Content.Load<SpriteFont>(@"Fonts\Hud");
+            whitepixel = Content.Load<Texture2D>(@"GlobalAssets\whitepixel");
 
             // TODO: use this.Content to load your game content here
 
-            var transIn = new FadeTransition(3f, true, Color.White);
+            var transIn = new FadeTransition(1f, true, Color.White);
 
             _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
             _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
@@ -135,7 +136,6 @@ namespace PlatformingProject.Core
         }
 
         private SpriteBatch sb = null;
-        private Spritesheet sheet = null;
         private SpriteFont _font = null;
         private readonly PlatformerInputBridge _input = new();
         private ScreenManager _manager = null;

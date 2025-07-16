@@ -12,7 +12,7 @@ namespace PlatformingProject.Core.Screens
     internal class SplashScreen : ScreenBase
     {
         private double _elapsedTime = 0;
-        private const double _displayDuration = 3000; // Display for 3 seconds
+        private const double _displayDuration = 2000; // Display for 3 seconds
         private readonly SpriteFont _font;
 
         public SplashScreen(SpriteFont font) => _font = font;
@@ -35,13 +35,18 @@ namespace PlatformingProject.Core.Screens
         public override void Draw(DrawContext context)
         {
             base.Draw(context);
+            context.Graphics.Clear(Color.White);
             // Draw the splash screen content here
-            context.Graphics.Clear(Color.LightGray);
-            string splashText = "SPLASH SCREEN WOOOOOOOO";
-            float textScaling = 4.5f;
-            var location = context.CenterTextOnscreen(_font, splashText, textScaling);
+            var pan = _content.Load<Texture2D>("GlobalAssets/TitleScreen/bread");
+            var sfont = _content.Load<SpriteFont>("Fonts/Title");
+            var imgLocation = context.CenterImageOnScreen(pan, 1f);
+            context.DrawingQueue.Enqueue(new SpriteDrawCommand(pan, imgLocation, null,
+                Color.White * 0.4f, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 1f));
+            string splashText = "   「三咲のパン屋  」\n   Misaki's  Bakery";
+            float textScaling = 1f;
+            var textLocation = context.CenterTextOnscreen(sfont, splashText, textScaling);
 
-            context.DrawingQueue.Enqueue(new TextDrawCommand(_font, splashText, location,
+            context.DrawingQueue.Enqueue(new TextDrawCommand(sfont, splashText, textLocation,
                 Color.Black, 0, Vector2.Zero, textScaling, SpriteEffects.None, 0));
         }
     }

@@ -55,11 +55,36 @@
         /// <summary>
         /// The rectangle area in the spritesheet that this frame occupies.
         /// </summary>
-        public Microsoft.Xna.Framework.Rectangle Frame { get; set; } = new();
+        public FrameDTO? Frame { get; set; }
         /// <summary>
         /// The duration of the frame in milliseconds. This determines how long the
         /// frame is displayed before moving to the next one.
         /// </summary>
         public float Duration { get; set; } = 0f;
     }
+
+    /// <summary>
+    /// Represents the rectangle containing a single sprite frame, measured by its
+    /// geographical coordinates in the source image, width and height.
+    /// </summary>
+    internal class FrameDTO
+    {
+        /// <summary>
+        /// X coordinate of the sprite frame location.
+        /// </summary>
+        public int X { get; set; }
+        /// <summary>
+        /// Y coordinate of the sprite frame location.
+        /// </summary>
+        public int Y { get; set; }
+        /// <summary>
+        /// Width of the sprite frame.
+        /// </summary>
+        public int Width { get; set; }
+        /// <summary>
+        /// Height of the sprite frame.
+        /// </summary>
+        public int Height { get; set; }
+    }
+
 }

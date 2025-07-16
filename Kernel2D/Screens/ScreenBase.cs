@@ -33,6 +33,10 @@ namespace Kernel2D.Screens
         /// </summary>
         protected ContentManager? _content = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ContentManager? GetContent() => _content;
 
         /// <summary>

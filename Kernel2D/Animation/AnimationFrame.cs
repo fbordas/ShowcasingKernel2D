@@ -13,7 +13,7 @@ namespace Kernel2D.Animation
         /// </summary>
         public string Name { get; set; } = string.Empty;
         /// <summary>
-        /// The source <see cref="XRectangle"> within the texture
+        /// The source <see cref="XRectangle"/> within the texture
         /// that defines the area of the sprite to be drawn.
         /// </summary>
         public XRectangle SourceRectangle { get; set; }

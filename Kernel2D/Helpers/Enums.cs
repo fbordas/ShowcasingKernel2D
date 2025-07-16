@@ -1,4 +1,5 @@
-﻿namespace Kernel2D.Helpers
+﻿#pragma warning disable
+namespace Kernel2D.Helpers
 {
     [Flags]
     public enum BasicAnimationTypes

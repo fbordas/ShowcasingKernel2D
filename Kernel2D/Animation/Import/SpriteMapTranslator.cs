@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
+#pragma warning disable
 namespace Kernel2D.Animation.Import
 {
     /// <summary>
@@ -16,19 +17,17 @@ namespace Kernel2D.Animation.Import
         /// <see cref="Spritesheet"/>. This method takes a DTO that contains
         /// the name of the spritesheet, its associated animations, and their
         /// frames, and converts it into a domain model object that can be used
-        /// within the application. The method also requires a <see cref="Texture2D"/>
+        /// within the application. The method also loads a <see cref="Texture2D"/>
         /// representing the texture associated with the spritesheet, which is
-        /// used to populate the `Texture` property of the resulting `Spritesheet` object.
+        /// used to populate the `Texture` property of the resulting `Spritesheet` 
+        /// object.
         /// </summary>
         /// <param name="dto">
         /// The <see cref="SpritesheetDTO"/> to convert.
         /// </param>
-        /// <param name="texture">
-        /// The <see cref="Texture2D"/> that represents the texture
-        /// associated with the spritesheet.
-        /// </param>
         /// <param name="_cont">
-        /// The <see cref="ContentManager"/> used to load the texture from the specified path.
+        /// The <see cref="ContentManager"/> used to load the texture from the
+        /// specified path.
         /// </param>
         /// <param name="_path">
         /// The path to the texture file that contains the spritesheet image
@@ -37,15 +36,16 @@ namespace Kernel2D.Animation.Import
         /// spritesheet's image data.
         /// </param>
         /// <returns>
-        /// A <see cref="Spritesheet"/> object that represents the
-        /// converted data from the DTO. This object contains
-        /// the name of the spritesheet, its texture,
-        /// and a collection of animations, each with its frames.
+        /// A fully formed <see cref="Spritesheet"/> object that represents
+        /// the converted data from the DTO. This object contains the name
+        /// of the spritesheet, its texture, and a collection of animations,
+        /// each with its own frames.
         /// </returns>
         internal static Spritesheet ConvertToDomainModel
             (SpritesheetDTO dto, ContentManager _cont, string _path)
         {
-            Texture2D tex = _cont.Load<Texture2D>(_path);
+            string p = _path.Replace(".", "/");
+            Texture2D tex = _cont.Load<Texture2D>(p);
             var sheet = new Spritesheet
             {
                 Name = dto.Name,
@@ -64,7 +64,9 @@ namespace Kernel2D.Animation.Import
                     anim.Frames.Add(new AnimationFrame
                     {
                         Name = frameDto.Name,
-                        SourceRectangle = frameDto.Frame,
+                        SourceRectangle = 
+                            new(frameDto.Frame.X, frameDto.Frame.Y,
+                            frameDto.Frame.Width, frameDto.Frame.Height),
                         Duration = frameDto.Duration
                     });
                 }

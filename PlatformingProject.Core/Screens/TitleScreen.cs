@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Kernel2D.Drawing;
 using Kernel2D.Input;
 using Kernel2D.Screens;
+using Kernel2D.Screens.ScreenTransitions;
 
 namespace PlatformingProject.Core.Screens
 {
@@ -27,6 +28,13 @@ namespace PlatformingProject.Core.Screens
         public override void Update(GameTime gameTime)
         {
             Input.Update();
+            var optionsTransOut = new FadeTransition(0.15f, false, Color.Black);
+            var optionsTransIn = new FadeTransition(0.15f, true, Color.Black);
+            var optionsTrans = new ScreenTransitionPair(optionsTransOut, optionsTransIn);
+
+            var gameTransIn = new FadeTransition(2f, true, Color.White);
+            var gameTransOut = new FadeTransition(2f, false, Color.White);
+            var gameTrans = new ScreenTransitionPair(gameTransOut, gameTransIn);
             if (Input.GetInputState(Input.DefaultDownAction) == InputState.Pressed)
             { _selectedIndex = (_selectedIndex + 1) % MenuItems.Count; }
             if (Input.GetInputState(Input.DefaultUpAction) == InputState.Pressed)
@@ -36,9 +44,9 @@ namespace PlatformingProject.Core.Screens
                 switch (_selectedIndex)
                 {
                     case 0: 
-                        ScreenManager.Instance.ChangeScreen("GameplayScreen", _content); break;
+                        ScreenManager.Instance.ChangeScreen("GameplayScreen", _content, gameTrans); break;
                     case 1: 
-                        ScreenManager.Instance.ChangeScreen("OptionsScreen", _content); break;
+                        ScreenManager.Instance.ChangeScreen("OptionsScreen", _content, optionsTrans); break;
                     case 2: OnExitRequested(); break;
                 }
             }
