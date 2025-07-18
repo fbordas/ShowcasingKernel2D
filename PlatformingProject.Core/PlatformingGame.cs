@@ -15,6 +15,8 @@ namespace PlatformingProject.Core
     public class PlatformingGame : Game
     {
         private GraphicsDeviceManager _graphics;
+        private int BaseWidth = 1280;
+        private int BaseHeight = 960;
 
         public PlatformingGame()
         {
@@ -28,10 +30,9 @@ namespace PlatformingProject.Core
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             _graphics.IsFullScreen = false;
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.PreferredBackBufferWidth = BaseWidth;
+            _graphics.PreferredBackBufferHeight = BaseHeight;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -43,10 +44,9 @@ namespace PlatformingProject.Core
             _font = Content.Load<SpriteFont>(@"Fonts\Hud");
             whitepixel = Content.Load<Texture2D>(@"GlobalAssets\whitepixel");
 
-            // TODO: use this.Content to load your game content here
-
             var transIn = new FadeTransition(1f, true, Color.White);
 
+            _manager.RegisterScreen("OptionsSubMenu", new OptionsSubScreen(Content, _font));
             _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
             _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
             _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content, _font));
@@ -57,9 +57,14 @@ namespace PlatformingProject.Core
         protected override void Update(GameTime gameTime)
         {
             Debugger.WriteLine($"Game.Update() | {gameTime.TotalGameTime.TotalMilliseconds}");
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            bool keyComboPressed =
+                GamePad.GetState(PlayerIndex.One).Buttons.LeftShoulder == ButtonState.Pressed &&
+                GamePad.GetState(PlayerIndex.One).Buttons.RightShoulder == ButtonState.Pressed &&
+                GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed &&
+                GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed;
+
+
+            if (keyComboPressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
 
             _input.Update();
             BuildWindowTitle();

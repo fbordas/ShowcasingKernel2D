@@ -1,31 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace PlatformingProject.Core.Helpers
 {
     public static class Helpers
     {
-        internal record SpriteObject
+        public static Matrix GetScreenScaleMatrix(GraphicsDevice device, int baseWidth, int baseHeight)
         {
-            public string Name { get; private set; }
-            public SpriteFrame Frame { get; private set; }
+            var actualWidth = device.Viewport.Width;
+            var actualHeight = device.Viewport.Height;
 
-            public SpriteObject(string name, Rectangle sourceArea)
-            {
-                Name = name;
-                Frame = new SpriteFrame(sourceArea.X, sourceArea.Y,
-                    sourceArea.Width, sourceArea.Height);
-            }
-        }
+            float scaleX = (float)actualWidth / baseWidth;
+            float scaleY = (float)actualHeight / baseHeight;
 
-        internal class SpriteFrame
-        {
-            public int X { get; private set; }
-            public int Y { get; private set; }
-            public int Width { get; private set; }
-            public int Height { get; private set; }
+            float scale = Math.Min(scaleX, scaleY);
 
-            public SpriteFrame(int x, int y, int width, int height)
-            { X = x; Y = y; Width = width; Height = height; }
+            return Matrix.CreateScale(scale, scale, 1f);
         }
     }
 }

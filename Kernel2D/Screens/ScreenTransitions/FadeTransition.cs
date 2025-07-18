@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Kernel2D.Drawing;
 
+#pragma warning disable
 namespace Kernel2D.Screens.ScreenTransitions
 {
     /// <summary>

@@ -13,19 +13,33 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/Hud.spritefont
+#begin Fonts/BaseText.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/Hud.spritefont
+/build:Fonts/BaseText.spritefont
 
-#begin Fonts/Title.spritefont
+#begin Fonts/MenuOption.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=NoChange
-/build:Fonts/Title.spritefont
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MenuOption.spritefont
+
+#begin Fonts/Splash.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Splash.spritefont
+
+#begin Fonts/TitleText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TitleText.spritefont
 
 #begin GlobalAssets/TitleScreen/bread.png
 /importer:TextureImporter
@@ -38,6 +52,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GlobalAssets/TitleScreen/bread.png
+
+#begin GlobalAssets/TitleScreen/titlebg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GlobalAssets/TitleScreen/titlebg.png;GlobalAssets/TitleScreen/titlebg
 
 #begin GlobalAssets/whitepixel.png
 /importer:TextureImporter

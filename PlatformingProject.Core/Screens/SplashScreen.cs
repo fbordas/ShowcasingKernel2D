@@ -38,7 +38,7 @@ namespace PlatformingProject.Core.Screens
             context.Graphics.Clear(Color.White);
             // Draw the splash screen content here
             var pan = _content.Load<Texture2D>("GlobalAssets/TitleScreen/bread");
-            var sfont = _content.Load<SpriteFont>("Fonts/Title");
+            var sfont = _content.Load<SpriteFont>("Fonts/Splash");
             var imgLocation = context.CenterImageOnScreen(pan, 1f);
             context.DrawingQueue.Enqueue(new SpriteDrawCommand(pan, imgLocation, null,
                 Color.White * 0.4f, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 1f));

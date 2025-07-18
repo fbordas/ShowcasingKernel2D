@@ -41,6 +41,13 @@ namespace Kernel2D.Screens
             => _screens[name] = screen;
 
         /// <summary>
+        /// Gets the screen with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the screen to get.</param>
+        /// <returns>The screen with the specified name.</returns>
+        public ScreenBase GetScreen(string name) => _screens[name];
+
+        /// <summary>
         /// Changes the current screen being rendered by the ScreenManager.
         /// </summary>
         /// <param name="screenName">
@@ -57,32 +64,6 @@ namespace Kernel2D.Screens
         /// <exception cref="KeyNotFoundException">
         /// Thrown if the specified screen name does not exist in the ScreenManager.
         /// </exception>
-        //public void ChangeScreen(string screenName, ContentManager content,
-        //    ScreenTransitionPair? transitions = null)
-        //{
-        //    if (_screens.TryGetValue(screenName, out var nextScreen))
-        //    {
-        //        _pendingScreen = nextScreen;
-        //        _content = content;
-        //        _outTransition = transitions?.TransitionPreviousOut;
-        //        _inTransition = transitions?.TransitionCurrentIn;
-
-        //        // Start the outgoing transition
-        //        if (_outTransition != null)
-        //        {
-        //            _outTransition.Reset();
-        //            _currentTransition = _outTransition;
-        //        }
-        //        else
-        //        {
-        //            // No out transition? Switch immediately and apply in transition
-        //            CommitScreenChange();
-        //        }
-        //    }
-        //    else throw new KeyNotFoundException(
-        //        $"Screen '{screenName}' not found in ScreenManager. " +
-        //        "Please register the screen before trying to change to it.");
-        //}
         public void ChangeScreen(string screenName, ContentManager content,
             ScreenTransitionPair? transitions = null)
         {
@@ -110,20 +91,6 @@ namespace Kernel2D.Screens
         /// Commits the pending screen change by unloading the current screen,
         /// loading the new screen, and applying any transition effects.
         /// </summary>
-        //private void CommitScreenChange()
-        //{
-        //    _currentScreen?.UnloadContent();
-        //    _currentScreen = _pendingScreen;
-        //    _currentScreen?.LoadContent(_content!);
-        //    _pendingScreen = null;
-
-        //    if (_inTransition != null)
-        //    {
-        //        _inTransition.Reset();
-        //        _currentTransition = _inTransition;
-        //        _inTransition = null;
-        //    }
-        //}
         private void CommitScreenChange()
         {
             _currentScreen?.UnloadContent();
@@ -149,41 +116,6 @@ namespace Kernel2D.Screens
         /// <param name="gameTime">
         /// Provides a snapshot of timing values used for game updates.
         /// </param>
-        //public void Update(GameTime gameTime)
-        //{
-        //    if (_currentTransition != null)
-        //    {
-        //        _currentTransition.Update(gameTime);
-
-        //        // Bootstrapping first screen
-        //        if (_currentScreen == null && _pendingScreen != null)
-        //        {
-        //            _currentScreen = _pendingScreen;
-        //            _currentScreen!.LoadContent(_content!);
-        //            _pendingScreen = null;
-        //            Debugger.WriteLine("Bootstrapping first screen during transition.");
-        //        }
-
-        //        // If transition finishes, commit new screen
-        //        if (_currentTransition.IsFinished)
-        //        {
-        //            if (_currentTransition == _outTransition)
-        //            {
-        //                _outTransition = null;
-        //                CommitScreenChange(); // Starts in-transition, if any
-        //            }
-        //            else
-        //            {
-        //                _currentTransition = null;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // 🔥 This was missing
-        //        _currentScreen?.Update(gameTime);
-        //    }
-        //}
         public void Update(GameTime gameTime)
         {
             if (_currentTransition != null)

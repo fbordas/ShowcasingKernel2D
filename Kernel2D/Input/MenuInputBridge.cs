@@ -11,14 +11,47 @@ namespace Kernel2D.Input
         private protected enum MenuAction
         {
             AcceptOrSelect,
-            CancelOrReturn
+            CancelOrReturn,
+            Up,
+            Down,
+            Left,
+            Right
         }
 
         private readonly Dictionary<MenuAction, string> _actionNames = new()
         {
             { MenuAction.AcceptOrSelect, "select" },
-            { MenuAction.CancelOrReturn, "cancel" }
+            { MenuAction.CancelOrReturn, "cancel" },
+            { MenuAction.Up, "up" },
+            { MenuAction.Down, "down" },
+            { MenuAction.Left, "left" },
+            { MenuAction.Right, "right" }
         };
+
+        /// <summary>
+        /// Gets the state of the Up directional input in a menu screen.
+        /// </summary>
+        public InputState Up => GetInputState(_actionNames[MenuAction.Up]);
+        /// <summary>
+        /// Gets the state of the Down directional input in a menu screen.
+        /// </summary>
+        public InputState Down => GetInputState(_actionNames[MenuAction.Down]);
+        /// <summary>
+        /// Gets the state of the Left directional input in a menu screen.
+        /// </summary>
+        public InputState Left => GetInputState(_actionNames[MenuAction.Left]);
+        /// <summary>
+        /// Gets the state of the Right directional input in a menu screen.
+        /// </summary>
+        public InputState Right => GetInputState(_actionNames[MenuAction.Right]);
+        /// <summary>
+        /// Gets the state of the Accept action input in a menu screen.
+        /// </summary>
+        public InputState Accept => GetInputState(_actionNames[MenuAction.AcceptOrSelect]);
+        /// <summary>
+        /// Gets the state of the Cancel action input in a menu screen.
+        /// </summary>
+        public InputState Cancel => GetInputState(_actionNames[MenuAction.CancelOrReturn]);
 
         /// <summary>
         /// The action string to identify the select input.
@@ -36,6 +69,42 @@ namespace Kernel2D.Input
         { 
             get => _actionNames[MenuAction.CancelOrReturn];
             set => RenameAction(MenuAction.CancelOrReturn, value);
+        }
+
+        /// <summary>
+        /// The action string to identify the up input.
+        /// </summary>
+        public string UpActionName
+        {
+            get => _actionNames[MenuAction.Up];
+            set => RenameAction(MenuAction.Up, value);
+        }
+
+        /// <summary>
+        /// The action string to identify the down input.
+        /// </summary>
+        public string DownActionName
+        {
+            get => _actionNames[MenuAction.Down];
+            set => RenameAction(MenuAction.Down, value);
+        }
+
+        /// <summary>
+        /// The action string to identify the left input.
+        /// </summary>
+        public string LeftActionName
+        {
+            get => _actionNames[MenuAction.Left];
+            set => RenameAction(MenuAction.Left, value);
+        }
+
+        /// <summary>
+        /// The action string to identify the right input.
+        /// </summary>
+        public string RightActionName
+        {
+            get => _actionNames[MenuAction.Right];
+            set => RenameAction(MenuAction.Right, value);
         }
 
         /// <summary>
@@ -116,18 +185,38 @@ namespace Kernel2D.Input
         /// </summary>
         public MenuInputBridge()
         {
+            UpActionName = MenuAction.Up.ToString().ToLowerInvariant();
+            DownActionName = MenuAction.Down.ToString().ToLowerInvariant();
+            LeftActionName = MenuAction.Left.ToString().ToLowerInvariant();
+            RightActionName = MenuAction.Right.ToString().ToLowerInvariant();
             AcceptOrSelectActionName =
                 MenuAction.AcceptOrSelect.ToString().ToLowerInvariant();
             CancelOrReturnActionName =
                 MenuAction.CancelOrReturn.ToString().ToLowerInvariant();
-            _keyMappings[MenuAction.AcceptOrSelect.ToString().ToLowerInvariant()] = 
-            [ Keys.Enter ];
-            _keyMappings[MenuAction.CancelOrReturn.ToString().ToLowerInvariant()] = 
-            [ Keys.Back ];
-            _padMappings[MenuAction.AcceptOrSelect.ToString().ToLowerInvariant()] = 
-            [ Buttons.A, Buttons.Start ];
-            _padMappings[MenuAction.CancelOrReturn.ToString().ToLowerInvariant()] = 
-            [ Buttons.B ];
+            _keyMappings[UpActionName] =
+                [ Keys.W, Keys.Up, Keys.NumPad8 ];
+            _keyMappings[DownActionName] =
+                [ Keys.S, Keys.Down, Keys.NumPad2 ];
+            _keyMappings[LeftActionName] =
+                [ Keys.A, Keys.Left, Keys.NumPad4 ];
+            _keyMappings[RightActionName] =
+                [ Keys.D, Keys.Right, Keys.NumPad6 ];
+            _keyMappings[AcceptOrSelectActionName] =
+                [ Keys.Enter ];
+            _keyMappings[CancelOrReturnActionName] =
+                [ Keys.Back ];
+            _padMappings[UpActionName] =
+                [ Buttons.DPadUp, Buttons.LeftThumbstickUp ];
+            _padMappings[DownActionName] =
+                [ Buttons.DPadDown, Buttons.LeftThumbstickDown ];
+            _padMappings[LeftActionName] =
+                [ Buttons.DPadLeft, Buttons.LeftThumbstickLeft ];
+            _padMappings[RightActionName] =
+                [ Buttons.DPadRight, Buttons.LeftThumbstickRight ];
+            _padMappings[AcceptOrSelectActionName] =
+                [ Buttons.A, Buttons.Start ];
+            _padMappings[CancelOrReturnActionName] =
+                [ Buttons.B, Buttons.Back ];
         }
     }
 }

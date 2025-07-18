@@ -34,10 +34,10 @@ namespace Kernel2D.Screens
         protected ContentManager? _content = null;
 
         /// <summary>
-        /// 
+        /// Gets the currently loaded <see cref="ContentManager"/>.
         /// </summary>
-        /// <returns></returns>
-        public ContentManager? GetContent() => _content;
+        /// <returns>The currently loaded <see cref="ContentManager"/>.</returns>
+        public ContentManager? GetCurrentContent() => _content;
 
         /// <summary>
         /// Loads the content for the screen using the provided
@@ -62,12 +62,12 @@ namespace Kernel2D.Screens
         public virtual void Update(GameTime gameTime) { }
 
         /// <summary>
-        /// Draws the screen using the provided <see cref="SpriteBatch"/>.
+        /// Draws the screen using the provided <see cref="DrawContext"/>.
         /// </summary>
         /// <param name="context">
         /// The <see cref="DrawContext"/> that contains the drawing parameters
-        /// such as the sprite batch, transform matrix, graphics device, game
-        /// time, and font.
+        /// such as the <see cref="DrawQueue"/>, transform matrix, graphics device,
+        /// and game time.
         /// </param>
         public virtual void Draw(DrawContext context) => 
             Debugger.WriteLine($"Screen drawing: {this.ID}");
