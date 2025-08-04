@@ -14,7 +14,8 @@ namespace PlatformingProject.Core.Screens
     {
         private readonly SpriteFont _font;
 
-        public OptionsSubScreen(ContentManager content, SpriteFont font) : base(content)
+        public OptionsSubScreen(ContentManager content, SpriteFont font, IInputBridge input)
+            : base(content, input)
         {
             _content = content;
             _font = _content.Load<SpriteFont>(@"Fonts/MenuOption");
@@ -47,8 +48,8 @@ namespace PlatformingProject.Core.Screens
         {
             base.Update(gameTime);
             Input.Update();
-            _menuItems.Update(Input);
-            if (Input.GetInputState(Input.CancelOrReturnActionName) == InputState.Pressed)
+            _menuItems.Update((IMenuInputBridge)Input);
+            if (((IMenuInputBridge)Input).Cancel == InputState.Pressed)
             {
                 ScreenManager.Instance.ChangeScreen("TitleScreen", _content, optionsTrans);
             }

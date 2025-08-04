@@ -78,10 +78,10 @@ namespace Kernel2D.Menus
         /// applied to it depending on its type.
         /// </summary>
         /// <param name="input">
-        /// The <see cref="MenuInputBridge"/> to interpret and apply
+        /// The <see cref="IMenuInputBridge"/> to interpret and apply
         /// directional and action inputs from.
         /// </param>
-        public abstract void Update(MenuInputBridge input);
+        public abstract void Update(IMenuInputBridge input);
 
         /// <summary>
         /// The colors to render the options with when selected and

@@ -1,5 +1,6 @@
 ﻿using Kernel2D.Drawing;
 using Kernel2D.Helpers;
+using Kernel2D.Input.Bridges;
 using Kernel2D.Screens;
 
 using Microsoft.Xna.Framework;
@@ -12,7 +13,8 @@ namespace PlatformingProject.Core.Screens
 {
     internal class PlatformerGameTestScreen : GameScreen
     {
-        public PlatformerGameTestScreen(ContentManager content) : base(content)
+        public PlatformerGameTestScreen(ContentManager content, PlatformerInputBridge input)
+            : base(content, input)
         {
             _content = content;
             Input.RegisterButtonMapping(Input.MoveLeftActionName, [Buttons.LeftThumbstickLeft, Buttons.DPadLeft]);

@@ -47,7 +47,8 @@ namespace Kernel2D.Drawing
                         break;
                     default:
                         Debugger.WriteLine($"Unsupported draw command: {command.GetType().Name}");
-                        break;
+                        throw new NotSupportedException(
+                            $"Draw command type {command.GetType().Name} is not supported.");
                 }
             }
             _queue.Clear();

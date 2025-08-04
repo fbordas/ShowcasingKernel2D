@@ -1,13 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+
+using Kernel2D.Drawing;
+using Kernel2D.Input;
+using Kernel2D.Input.Bridges;
+using Kernel2D.Input.Bridges.Menu;
+using Kernel2D.Screens;
+using Kernel2D.Screens.ScreenTransitions;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Kernel2D.Animation;
-using Kernel2D.Drawing;
-using Kernel2D.Input;
-using Kernel2D.Screens;
-using Kernel2D.Screens.ScreenTransitions;
+
 using PlatformingProject.Core.Screens;
+
 using Debugger = Kernel2D.Helpers.DebugHelpers;
 
 namespace PlatformingProject.Core
@@ -17,6 +23,16 @@ namespace PlatformingProject.Core
         private GraphicsDeviceManager _graphics;
         private int BaseWidth = 1280;
         private int BaseHeight = 960;
+
+        /// <summary>
+        /// Indicates if the game is running on a mobile platform.
+        /// </summary>
+        public readonly static bool IsMobile = OperatingSystem.IsAndroid() || OperatingSystem.IsIOS();
+
+        /// <summary>
+        /// Indicates if the game is running on a desktop platform.
+        /// </summary>
+        public readonly static bool IsDesktop = OperatingSystem.IsMacOS() || OperatingSystem.IsLinux() || OperatingSystem.IsWindows();
 
         public PlatformingGame()
         {
@@ -41,16 +57,19 @@ namespace PlatformingProject.Core
         protected override void LoadContent()
         {
             sb = new SpriteBatch(GraphicsDevice);
-            _font = Content.Load<SpriteFont>(@"Fonts\Hud");
-            whitepixel = Content.Load<Texture2D>(@"GlobalAssets\whitepixel");
+            _font = Content.Load<SpriteFont>(@"Fonts\BaseText");
 
             var transIn = new FadeTransition(1f, true, Color.White);
 
-            _manager.RegisterScreen("OptionsSubMenu", new OptionsSubScreen(Content, _font));
+            _manager.RegisterScreen("OptionsSubMenu", 
+                new OptionsSubScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
             _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
-            _manager.RegisterScreen("TitleScreen", new TitleScreen(Content, _font));
-            _manager.RegisterScreen("OptionsScreen", new OptionsScreen(Content, _font));
-            _manager.RegisterScreen("GameplayScreen", new PlatformerGameTestScreen(Content));
+            _manager.RegisterScreen("TitleScreen", 
+                new TitleScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+            _manager.RegisterScreen("OptionsScreen", 
+                new OptionsScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+            _manager.RegisterScreen("GameplayScreen", 
+                new PlatformerGameTestScreen(Content, InputBridgeContainer.Get<PlatformerInputBridge>()));
             _manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(null, transIn));
         }
 
@@ -66,10 +85,13 @@ namespace PlatformingProject.Core
 
             if (keyComboPressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
 
-            _input.Update();
             BuildWindowTitle();
 
-            //_manager.CurrentScreen.ExitRequested ??= Exit;
+            /*
+             * A reminder of my failures and how I caused Roslyn to crash to the point that I didn't even
+             * get a proper error message to debug: 
+             * _manager.CurrentScreen.ExitRequested ??= Exit;
+             */
             if (_manager.CurrentScreen != null)
             {
                 _manager.Update(gameTime);
@@ -79,11 +101,6 @@ namespace PlatformingProject.Core
             base.Update(gameTime);
         }
 
-        private void PollInput()
-        {
-            //player.ProcessPlayerActions(_input); 
-        }
-
         protected override void Draw(GameTime gameTime)
         {
             Debugger.WriteLine($"Game.Draw()   | {gameTime.TotalGameTime.TotalMilliseconds}");
@@ -91,15 +108,13 @@ namespace PlatformingProject.Core
             base.Draw(gameTime);
 
             context ??= new DrawContext
-                (drawingqueue, Matrix.Identity, GraphicsDevice, gameTime, whitepixel);
+                (drawingqueue, Matrix.Identity, GraphicsDevice, gameTime);
 
             if (context.DrawingQueue == null)
             {
                 Debugger.WriteLine("SpriteBatch in DrawContext currently null!");
                 return;
             }
-
-            //string display = Window.Title;
 
             context.DrawingQueue.ClearQueue();
             _manager.Draw(context);
@@ -142,10 +157,8 @@ namespace PlatformingProject.Core
 
         private SpriteBatch sb = null;
         private SpriteFont _font = null;
-        private readonly PlatformerInputBridge _input = new();
-        private ScreenManager _manager = null;
+        private readonly ScreenManager _manager = null;
         private DrawContext context;
         private readonly DrawQueue drawingqueue = new();
-        private Texture2D whitepixel = null;
     }
 }

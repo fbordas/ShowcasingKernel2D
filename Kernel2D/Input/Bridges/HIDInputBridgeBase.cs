@@ -1,32 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+
 using Debugger = Kernel2D.Helpers.DebugHelpers;
 
-#pragma warning disable
-namespace Kernel2D.Input
+namespace Kernel2D.Input.Bridges
 {
     /// <summary>
-    /// Describes the current state of a given input.
+    /// An intermediate inheritable class to create user input polling entities
+    /// processing signals from gamepads or keyboards.
     /// </summary>
-    public enum InputState
+    public abstract class HIDInputBridgeBase : IInputBridge
     {
-        None,
-        Pressed,
-        Held,
-        Released
-    }
-
-    /// <summary>
-    /// An intermediate inheritable class to create user input polling entities.
-    /// </summary>
-    public abstract class InputBridge
-    {
+        /// <summary>
+        /// The current state of the keyboard inputs.
+        /// </summary>
         protected KeyboardState _kb;
+
+        /// <summary>
+        /// The current state of the gamepad inputs.
+        /// </summary>
         protected GamePadState _gp;
 
+        /// <summary>
+        /// The previous state of the keyboard inputs, used to
+        /// determine if an action was pressed or released in the
+        /// previous frame.
+        /// </summary>
         protected KeyboardState _prevKb;
+
+        /// <summary>
+        /// The previous state of the gamepad inputs, used to
+        /// determine if an action was pressed or released in the
+        /// previous frame.
+        /// </summary>
         protected GamePadState _prevGp;
 
+        /// <summary>
+        /// The player index for the gamepad input. This is used to
+        /// determine which gamepad to poll for input.
+        /// </summary>
         protected PlayerIndex _player = PlayerIndex.One;
 
         /// <summary>
@@ -35,34 +47,67 @@ namespace Kernel2D.Input
         /// all bridge logic.
         /// </summary>
         private const string
-            UpDirection = "___up___",
-            DownDirection = "___down___",
-            LeftDirection = "___left___",
-            RightDirection = "___right___",
-            AcceptAction = "___ok___";
+            UpDirection = DefaultInputActionNames.UpDirection,
+            DownDirection = DefaultInputActionNames.DownDirection,
+            LeftDirection = DefaultInputActionNames.LeftDirection,
+            RightDirection = DefaultInputActionNames.RightDirection,
+            AcceptAction = DefaultInputActionNames.AcceptAction,
+            CancelAction = DefaultInputActionNames.CancelAction;
 
+        /// <summary>
+        /// Gets the default action identifier for the up action.
+        /// </summary>
         public string DefaultUpAction => UpDirection;
+
+        /// <summary>
+        /// Gets the default action identifier for the down action.
+        /// </summary>
         public string DefaultDownAction => DownDirection;
+
+        /// <summary>
+        /// Gets the default action identifiers for the left action.
+        /// </summary>
         public string DefaultLeftAction => LeftDirection;
+
+        /// <summary>
+        /// Gets the default action identifier for the right action.
+        /// </summary>
         public string DefaultRightAction => RightDirection;
+
+        /// <summary>
+        /// Gets the default action identifier for the accept action.
+        /// </summary>
         public string DefaultAcceptAction => AcceptAction;
 
+        /// <summary>
+        /// Gets the default action identifier for the cancel action.
+        /// </summary>
+        public string DefaultCancelAction => CancelAction;
+
+        /// <summary>
+        /// A dictionary mapping action identifiers to keyboard keys.
+        /// </summary>
         protected readonly Dictionary<string, Keys[]> _keyMappings = new()
         {
             { UpDirection, [Keys.Up, Keys.W] },
             { LeftDirection, [Keys.Left, Keys.A] },
             { DownDirection, [Keys.Down, Keys.S] },
             { RightDirection, [Keys.Right, Keys.D] },
-            { AcceptAction, [Keys.Enter] }
-
+            { AcceptAction, [Keys.Enter] },
+            { CancelAction, [Keys.Back] }
         };
+
+        /// <summary>
+        /// A dictionary mapping action identifiers to gamepad buttons.
+        /// </summary>
         protected readonly Dictionary<string, Buttons[]> _padMappings = new()
         {
             { UpDirection, [Buttons.DPadUp, Buttons.LeftThumbstickUp] },
             { LeftDirection, [Buttons.DPadLeft, Buttons.LeftThumbstickLeft] },
             { DownDirection, [Buttons.DPadDown, Buttons.LeftThumbstickDown] },
             { RightDirection, [Buttons.DPadRight, Buttons.LeftThumbstickRight] },
-            { AcceptAction, [Buttons.Start] }
+            { AcceptAction, [Buttons.Start, Buttons.A] },
+            { CancelAction, [Buttons.Back, Buttons.B] }
         };
 
         /// <summary>
@@ -190,5 +235,21 @@ namespace Kernel2D.Input
             _kb = Keyboard.GetState();
             _gp = GamePad.GetState(_player);
         }
+
+        /// <summary>
+        /// Returns a collection of action identifiers that are defined
+        /// in this input bridge. This is used to determine what actions can be
+        /// triggered by the input bridge.
+        /// </summary>
+        /// <returns>
+        /// An enumerable collection of action identifiers defined in this input bridge.
+        /// </returns>
+        public virtual IEnumerable<string> GetDefinedActions() =>
+            _keyMappings.Keys.Concat(_padMappings.Keys).Distinct();
+
+        /// <summary>
+        /// Not needed for this bridge, as it does not handle pointer inputs.
+        /// </summary>
+        public Vector2? GetPointerPosition() => null;
     }
 }

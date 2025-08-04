@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Kernel2D.Input.Bridges;
 using Kernel2D.Input;
 
 namespace Kernel2D.Screens
@@ -20,6 +21,13 @@ namespace Kernel2D.Screens
         /// <param name="content">
         /// The <see cref="ContentManager"/> to load assets from.
         /// </param>
-        public GameScreen(ContentManager content) => _content = content;
+        /// <param name="input">
+        /// The <see cref="PlatformerInputBridge"/> to use in the current screen.
+        /// </param>
+        public GameScreen(ContentManager content, PlatformerInputBridge input)
+        { 
+             _content = content;
+            Input = (PlatformerInputBridge)input;
+        }
     }
 }

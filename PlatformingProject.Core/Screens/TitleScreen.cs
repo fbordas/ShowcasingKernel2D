@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Kernel2D.Drawing;
 using Kernel2D.Screens;
 using Kernel2D.Screens.ScreenTransitions;
 using Kernel2D.Menus;
+using Kernel2D.Input;
 
 namespace PlatformingProject.Core.Screens
 {
@@ -23,16 +23,17 @@ namespace PlatformingProject.Core.Screens
         LabelOption _options;
         LabelOption _exit;
 
-        FadeTransition gameTransIn = new FadeTransition(2f, true, Color.White);
-        FadeTransition gameTransOut = new FadeTransition(2f, false, Color.White);
+        FadeTransition gameTransIn = new (2f, true, Color.White);
+        FadeTransition gameTransOut = new (2f, false, Color.White);
         ScreenTransitionPair gameTrans;
 
-        FadeTransition optionsTransOut = new FadeTransition(0.15f, false, Color.Black);
-        FadeTransition optionsTransIn = new FadeTransition(0.15f, true, Color.Black);
+        FadeTransition optionsTransOut = new (0.15f, false, Color.Black);
+        FadeTransition optionsTransIn = new (0.15f, true, Color.Black);
         ScreenTransitionPair optionsTrans;
 
 
-        public TitleScreen(ContentManager content, SpriteFont font) : base(content)
+        public TitleScreen(ContentManager content, SpriteFont font, IInputBridge input)
+            : base(content, input)
         {
             _content = content;
             gameTrans = new ScreenTransitionPair(gameTransOut, gameTransIn);
@@ -61,7 +62,7 @@ namespace PlatformingProject.Core.Screens
         public override void Update(GameTime gameTime)
         {
             Input.Update();
-            _menuList.Update(Input);
+            _menuList.Update((IMenuInputBridge)Input);
         }
 
         public override void Draw(DrawContext context)

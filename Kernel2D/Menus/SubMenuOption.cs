@@ -82,6 +82,6 @@ namespace Kernel2D.Menus
         /// Does nothing for this particular menu option.
         /// </summary>
         /// <param name="input">Not applicable.</param>
-        public override void Update(MenuInputBridge input) { return; }
+        public override void Update(IMenuInputBridge input) { return; }
     }
 }

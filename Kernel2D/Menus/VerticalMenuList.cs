@@ -23,6 +23,7 @@ namespace Kernel2D.Menus
         private readonly float Spacing;
         private readonly SpriteFont _font;
         private readonly bool _singleLine = false;
+        private readonly bool _carousel = false;
 
         /// <summary>
         /// The currently selected item in the menu.
@@ -42,12 +43,16 @@ namespace Kernel2D.Menus
         /// <param name="spacing">The spacing between menu items.</param>
         /// <param name="font">The font to use to render the menu items.</param>
         /// <param name="singleLine">Whether to render the menu as a single line.</param>
-        public VerticalMenuList(Vector2 start, float spacing, SpriteFont font, bool singleLine = false)
+        /// <param name="carousel">If rendering as a single line, whether the menu should
+        /// be displayed as a scrolling carousel.</param>
+        public VerticalMenuList(Vector2 start, float spacing, SpriteFont font,
+            bool singleLine = false, bool carousel = false)
         {
             Start = start;
             Spacing = spacing;
             _font = font;
             _singleLine = singleLine;
+            _carousel = carousel;
         }
 
         /// <summary>
@@ -73,34 +78,55 @@ namespace Kernel2D.Menus
         /// to draw elements onscreen.</param>
         public void Draw(DrawContext context)
         {
-            if (!_singleLine)
+            if (_singleLine)
             {
-                for (int i = 0; i < Options.Count; i++)
+                if (_carousel)
                 {
-                    var option = Options[i];
+                    // Carousel mode: draw a few wrapped-around items centered on SelectedIndex
+                    int visibleCount = 3;
+                    int half = visibleCount / 2;
 
-                    var yOffset = i * Spacing;
-                    option.Position = Start + new Vector2(0, yOffset);
-                    bool isSelected = (i == SelectedIndex);
-                    option.Draw(context, _font, isSelected);
+                    for (int offset = -half; offset <= half; offset++)
+                    {
+                        int wrappedIndex = (SelectedIndex + offset + Options.Count) % Options.Count;
+                        var option = Options[wrappedIndex];
+
+                        float yOffset = offset * Spacing;
+                        option.Position = Start + new Vector2(0, yOffset);
+                        bool isSelected = (offset == 0);
+                        option.Draw(context, _font, isSelected);
+                    }
                 }
+                else
+                {
+                    // Simple single-line display
+                    var option = Options[SelectedIndex];
+                    option.Position = Start;
+                    option.Draw(context, _font, true);
+                }
+                return;
             }
-            else
+
+            // Classic full list mode
+            for (int i = 0; i < Options.Count; i++)
             {
-                var option = Options[SelectedIndex];
-                option.Position = Start;
-                option.Draw(context, _font, true);
+                var option = Options[i];
+                float yOffset = i * Spacing;
+                option.Position = Start + new Vector2(0, yOffset);
+                bool isSelected = (i == SelectedIndex);
+                option.Draw(context, _font, isSelected);
             }
         }
+
 
         /// <summary>
         /// Updates the current state of the menu option based on
         /// the user input received.
         /// </summary>
         /// <param name="input">
-        /// The <see cref="MenuInputBridge"/> to process inputs from.
+        /// The <see cref="IMenuInputBridge"/> to process inputs from.
         /// </param>
-        public void Update(MenuInputBridge input)
+        public void Update(IMenuInputBridge input)
         {
             if (input.Up == InputState.Pressed)
             {

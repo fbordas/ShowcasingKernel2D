@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Kernel2D.Helpers;
 
 namespace Kernel2D.Drawing
 {
@@ -67,19 +68,14 @@ namespace Kernel2D.Drawing
         /// The <see cref="GameTime"/> that provides timing information for the game,
         /// including elapsed time since the last update and total game time.
         /// </param>
-        /// <param name="whitePixel">
-        /// The <see cref="Texture2D"/> representing a white pixel, which can be used
-        /// for screen transition overlays or other effects that require a solid color
-        /// texture.
-        /// </param>
         public DrawContext(DrawQueue drawQueue, Matrix transform, GraphicsDevice graphics,
-            GameTime gameTime, Texture2D whitePixel)
+            GameTime gameTime)
         {
             DrawingQueue = drawQueue;
             TransformMatrix = transform;
             Graphics = graphics;
             GameTime = gameTime;
-            WhitePixel = whitePixel;
+            WhitePixel = TextureHelpers.WhitePixel(graphics);
         }
 
         /// <summary>

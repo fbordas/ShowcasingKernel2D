@@ -4,7 +4,6 @@ using Kernel2D.Menus;
 using Kernel2D.Screens;
 using Kernel2D.Screens.ScreenTransitions;
 
-using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +14,8 @@ namespace PlatformingProject.Core.Screens
     {
         private readonly SpriteFont _font;
 
-        public OptionsScreen(ContentManager content, SpriteFont font) : base(content)
+        public OptionsScreen(ContentManager content, SpriteFont font, IInputBridge input) 
+            : base(content, input)
         {
             _content = content;
             _font = _content.Load<SpriteFont>(@"Fonts/MenuOption");
@@ -50,8 +50,8 @@ namespace PlatformingProject.Core.Screens
         {
             base.Update(gameTime);
             Input.Update();
-            _menuItems.Update(Input);
-            if (Input.GetInputState(Input.CancelOrReturnActionName) == InputState.Pressed)
+            _menuItems.Update((IMenuInputBridge)Input);
+            if (((IMenuInputBridge)Input).Cancel == InputState.Pressed)
             {
                 ScreenManager.Instance.ChangeScreen("TitleScreen", _content, optionsTrans);
             }

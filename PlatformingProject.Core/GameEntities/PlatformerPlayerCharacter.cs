@@ -4,13 +4,14 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Kernel2D.Animation;
-using Kernel2D.Input;
 using Kernel2D.Physics;
 using K2DEntities = Kernel2D.Entities;
 using PlayerState = Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = Kernel2D.Helpers.DebugHelpers;
 using XVector = Microsoft.Xna.Framework.Vector2;
 using Kernel2D.Drawing;
+using Kernel2D.Input.Bridges;
+using Kernel2D.Input;
 
 namespace PlatformingProject.Core.GameEntities
 {

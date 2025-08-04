@@ -1,9 +1,6 @@
-﻿using System.Numerics;
-
-using Kernel2D.Drawing;
+﻿using Kernel2D.Drawing;
 using Kernel2D.Input;
 
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using XVector = Microsoft.Xna.Framework.Vector2;
@@ -81,6 +78,6 @@ namespace Kernel2D.Menus
         /// Does nothing for this particular menu option type.
         /// </summary>
         /// <param name="input">Not applicable.</param>
-        public override void Update(MenuInputBridge input) { return; }
+        public override void Update(IMenuInputBridge input) { return; }
     }
 }

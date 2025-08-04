@@ -1,12 +1,12 @@
 ﻿using Debugger = Kernel2D.Helpers.DebugHelpers;
 
-namespace Kernel2D.Input
+namespace Kernel2D.Input.Bridges
 {
     /// <summary>
     /// A bridge or translator for platformer-style input handling,
     /// allowing for managing keyboard and gamepad inputs.
     /// </summary>
-    public class PlatformerInputBridge : InputBridge
+    public class PlatformerInputBridge : HIDInputBridgeBase
     {
         #region properties
         /// <summary>
@@ -184,8 +184,8 @@ namespace Kernel2D.Input
         /// True if the input state is currently fully released, False otherwise.
         /// </returns>
         public bool IsIdle() => !MoveLeft() && !MoveRight() &&
-            (GetInputState(DashActionName) == InputState.None) &&
-            (GetInputState(JumpActionName) == InputState.None);
+            GetInputState(DashActionName) == InputState.None &&
+            GetInputState(JumpActionName) == InputState.None;
 
         /// <summary>
         /// Whether an input has been pressed in the current frame.

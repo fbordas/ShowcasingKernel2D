@@ -58,7 +58,6 @@ namespace Kernel2D.Menus
             context.DrawingQueue.Enqueue(labelCmd);
 
             // Position the value text to the right of the label
-            var offset = font.MeasureString(LabelText);
             var valueCmd = new TextDrawCommand(
                 font, currentValue, new Vector2(context.Graphics.Viewport.Width - 200, Position.Y),
                 labelColor, 0, Vector2.Zero, textScaling, SpriteEffects.None, 0);
@@ -107,6 +106,6 @@ namespace Kernel2D.Menus
         /// Does nothing for this particular menu option type.
         /// </summary>
         /// <param name="input">Not applicable.</param>
-        public override void Update(MenuInputBridge input) { return; }
+        public override void Update(IMenuInputBridge input) { return; }
     }
 }

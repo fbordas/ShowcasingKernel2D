@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Kernel2D.Input.Bridges.Menu;
 using Kernel2D.Input;
 
 namespace Kernel2D.Screens
@@ -9,9 +10,9 @@ namespace Kernel2D.Screens
     public abstract class MenuScreen : ScreenBase
     {
         /// <summary>
-        /// The <see cref="MenuInputBridge"/> to use in the current screen.
+        /// The <see cref="IInputBridge"/> to use in the current screen.
         /// </summary>
-        public MenuInputBridge Input { get; protected set; } = new();
+        public IInputBridge Input { get; }
 
         /// <summary>
         /// Creates a new user-interactable menu screen.
@@ -19,6 +20,14 @@ namespace Kernel2D.Screens
         /// <param name="content">
         /// The <see cref="ContentManager"/> to load assets from.
         /// </param>
-        public MenuScreen(ContentManager content) => _content = content;
+        /// <param name="input">
+        /// The <see cref="IInputBridge"/> to use for processing user input
+        /// in the menu screen.
+        /// </param>
+        public MenuScreen(ContentManager content, IInputBridge input)
+        {
+            _content = content;
+            Input = input;
+        }
     }
 }
