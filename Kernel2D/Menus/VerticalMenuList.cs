@@ -26,6 +26,11 @@ namespace Kernel2D.Menus
         private readonly bool _carousel = false;
 
         /// <summary>
+        /// An optional cursor to display alongside the menu options.
+        /// </summary>
+        public MenuCursor? Cursor = null;
+
+        /// <summary>
         /// The currently selected item in the menu.
         /// </summary>
         public int SelectedIndex = 0;
@@ -107,6 +112,7 @@ namespace Kernel2D.Menus
                 return;
             }
 
+            Vector2? selectedPos = null; // Track selected option position for cursor
             // Classic full list mode
             for (int i = 0; i < Options.Count; i++)
             {
@@ -115,6 +121,13 @@ namespace Kernel2D.Menus
                 option.Position = Start + new Vector2(0, yOffset);
                 bool isSelected = (i == SelectedIndex);
                 option.Draw(context, _font, isSelected);
+                if (isSelected) { selectedPos = option.Position; }
+            }
+
+            if (Cursor != null && selectedPos.HasValue)
+            { 
+                Cursor.Update(selectedPos.Value);
+                Cursor.Draw(context);
             }
         }
 

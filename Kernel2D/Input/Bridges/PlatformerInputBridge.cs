@@ -166,7 +166,8 @@ namespace Kernel2D.Input.Bridges
         /// <returns>
         /// True if the input state triggers left movement, False otherwise.
         /// </returns>
-        public bool MoveLeft() => GetInputState(PlatformerBaseAction.MoveLeft.ToString().ToLowerInvariant()) == InputState.Held;
+        public bool MoveLeft() => 
+            GetInputState(PlatformerBaseAction.MoveLeft.ToString().ToLowerInvariant()) == InputState.Held;
 
         /// <summary>
         /// Moves the entity right.
@@ -174,7 +175,8 @@ namespace Kernel2D.Input.Bridges
         /// <returns>
         /// True if the input state triggers right movement, False otherwise.
         /// </returns>
-        public bool MoveRight() => GetInputState(PlatformerBaseAction.MoveRight.ToString().ToLowerInvariant()) == InputState.Held;
+        public bool MoveRight() => 
+            GetInputState(PlatformerBaseAction.MoveRight.ToString().ToLowerInvariant()) == InputState.Held;
 
         /// <summary>
         /// Whether the entity is currently immobile and no inputs are being

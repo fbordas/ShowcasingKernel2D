@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Kernel2D.Animation;
-using Kernel2D.Physics;
+using Kernel2D.Physics2D;
 using K2DEntities = Kernel2D.Entities;
 using PlayerState = Kernel2D.Entities.PlatformerPlayerState;
 using Debugger = Kernel2D.Helpers.DebugHelpers;

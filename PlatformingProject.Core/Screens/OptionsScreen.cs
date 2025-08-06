@@ -24,7 +24,8 @@ namespace PlatformingProject.Core.Screens
             _enableSound = new ToggleOption("Enable sound", true, null);
             _resolutions = new ChoiceOption("Resolution/Viewport size",
                 ["800x600", "1024x768", "1280x960"], false, null){ SelectedIndex = 2 };
-            _submenu = new SubMenuOption("Go into sub-menu", ScreenManager.Instance.GetScreen("OptionsSubMenu"), optionsTransOut, optionsTransIn);
+            _submenu = new SubMenuOption("Go into sub-menu", 
+                ScreenManager.Instance.GetScreen("OptionsSubMenu"), optionsTransOut, optionsTransIn);
             _exit = new LabelOption("Exit", () => {
                 ScreenManager.Instance.ChangeScreen("TitleScreen", content, optionsTrans);
             });

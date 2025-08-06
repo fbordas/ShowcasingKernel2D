@@ -1,4 +1,4 @@
-﻿namespace Kernel2D.Physics
+﻿namespace Kernel2D.Physics2D
 {
     /// <summary>
     /// Basic physics values for a 2D platformer game.
