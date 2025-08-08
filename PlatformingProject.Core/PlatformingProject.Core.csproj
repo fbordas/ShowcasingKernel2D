@@ -13,8 +13,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\GlobalAssets\TitleScreen\" />
+    <Folder Include="Dependencies\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kernel2D\Kernel2D.csproj" />
+    <Reference Include="Kernel2D">
+      <HintPath>Dependencies\Kernel2D.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

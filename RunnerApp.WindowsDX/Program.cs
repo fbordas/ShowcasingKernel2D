@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 
 using PlatformingProject.Core;
-//using PuzzleGameProject.Core;
 
 internal class Program
 {
@@ -24,7 +23,6 @@ internal class Program
         List<Type> _types =
         [
             typeof(PlatformingGame)
-            //,typeof(PuzzleGame)
         ];
         using var executable = (Game)Activator.CreateInstance(_types[i])!;
         executable.Run();

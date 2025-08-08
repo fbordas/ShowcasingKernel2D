@@ -1,0 +1,2784 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kernel2D</name>
+    </assembly>
+    <members>
+        <member name="T:Kernel2D.Animation.AnimationFrame">
+            <summary>
+            Represents a single frame in an animation sequence.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationFrame.Name">
+            <summary>
+            The name of the animation frame, which can be used
+            for identification or debugging purposes.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationFrame.SourceRectangle">
+            <summary>
+            The source <see cref="T:Microsoft.Xna.Framework.Rectangle"/> within the texture
+            that defines the area of the sprite to be drawn.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationFrame.Duration">
+            <summary>
+            The duration for which this frame should be displayed,
+            in milliseconds.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.AnimationPlayer">
+            <summary>
+            Represents a player for sprite animations.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Animation.AnimationPlayer.FacingRight">
+            <summary>
+            Indicates whether the animation being drawn is facing right. This is used to determine
+            the <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply.
+            </summary>
+            <remarks>Might need deprecation? Better for consumer to use it and AnimationPlayer
+            just plays what it's told to.</remarks>
+        </member>
+        <member name="F:Kernel2D.Animation.AnimationPlayer.CurrentAnimationName">
+            <summary>
+            The name of the current animation being played by this player.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Animation.AnimationPlayer._currentAnimFinishedCallback">
+            <summary>
+            A callback invoked once a non-looping animation reaches its final frame.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationPlayer.HasFinishedPlaying">
+            <summary>
+            Gets a value indicating whether the current animation has finished playing.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationPlayer.IsPlaying">
+            <summary>
+            Gets a value indicating whether the current animation is still playing.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.AnimationPlayer.CurrentFrame">
+            <summary>
+            The current animation frame being drawn.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)">
+            <summary>
+            Draws the current animation frame using the specified sprite batch, texture,
+            position, and sprite effects. Tint is assumed to be <see cref="P:Microsoft.Xna.Framework.Color.White"/>
+            to render without any special coloring.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to enqueue the drawing onscreen to.
+            </param>
+            <param name="tex">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to display.</param>
+            <param name="position">The <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the coordinates
+            to draw at.</param>
+            <param name="fx">Any <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the current
+            render.</param>
+            <param name="depth">
+            The depth at which to draw the sprite, allowing for layering of sprites
+            on the screen. Defaults to 0.8f, which is a common depth for sprites
+            to be drawn above the background but below UI elements.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.GetCurrentAnimation">
+            <summary>
+            Gets the current animation being played by this player.
+            </summary>
+            <returns>The current animation being played by the current instance.</returns>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Color,System.Single)">
+            <summary>
+            Draws the current animation frame using the specified context, texture,
+            position, sprite effects and tint.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to enqueue the drawing onscreen to.
+            </param>
+            <param name="tex">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to display.</param>
+            <param name="position">The <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the coordinates
+            to draw at.</param>
+            <param name="fx">Any <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the current
+            render.</param>
+            <param name="tint">Any <see cref="T:Microsoft.Xna.Framework.Color"/> to apply as a tint to the current
+            render. Defaults to <see cref="P:Microsoft.Xna.Framework.Color.White"/>.</param>
+            <param name="depth">
+            The depth at which to draw the sprite, allowing for layering of sprites
+            on the screen. Defaults to 0.8f, which is a common depth for sprites
+            to be drawn above the background but below UI elements.
+            </param>
+            <remarks>The origin point is set to the bottom center of the sprite frame
+            to support consistent ground aligning during vertical actions and states like
+            jumping and falling.</remarks>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            Draws the current animation frame using the specified sprite batch, texture,
+            and position. No <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> are applied, and the tint
+            is assumed to be <see cref="P:Microsoft.Xna.Framework.Color.White"/> to render without any special coloring.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to enqueue the drawing onscreen to.
+            </param>
+            <param name="tex">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to display.</param>
+            <param name="position">The <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the coordinates
+            to draw at.</param>
+            <param name="depth">The depth at which to draw the sprite, allowing for layering
+            of sprites on the screen. Defaults to 0.8f, which is a common depth for sprites
+            to be drawn above the background but below UI elements.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Play(Kernel2D.Animation.SpriteAnimation,System.Action)">
+            <summary>
+            Starts playback of the specified animation, resetting its progress and optionally
+            invoking a callback when it completes.
+            </summary>
+            <param name="anim">The internal name of the animation to play.</param>
+            <param name="onComplete">An action or function call to execute upon
+            the animation finishing playing.</param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates the current animation player based on the game time.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values used
+            for game updates.</param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationPlayer.Stop">
+            <summary>
+            Fully stops the playback of any animations and resets the animation player
+            to a default state.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.AnimationSystem">
+            <summary>
+            Manages a collection of animation players, allowing for registration,
+            removal, playback, and drawing of animations.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Register(System.String,Kernel2D.Animation.SpriteAnimation)">
+            <summary>
+            Registers a new animation player with the specified key and animation.
+            </summary>
+            <param name="key">The key, or name, of the entity the animation player
+            will be working for.</param>
+            <param name="animation">The animation to play immediately upon
+            registration.</param>
+            <returns>
+            
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Play(System.String,Kernel2D.Animation.SpriteAnimation,System.Action)">
+            <summary>
+            Plays the specified animation for the player associated with the given key.
+            </summary>
+            <param name="key">The key, or name, of the entity the animation player
+            needs to look for.</param>
+            <param name="animation">The animation to play.</param>
+            <param name="onComplete">
+            A callback to execute after playback is completed. Can be null if nothing
+            is desired to run post-completion.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates all registered animation players based on the game time.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values used
+            for game updates.</param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.Texture2D,System.Collections.Generic.Dictionary{System.String,Microsoft.Xna.Framework.Vector2})">
+            <summary>
+            Draws all registered animation players using the specified sprite batch and texture.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to enqueue the drawing onscreen to.
+            </param>
+            <param name="tex">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to get the elements to be drawn.</param>
+            <param name="positions">A table of keys of entities to draw, and the positions
+            where each will be drawn onscreen.</param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.String,System.Boolean)">
+            <summary>
+            Draws a specific animation player associated with the given key at the specified position.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to enqueue the drawing onscreen to.
+            </param>
+            <param name="tex">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to get the elements to be drawn.</param>
+            <param name="position">The <see cref="T:Microsoft.Xna.Framework.Vector2"/> coordinates of where to draw
+            the entity.</param>
+            <param name="key">The key, or name, of the <see cref="T:Kernel2D.Animation.AnimationPlayer"/> to use
+            to draw the specified texture.</param>
+            <param name="facingRight">Optional: True if the entity is facing right, False
+            otherwise.</param>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.Unregister(System.String)">
+            <summary>
+            Unregisters an animation player associated with the specified key.
+            </summary>
+            <param name="key">The key of the <see cref="T:Kernel2D.Animation.AnimationPlayer"/>
+            to remove.</param>
+            <returns>True if removal is successful; false otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Animation.AnimationSystem.GetPlayer(System.String)">
+            <summary>
+            Retrieves the animation player associated with the specified key.
+            </summary>
+            <param name="key">The key, or name, of the entity to get the
+            <see cref="T:Kernel2D.Animation.AnimationPlayer"/> for.</param>
+            <returns>The <see cref="T:Kernel2D.Animation.AnimationPlayer"/> associated with
+            the provided key if it exists; null if the key doesn't exist.</returns>
+        </member>
+        <member name="T:Kernel2D.Animation.Import.SpritesheetDTO">
+            <summary>
+            Represents a spritesheet, which is a collection of animations
+            that can be used in a game. Each spritesheet contains a texture
+            representing the image of the spritesheet and a collection of
+            animations that define how the sprites are animated.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpritesheetDTO.Name">
+            <summary>
+            The name of the spritesheet, typically the filename without extension.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpritesheetDTO.Texture">
+            <summary>
+            The path to the texture file that contains the spritesheet image
+            inside the MGCB content file.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpritesheetDTO.Animations">
+            <summary>
+            The collection of animations associated with this spritesheet.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.Import.SpriteAnimationDTO">
+            <summary>
+            Represents a sprite animation, which consists of multiple frames.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpriteAnimationDTO.Name">
+            <summary>
+            The name of the animation, typically used to identify it in code.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpriteAnimationDTO.Frames">
+            <summary>
+            The collection of frames that make up the animation.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.SpriteAnimationDTO.Loop">
+            <summary>
+            Whether the animation should loop when it reaches the end.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.Import.AnimationFrameDTO">
+            <summary>
+            Represents a single frame in an animation, including its name, rectangle area
+            in the spritesheet, and duration.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.AnimationFrameDTO.Name">
+            <summary>
+            The name of the frame, typically used to identify it in code.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.AnimationFrameDTO.Frame">
+            <summary>
+            The rectangle area in the spritesheet that this frame occupies.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.AnimationFrameDTO.Duration">
+            <summary>
+            The duration of the frame in milliseconds. This determines how long the
+            frame is displayed before moving to the next one.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.Import.FrameDTO">
+            <summary>
+            Represents the rectangle containing a single sprite frame, measured by its
+            geographical coordinates in the source image, width and height.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.FrameDTO.X">
+            <summary>
+            X coordinate of the sprite frame location.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.FrameDTO.Y">
+            <summary>
+            Y coordinate of the sprite frame location.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.FrameDTO.Width">
+            <summary>
+            Width of the sprite frame.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Import.FrameDTO.Height">
+            <summary>
+            Height of the sprite frame.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.Import.SpriteMapTranslator">
+            <summary>
+            Translates a <see cref="T:Kernel2D.Animation.Import.SpritesheetDTO"/> into a domain model
+            <see cref="T:Kernel2D.Animation.Spritesheet"/>. This class is responsible for converting
+            the data transfer object (DTO) representation of a spritesheet
+            into the domain model used within the application.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Animation.Import.SpriteMapTranslator.ConvertToDomainModel(Kernel2D.Animation.Import.SpritesheetDTO,Microsoft.Xna.Framework.Content.ContentManager,System.String)">
+            <summary>
+            Converts a <see cref="T:Kernel2D.Animation.Import.SpritesheetDTO"/> into a domain model
+            <see cref="T:Kernel2D.Animation.Spritesheet"/>. This method takes a DTO that contains
+            the name of the spritesheet, its associated animations, and their
+            frames, and converts it into a domain model object that can be used
+            within the application. The method also loads a <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/>
+            representing the texture associated with the spritesheet, which is
+            used to populate the `Texture` property of the resulting `Spritesheet` 
+            object.
+            </summary>
+            <param name="dto">
+            The <see cref="T:Kernel2D.Animation.Import.SpritesheetDTO"/> to convert.
+            </param>
+            <param name="_cont">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> used to load the texture from the
+            specified path.
+            </param>
+            <param name="_path">
+            The path to the texture file that contains the spritesheet image
+            inside the MGCB content file. This path is used to load the texture
+            from the content pipeline, allowing the application to access the
+            spritesheet's image data.
+            </param>
+            <returns>
+            A fully formed <see cref="T:Kernel2D.Animation.Spritesheet"/> object that represents
+            the converted data from the DTO. This object contains the name
+            of the spritesheet, its texture, and a collection of animations,
+            each with its own frames.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Animation.SpriteAnimation">
+            <summary>
+            Represents a sprite animation, which consists of multiple frames.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.SpriteAnimation.Name">
+            <summary>
+            The name of the animation, which can be used for identification
+            or debugging purposes.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Animation.SpriteAnimation.Frames">
+            <summary>
+            A collection of <see cref="T:Kernel2D.Animation.AnimationFrame"/>s that make up the
+            animation.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.SpriteAnimation.Loop">
+            <summary>
+            Whether the animation should loop when it reaches the end.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.SpriteAnimation.Tags">
+            <summary>
+            A set of tags associated with the animation, which can be used
+            to determine its qualities and properties in a finite state
+            machine.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.SpriteAnimation.Spritesheet">
+            <summary>
+            The <see cref="P:Kernel2D.Animation.SpriteAnimation.Spritesheet"/> that this animation belongs to.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Animation.Spritesheet">
+            <summary>
+            Represents a spritesheet containing a texture and a
+            collection of animations.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Spritesheet.Texture">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> associated with the spritesheet,
+            which contains the sprite images.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Animation.Spritesheet.Name">
+            <summary>
+            The name of the spritesheet, which can be used for
+            identification or debugging purposes.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Animation.Spritesheet.Animations">
+            <summary>
+            A collection of <see cref="T:Kernel2D.Animation.SpriteAnimation"/>s defined within
+            the spritesheet, where each animation is identified by a unique
+            name.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Drawing.DrawContext">
+            <summary>
+            Represents the context for drawing operations in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.DrawingQueue">
+            <summary>
+            The <see cref="T:Kernel2D.Drawing.DrawQueue"/> that holds the queued drawing commands.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.TransformMatrix">
+            <summary>
+            The transformation matrix applied to the drawing context, typically
+            used for scaling, rotating, or translating the drawn elements in the
+            game world.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.WhitePixel">
+            <summary>
+            A white pixel used for screen transition overlays or other effects that
+            require a solid color texture.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.Graphics">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.GraphicsDevice"/> used for rendering graphics in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.GameTime">
+            <summary>
+            The <see cref="P:Kernel2D.Drawing.DrawContext.GameTime"/> that provides timing information for the game,
+            including elapsed time since the last update and total game time.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.Target">
+            <summary>
+            The render target for drawing operations, allowing off-screen rendering.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.GlobalTint">
+            <summary>
+            The global tint color applied to all drawn elements, allowing for a
+            consistent color overlay across the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.DrawContext.OverlayTint">
+            <summary>
+            The tint color applied to the overlay, which can be used for effects like
+            darkening or highlighting the screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.#ctor(Kernel2D.Drawing.DrawQueue,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kernel2D.Drawing.DrawContext"/> class with the
+            specified parameters.
+            </summary>
+            <param name="drawQueue">
+            The <see cref="T:Kernel2D.Drawing.DrawQueue"/> that holds the drawing commands to be executed.
+            </param>
+            <param name="transform">
+            The transformation matrix applied to the drawing context, which can be used
+            for scaling, rotating, or translating drawn elements in the game world.
+            </param>
+            <param name="graphics">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.GraphicsDevice"/> used for rendering graphics in the game.
+            </param>
+            <param name="gameTime">
+            The <see cref="P:Kernel2D.Drawing.DrawContext.GameTime"/> that provides timing information for the game,
+            including elapsed time since the last update and total game time.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterTextHorizontally(Microsoft.Xna.Framework.Graphics.SpriteFont,System.String,System.Single,System.Single)">
+            <summary>
+            Centers text horizontally on the screen at a specified vertical position.
+            </summary>
+            <param name="font">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> used to measure the text width.
+            </param>
+            <param name="text">
+            The text string to be centered.
+            </param>
+            <param name="scale">
+            The scale factor to apply to the text size when measuring its width.
+            </param>
+            <param name="y">
+            The vertical position on the screen where the text should be centered.
+            </param>
+            <returns>
+            A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the text should be drawn
+            to center it horizontally on the screen at the specified vertical position.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterTextVertically(Microsoft.Xna.Framework.Graphics.SpriteFont,System.String,System.Single,System.Single)">
+            <summary>
+            Centers text vertically on the screen at a specified horizontal position.
+            </summary>
+            <param name="font">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> used to measure the text height.
+            </param>
+            <param name="text">
+            The text string to be centered.
+            </param>
+            <param name="scale">
+            The scale factor to apply to the text size when measuring its height.
+            </param>
+            <param name="x">
+            The horizontal position on the screen where the text should be centered.
+            </param>
+            <returns>
+            A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the text should be drawn
+            to center it vertically on the screen at the specified horizontal position.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterTextOnscreen(Microsoft.Xna.Framework.Graphics.SpriteFont,System.String,System.Single)">
+            <summary>
+            Centers text on the screen based on the provided font, text, and scale.
+            </summary>
+            <param name="font">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> used to measure the text size.
+            </param>
+            <param name="text">
+            The text string to be centered on the screen.
+            </param>
+            <param name="scale">
+            The scale factor to apply to the text size when measuring its dimensions.
+            </param>
+            <returns>
+            A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the text should be drawn
+            to center it on the screen.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterImageHorizontally(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single)">
+            <summary>
+            Centers an image horizontally on the screen at a specified vertical position.
+            </summary>
+            <param name="texture">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to center.</param>
+            <param name="scale">The scale factor to apply to the image size
+            when measuring its dimensions.</param>
+            <param name="y">The vertical position on the screen where the image
+            should be centered.</param>
+            <returns>A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the image
+            should be drawn to center it horizontally on the screen at the specified
+            vertical position.</returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterImageVertically(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single)">
+            <summary>
+            Centers an image vertically on the screen at a specified horizontal position.
+            </summary>
+            <param name="texture">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to center.</param>
+            <param name="scale">The scale factor to apply to the image size
+            when measuring its dimensions.</param>
+            <param name="x">The horizontal position on the screen where the image
+            should be centered.</param>
+            <returns>A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the image
+            should be drawn to center it vertically on the screen at the specified
+            horizontal position.</returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.CenterImageOnScreen(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
+            <summary>
+            Centers an image on the screen.
+            </summary>
+            <param name="texture">The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to center.</param>
+            <param name="scale">The scale factor to apply to the image size when
+            measuring its dimensions.</param>
+            <returns>A <see cref="T:Microsoft.Xna.Framework.Vector2"/> representing the position where the
+            image should be drawn to center it on the screen.</returns>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawContext.SetTransformMatrix(Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Changes the transformation matrix used for drawing operations.
+            </summary>
+            <param name="matrix">
+            The new transformation <see cref="T:Microsoft.Xna.Framework.Matrix"/> to apply.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Drawing.DrawQueue">
+            <summary>
+            Represents a queue for drawing commands in a 2D game.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Drawing.DrawQueue._queue">
+            <summary>
+            A list of draw commands that are queued for execution.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawQueue.Enqueue(Kernel2D.Drawing.IDrawCommand)">
+            <summary>
+            Enqueues a draw command to be executed later.
+            </summary>
+            <param name="call">
+            The draw command to be added to the queue.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawQueue.Flush(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Flushes the draw queue by executing all queued drawing commands in order of
+            their layer depth, from the highest layer (back) to the lowest layer (front).
+            </summary>
+            <param name="sb">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteBatch"/> used to execute the draw commands.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Drawing.DrawQueue.ClearQueue">
+            <summary>
+            Clears the draw queue, removing all queued drawing commands without executing them.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Drawing.IDrawCommand">
+            <summary>
+            Represents a command to draw a sprite or text in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.IDrawCommand.Layer">
+            <summary>
+            Gets the layer depth at which the sprite or text will be drawn.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Drawing.SpriteDrawCommand">
+            <summary>
+            Represents a command to draw a sprite using a texture, position, source rectangle,
+            tint color, rotation, origin, scale, sprite effects, and layer depth.
+            </summary>
+            <param name="Texture">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to draw as a sprite.
+            </param>
+            <param name="Position">
+            The position in world space where the sprite will be drawn represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="SourceRectangle">
+            An optional <see cref="T:Microsoft.Xna.Framework.Rectangle"/> that defines the source rectangle of the texture
+            to be drawn. If null, the entire texture will be used.
+            </param>
+            <param name="Color">
+            The <see cref="P:Kernel2D.Drawing.SpriteDrawCommand.Color"/> tint to apply to the sprite. This can be used to change the
+            color of the sprite when drawn.
+            </param>
+            <param name="Rotation">
+            The rotation angle in radians to apply to the sprite when drawn. A value of 0 means
+            no rotation.
+            </param>
+            <param name="Origin">
+            The origin point of the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This is the
+            point around which the sprite will be rotated and scaled. It is typically set to
+            the center of the sprite for proper rotation and scaling effects.
+            </param>
+            <param name="Scale">
+            The scale factor for the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This
+            determines how much the sprite will be scaled in the X and Y directions.
+            </param>
+            <param name="Effects">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the sprite. This can be used to flip
+            the sprite horizontally or vertically.
+            </param>
+            <param name="LayerDepth">
+            The depth at which the sprite will be drawn in the layer order. A value of 0 is
+            the front layer, and a value of 1 is the back layer. This allows for proper
+            layering of sprites when drawn together.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Drawing.SpriteDrawCommand.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)">
+            <summary>
+            Represents a command to draw a sprite using a texture, position, source rectangle,
+            tint color, rotation, origin, scale, sprite effects, and layer depth.
+            </summary>
+            <param name="Texture">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to draw as a sprite.
+            </param>
+            <param name="Position">
+            The position in world space where the sprite will be drawn represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="SourceRectangle">
+            An optional <see cref="T:Microsoft.Xna.Framework.Rectangle"/> that defines the source rectangle of the texture
+            to be drawn. If null, the entire texture will be used.
+            </param>
+            <param name="Color">
+            The <see cref="P:Kernel2D.Drawing.SpriteDrawCommand.Color"/> tint to apply to the sprite. This can be used to change the
+            color of the sprite when drawn.
+            </param>
+            <param name="Rotation">
+            The rotation angle in radians to apply to the sprite when drawn. A value of 0 means
+            no rotation.
+            </param>
+            <param name="Origin">
+            The origin point of the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This is the
+            point around which the sprite will be rotated and scaled. It is typically set to
+            the center of the sprite for proper rotation and scaling effects.
+            </param>
+            <param name="Scale">
+            The scale factor for the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This
+            determines how much the sprite will be scaled in the X and Y directions.
+            </param>
+            <param name="Effects">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the sprite. This can be used to flip
+            the sprite horizontally or vertically.
+            </param>
+            <param name="LayerDepth">
+            The depth at which the sprite will be drawn in the layer order. A value of 0 is
+            the front layer, and a value of 1 is the back layer. This allows for proper
+            layering of sprites when drawn together.
+            </param>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Texture">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> to draw as a sprite.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Position">
+            <summary>
+            The position in world space where the sprite will be drawn represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.SourceRectangle">
+            <summary>
+            An optional <see cref="T:Microsoft.Xna.Framework.Rectangle"/> that defines the source rectangle of the texture
+            to be drawn. If null, the entire texture will be used.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Color">
+            <summary>
+            The <see cref="P:Kernel2D.Drawing.SpriteDrawCommand.Color"/> tint to apply to the sprite. This can be used to change the
+            color of the sprite when drawn.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Rotation">
+            <summary>
+            The rotation angle in radians to apply to the sprite when drawn. A value of 0 means
+            no rotation.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Origin">
+            <summary>
+            The origin point of the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This is the
+            point around which the sprite will be rotated and scaled. It is typically set to
+            the center of the sprite for proper rotation and scaling effects.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Scale">
+            <summary>
+            The scale factor for the sprite, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>. This
+            determines how much the sprite will be scaled in the X and Y directions.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Effects">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the sprite. This can be used to flip
+            the sprite horizontally or vertically.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.LayerDepth">
+            <summary>
+            The depth at which the sprite will be drawn in the layer order. A value of 0 is
+            the front layer, and a value of 1 is the back layer. This allows for proper
+            layering of sprites when drawn together.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.SpriteDrawCommand.Layer">
+            <summary>
+            Gets the layer depth at which the sprite will be drawn.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Drawing.TextDrawCommand">
+            <summary>
+            Represents a command to draw text using a sprite font, text string, position,
+            tint color, rotation, origin, scale, sprite effects, and layer depth.
+            </summary>
+            <param name="SpriteFont">
+            The <see cref="P:Kernel2D.Drawing.TextDrawCommand.SpriteFont"/> used to draw the text. This defines the font
+            style and size.
+            </param>
+            <param name="Text">
+            The text string to be drawn. This is the actual content that will be rendered
+            on the screen.
+            </param>
+            <param name="Position">
+            The position in world space where the text will be drawn, represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="Color">
+            The <see cref="T:Microsoft.Xna.Framework.Color"/> tint to apply to the text.
+            This can be used to change the color of the text when drawn.
+            </param>
+            <param name="Rotation">
+            The rotation angle in radians to apply to the text when drawn. A value of 0
+            means no rotation.
+            </param>
+            <param name="Origin">
+            The origin point of the text, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="Scale">
+            The scale factor for the text, represented by a <see cref="T:System.Single"/>.
+            </param>
+            <param name="Effects">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the text. This can be used
+            to flip the text horizontally or vertically.
+            </param>
+            <param name="LayerDepth">
+            The depth at which the text will be drawn in the layer order.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Drawing.TextDrawCommand.#ctor(Microsoft.Xna.Framework.Graphics.SpriteFont,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)">
+            <summary>
+            Represents a command to draw text using a sprite font, text string, position,
+            tint color, rotation, origin, scale, sprite effects, and layer depth.
+            </summary>
+            <param name="SpriteFont">
+            The <see cref="P:Kernel2D.Drawing.TextDrawCommand.SpriteFont"/> used to draw the text. This defines the font
+            style and size.
+            </param>
+            <param name="Text">
+            The text string to be drawn. This is the actual content that will be rendered
+            on the screen.
+            </param>
+            <param name="Position">
+            The position in world space where the text will be drawn, represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="Color">
+            The <see cref="T:Microsoft.Xna.Framework.Color"/> tint to apply to the text.
+            This can be used to change the color of the text when drawn.
+            </param>
+            <param name="Rotation">
+            The rotation angle in radians to apply to the text when drawn. A value of 0
+            means no rotation.
+            </param>
+            <param name="Origin">
+            The origin point of the text, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </param>
+            <param name="Scale">
+            The scale factor for the text, represented by a <see cref="T:System.Single"/>.
+            </param>
+            <param name="Effects">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the text. This can be used
+            to flip the text horizontally or vertically.
+            </param>
+            <param name="LayerDepth">
+            The depth at which the text will be drawn in the layer order.
+            </param>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.SpriteFont">
+            <summary>
+            The <see cref="P:Kernel2D.Drawing.TextDrawCommand.SpriteFont"/> used to draw the text. This defines the font
+            style and size.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Text">
+            <summary>
+            The text string to be drawn. This is the actual content that will be rendered
+            on the screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Position">
+            <summary>
+            The position in world space where the text will be drawn, represented by a
+            <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Color">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Color"/> tint to apply to the text.
+            This can be used to change the color of the text when drawn.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Rotation">
+            <summary>
+            The rotation angle in radians to apply to the text when drawn. A value of 0
+            means no rotation.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Origin">
+            <summary>
+            The origin point of the text, represented by a <see cref="T:Microsoft.Xna.Framework.Vector2"/>.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Scale">
+            <summary>
+            The scale factor for the text, represented by a <see cref="T:System.Single"/>.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Effects">
+            <summary>
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> to apply to the text. This can be used
+            to flip the text horizontally or vertically.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.LayerDepth">
+            <summary>
+            The depth at which the text will be drawn in the layer order.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Drawing.TextDrawCommand.Layer">
+            <summary>
+            Gets the layer depth at which the text will be drawn.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Entities.PlatformerPlayerState">
+            <summary>
+            Part of the entity FSM to determine what it's currently "doing".
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.None">
+            <summary>
+            Represents the neutral/default state with no active actions.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Idle">
+            <summary>
+            Represents the state when the player is not performing any action.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Running">
+            <summary>
+            Represents the state when the player is actively running in either
+            direction.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Dashing">
+            <summary>
+            Represents the state when the player is dashing, which is a quick
+            movement in either direction for a short time.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Jumping">
+            <summary>
+            Represents the state when the player is jumping.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Falling">
+            <summary>
+            Represents the state when the player is falling after a jump or
+            other airborne or semi-airborne state.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Landing">
+            <summary>
+            Represents the state when the player is landing after a jump or
+            other airborne or semi-airborne state.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Shooting">
+            <summary>
+            Represents the state when the player is shooting a long-ranged weapon.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Slashing">
+            <summary>
+            Represents the state when the player is slashing with a melee weapon.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.TakingDamage">
+            <summary>
+            Represents the state when the player is taking damage from an enemy or
+            environmental hazard.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.Climbing">
+            <summary>
+            Represents the state when the player is climbing a ladder or other
+            environmental element that allows vertical movement.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.WallSliding">
+            <summary>
+            Represents the state when the player is sliding down a wall or other
+            environmental element that allows the player to stick to it.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Entities.PlatformerPlayerState.EnteringDoor">
+            <summary>
+            Represents the state when the player is entering a door.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Entities.Platformer2DCharacter">
+            <summary>
+            Base class for a 2D platformer player entity in a game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.Name">
+            <summary>
+            Unique identifier for the entity in the game world.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.FacingRight">
+            <summary>
+            Indicates whether the entity is facing right in the game world.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.CurrentPosition">
+            <summary>
+            Current position of the entity in the game world.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.IsGrounded">
+            <summary>
+            Gets or sets a value indicating whether the entity is currently grounded.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.IsAirborne">
+            <summary>
+            Gets or sets a value indicating whether the entity is currently airborne.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.JumpCut">
+            <summary>
+            Gets or sets a value indicating whether a jump was cut short.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.DeltaTime">
+            <summary>
+            Gets or sets the current velocity of the entity in the game world.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Entities.Platformer2DCharacter.CurrentState">
+            <summary>
+            Current state of the entity. Provides maneuverability for
+            the entity FSM.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.GetState">
+            <summary>
+            Gets the current state of the entity.
+            </summary>
+            <returns>The current state of the entity.</returns>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.HasState(Kernel2D.Entities.PlatformerPlayerState)">
+            <summary>
+            Checks if a state is currently active in the FSM.
+            </summary>
+            <param name="state">The state to check for.</param>
+            <returns>True if the state is active, False otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.AddState(Kernel2D.Entities.PlatformerPlayerState)">
+            <summary>
+            Adds a state to the current state in the FSM.
+            </summary>
+            <param name="state">The state to add.</param>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.RemoveState(Kernel2D.Entities.PlatformerPlayerState)">
+            <summary>
+            Removes a state from the current state collection.
+            </summary>
+            <param name="state">The state to remove.</param>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.SetState(Kernel2D.Entities.PlatformerPlayerState)">
+            <summary>
+            Resets all states and sets a specific state.
+            </summary>
+            <param name="state">The state to set.</param>
+        </member>
+        <member name="M:Kernel2D.Entities.Platformer2DCharacter.ClearGroundedStates">
+            <summary>
+            Removes all grounded states from the FSM.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Helpers.DebugHelpers">
+            <summary>
+            Helpers to dump debug messages into the debug console.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Helpers.DebugHelpers.WriteLine(System.String)">
+            <summary>
+            Writes a message to the debug console followed by a line break.
+            </summary>
+            <param name="str">The message to write.</param>
+        </member>
+        <member name="M:Kernel2D.Helpers.DebugHelpers.Write(System.String)">
+            <summary>
+            Writes a message to the debug console.
+            </summary>
+            <param name="str">The message to write.</param>
+        </member>
+        <member name="T:Kernel2D.Helpers.EmbeddedJsonLoader">
+            <summary>
+            An utility class for loading JSON data from embedded resources in an assembly.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Helpers.EmbeddedJsonLoader.LoadFromResource``1(System.String,System.Reflection.Assembly)">
+            <summary>
+            Loads a JSON object from an embedded resource in the specified assembly.
+            </summary>
+            <typeparam name="T">
+            The type of the object to deserialize from the JSON data.
+            </typeparam>
+            <param name="resourcePath">
+            The path to the embedded resource, which should be in the format
+            "FolderPath.FileName".
+            </param>
+            <param name="assembly">
+            The assembly containing the embedded resource. If null, the
+            current executing assembly is used.
+            </param>
+            <returns>
+            An instance of type <typeparamref name="T"/> deserialized from the JSON data.
+            </returns>
+            <exception cref="T:System.IO.FileNotFoundException">
+            Thrown when the specified embedded resource cannot be found in the assembly.
+            </exception>
+        </member>
+        <member name="M:Kernel2D.Helpers.EmbeddedJsonLoader.LoadFromResource``2(System.String)">
+            <summary>
+            Loads a JSON object from an embedded resource in the assembly of the specified anchor type.
+            </summary>
+            <typeparam name="T">
+            The type of the object to deserialize from the JSON data.
+            </typeparam>
+            <typeparam name="TAnchor">
+            The anchor type whose assembly contains the embedded resource.
+            </typeparam>
+            <param name="resourcePath">
+            The path to the embedded resource, which should be in the format
+            "FolderPath.FileName". (No extensions or namespace.)
+            </param>
+            <returns>
+            An instance of type <typeparamref name="T"/> deserialized from the JSON data.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Helpers.EntitySpritesheetLoader">
+            <summary>
+            Helper class for loading entity spritemaps from embedded JSON resources.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Helpers.EntitySpritesheetLoader.LoadEntitySpritesheet``1(System.String,Microsoft.Xna.Framework.Content.ContentManager)">
+            <summary>
+            Loads a <see cref="T:Kernel2D.Animation.Spritesheet"/> from an embedded JSON spritemap resource.
+            </summary>
+            <typeparam name="TAnchor">
+            This generic type MUST be from the assembly where the resource is embedded.
+            This is typically the calling game project, whether it's a standalone executable
+            or a game library.
+            </typeparam>
+            <param name="logicalPath">
+            The path to the embedded JSON resource. This path must always be relative to the
+            assembly.
+            </param>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> used to load the texture associated with the spritesheet.
+            </param>
+            <returns>
+            A <see cref="T:Kernel2D.Animation.Spritesheet"/> object containing the animations and texture.
+            </returns>
+            <exception cref="T:System.IO.InvalidDataException">
+            Thrown if the embedded JSON resource is invalid or malformed.
+            </exception>
+        </member>
+        <member name="T:Kernel2D.Helpers.TextureHelpers">
+            <summary>
+            Provides helper methods for working with textures in a 2D game.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Helpers.TextureHelpers.WhitePixel(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            Gets a white pixel texture that can be used for drawing purposes.
+            </summary>
+            <param name="device">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.GraphicsDevice"/> used to create the texture.
+            </param>
+            <returns>
+            A <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> representing a single white pixel.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.HIDInputBridgeBase">
+            <summary>
+            An intermediate inheritable class to create user input polling entities
+            processing signals from gamepads or keyboards.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._kb">
+            <summary>
+            The current state of the keyboard inputs.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._gp">
+            <summary>
+            The current state of the gamepad inputs.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._prevKb">
+            <summary>
+            The previous state of the keyboard inputs, used to
+            determine if an action was pressed or released in the
+            previous frame.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._prevGp">
+            <summary>
+            The previous state of the gamepad inputs, used to
+            determine if an action was pressed or released in the
+            previous frame.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._player">
+            <summary>
+            The player index for the gamepad input. This is used to
+            determine which gamepad to poll for input.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.UpDirection">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.DownDirection">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.LeftDirection">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.RightDirection">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.AcceptAction">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.CancelAction">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase.PauseAction">
+            <summary>
+            Reserved action identifiers. Triple underscores before and after prevent
+            collisions with user-defined actions. Do NOT rename without refactoring
+            all bridge logic.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultUpAction">
+            <summary>
+            Gets the default action identifier for the up action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultDownAction">
+            <summary>
+            Gets the default action identifier for the down action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultLeftAction">
+            <summary>
+            Gets the default action identifiers for the left action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultRightAction">
+            <summary>
+            Gets the default action identifier for the right action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultAcceptAction">
+            <summary>
+            Gets the default action identifier for the accept action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultCancelAction">
+            <summary>
+            Gets the default action identifier for the cancel action.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.HIDInputBridgeBase.DefaultPauseAction">
+            <summary>
+            Gets the default action identifier for the pause action.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._keyMappings">
+            <summary>
+            A dictionary mapping action identifiers to keyboard keys.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.Bridges.HIDInputBridgeBase._padMappings">
+            <summary>
+            A dictionary mapping action identifiers to gamepad buttons.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.IsActionDownNow(System.String)">
+            <summary>
+            Determines if the button/key for the specified action is currently
+            considered as "pressed" at the time of input polling. The action
+            must exist in the actions dictionary of the current concrete
+            input bridge.
+            </summary>
+            <param name="action">The action to look up.</param>
+            <returns>True if the action was "pressed" (key/button hit now, not
+            in previous frame); False otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.WasActionDownLastFrame(System.String)">
+            <summary>
+            Determines if the button/key for the specified action was already
+            being pressed during the previous frame at the time of input polling.
+            The action must exist in the actions dictionary of the current concrete
+            input bridge.
+            </summary>
+            <param name="action">The action to look up.</param>
+            <returns>True if the action was "pressed" during the previous frame;
+            False otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.RegisterKeyMapping(System.String,Microsoft.Xna.Framework.Input.Keys[])">
+            <summary>
+            Registers a key mapping for a specific action. The action must be
+            a valid string and the keys array must not be null or empty. If the
+            action already exists, it will be overwritten with the new keys
+            mapping.
+            </summary>
+            <param name="action">
+            The action to register the key mapping for. Must be a valid string.
+            </param>
+            <param name="keys">
+            The array of keys to map to the action. Must not be null or empty.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the action is null, empty, or the keys array is null or empty.
+            </exception>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.RegisterButtonMapping(System.String,Microsoft.Xna.Framework.Input.Buttons[])">
+            <summary>
+            Registers a new gamepad button mapping for a given action. The action must
+            be a valid string and the buttons array must not be null or empty. If the
+            action /// already exists, it will be overwritten with the new buttons mapping.
+            </summary>
+            <param name="action">
+            The action to register the button mapping for. Must be a valid string.
+            </param>
+            <param name="buttons">
+            The array of gamepad buttons to map to the action. Must not be null or empty.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the action is null, empty, or the buttons array is null or empty.
+            </exception>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.GetInputState(System.String)">
+            <summary>
+            Gets the input state of a given mapped action. The action to look up
+            must exist in the actions dictionary of the current concrete input bridge.
+            </summary>
+            <param name="action">The action to look up the state for.</param>
+            <returns>The current input state of the submitted action.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.Update">
+            <summary>
+            Updates the current state of the Input Bridge based on
+            previous and current inputs.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.GetDefinedActions">
+            <summary>
+            Returns a collection of action identifiers that are defined
+            in this input bridge. This is used to determine what actions can be
+            triggered by the input bridge.
+            </summary>
+            <returns>
+            An enumerable collection of action identifiers defined in this input bridge.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.HIDInputBridgeBase.GetPointerPosition">
+            <summary>
+            Not needed for this bridge, as it does not handle pointer inputs.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.InputBridgeFactory">
+            <summary>
+            Factory class for creating input bridges.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.InputBridgeFactory.RegisterBridge``1(System.String)">
+            <summary>
+            Registers a custom input bridge type for a specific ID.
+            </summary>
+            <typeparam name="T">
+            The type of the input bridge to register. It must implement
+            <see cref="T:Kernel2D.Input.IInputBridge"/> and have a parameterless constructor.
+            </typeparam>
+            <param name="id">
+            The unique identifier for the input bridge. This ID is used
+            to retrieve the bridge later.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.InputBridgeFactory.CreateBridge(System.String)">
+            <summary>
+            Creates an instance of an input bridge based on the provided ID.
+            </summary>
+            <param name="id">
+            The unique identifier for the input bridge to create.
+            </param>
+            <returns>
+            An instance of <see cref="T:Kernel2D.Input.IInputBridge"/> corresponding to the
+            specified ID. If no custom bridge is registered for the ID,
+            the default <see cref="T:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge"/> is returned.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge">
+            <summary>
+            A bridge or translator for input handling of menu-type screens with
+            either keyboard strokes or gamepad button presses.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Up">
+            <summary>
+            Gets the state of the Up directional input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Down">
+            <summary>
+            Gets the state of the Down directional input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Left">
+            <summary>
+            Gets the state of the Left directional input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Right">
+            <summary>
+            Gets the state of the Right directional input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Accept">
+            <summary>
+            Gets the state of the Accept action input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.Cancel">
+            <summary>
+            Gets the state of the Cancel action input in a menu screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.PointerPressed">
+            <summary>
+            Not needed for this bridge, as it does not handle pointer inputs.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.PointerReleased">
+            <summary>
+            Not needed for this bridge, as it does not handle pointer inputs.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.PointerPosition">
+            <summary>
+            Not needed for this bridge, as it does not handle pointer inputs.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge"/>
+            class with default key and gamepad button mappings.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.HIDMenuInputBridge.GetDefinedActions">
+            <summary>
+            Returns a collection of action identifiers that are defined
+            in this input bridge.
+            </summary>
+            <returns>
+            An enumerable collection of action identifiers.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge">
+            <summary>
+            A bridge for mouse input in menu screens, allowing for
+            mouse-based interactions with menu options.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge.Update">
+            <summary>
+            Updates the mouse state by polling the current mouse state
+            and storing the previous state in the current frame.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge.GetInputState(System.String)">
+            <summary>
+            Gets the input state for a specific action.
+            </summary>
+            <param name="action">The action to look up the state for.</param>
+            <returns>The input state for the specified action.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge.ResolveState(System.Boolean,System.Boolean)">
+            <summary>
+            Resolves the input state based on the current and previous button states.
+            </summary>
+            <param name="isDownNow">
+            Indicates whether the button is currently pressed.
+            </param>
+            <param name="wasDownBefore">
+            Indicates whether the button was pressed in the previous frame.
+            </param>
+            <returns>The input state based on the current and previous button states.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge.GetDefinedActions">
+            <summary>
+            This bridge does not define any specific triggerable actions,
+            so it returns an empty collection.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.MouseMenuInputBridge.GetPointerPosition">
+            <summary>
+            Gets the current position of the mouse pointer.
+            </summary>
+            <returns>The current position of the mouse pointer as a Vector2.</returns>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.Menu.TouchMenuInputBridge">
+            <summary>
+            A bridge for touch input in menu screens, allowing for
+            touch-based interactions with menu options.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.TouchMenuInputBridge.Update">
+            <summary>
+            Updates the touch state by polling the current touch state
+            and storing the previous state in the current frame.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.TouchMenuInputBridge.GetDefinedActions">
+            <summary>
+            Returns a collection of action identifiers that are defined in this
+            input bridge. This is used to determine what actions can be
+            triggered by touch inputs in the menu system.
+            </summary>
+            <returns>An enumerable collection of action names.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.TouchMenuInputBridge.GetInputState(System.String)">
+            <summary>
+            Gets the input state for a specific action.
+            </summary>
+            <param name="action">
+            The action to look up the state for.
+            </param>
+            <returns>
+            The input state for the specified action.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.Menu.TouchMenuInputBridge.GetPointerPosition">
+            <summary>
+            Not needed for this bridge, as it does not handle pointer inputs.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.PlatformerInputBridge">
+            <summary>
+            A bridge or translator for platformer-style input handling,
+            allowing for managing keyboard and gamepad inputs.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.Bridges.PlatformerInputBridge.PlatformerBaseAction">
+            <summary>
+            Represents the basic actions available for a platformer-style game.
+            Further actions can be added as needed, but these are the core actions
+            for movement and combat in a platformer game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveRightActionName">
+            <summary>
+            Gets or sets the name of the action for moving right in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveLeftActionName">
+            <summary>
+            Gets or sets the name of the action for moving left in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveUpActionName">
+            <summary>
+            Gets or sets the name of the action for moving up in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveDownActionName">
+            <summary>
+            Gets or sets the name of the action for moving down in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.DashActionName">
+            <summary>
+            Gets or sets the name of the action for dashing in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.JumpActionName">
+            <summary>
+            Gets or sets the name of the action for jumping in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.ShootActionName">
+            <summary>
+            Gets or sets the name of the action for shooting with a
+            long-range weapon in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.MeleeActionName">
+            <summary>
+            Gets or sets the name of the action for attacking with a
+            melee weapon in the game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.Bridges.PlatformerInputBridge.PauseActionName">
+            <summary>
+            Gets or sets the name of the action for pausing the game.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.RenameAction(Kernel2D.Input.Bridges.PlatformerInputBridge.PlatformerBaseAction,System.String)">
+            <summary>
+            Wraps the renaming of an existing action in the mapping dictionaries.
+            </summary>
+            <param name="action">
+            The action to rename. Must be a valid PlatformerBaseAction.
+            </param>
+            <param name="newName">
+            The new name for the action. Must be a valid string.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the action is not a valid PlatformerBaseAction or if the
+            new name is null or empty.
+            </exception>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveLeft">
+            <summary>
+            Moves the entity left.
+            </summary>
+            <returns>
+            True if the input state triggers left movement, False otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.MoveRight">
+            <summary>
+            Moves the entity right.
+            </summary>
+            <returns>
+            True if the input state triggers right movement, False otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.IsIdle">
+            <summary>
+            Whether the entity is currently immobile and no inputs are being
+            processed.
+            </summary>
+            <returns>
+            True if the input state is currently fully released, False otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.InputPressed(System.String)">
+            <summary>
+            Whether an input has been pressed in the current frame.
+            </summary>
+            <param name="action">
+            The action to look up in the input dictionaries.
+            </param>
+            <returns>
+            True if the lookup produces a valid result; False otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.InputHeld(System.String)">
+            <summary>
+            Whether an input has been held for more than the current frame.
+            </summary>
+            <param name="action">
+            The action to look up in the input dictionaries.
+            </param>
+            <returns>
+            True if the lookup produces a valid result; False otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.TriggerJump">
+            <summary>
+            Whether a jump has been queued to trigger in the actions stack. Clamps
+            inputs so no consecutive jumps happen if holding the action key.
+            </summary>
+            <returns>True if the jump was triggered; False otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.TriggerDash">
+            <summary>
+            Whether a dash has been queued to trigger in the actions stack. Clamps
+            inputs so no consecutive dashes happen if holding the action key.
+            </summary>
+            <returns>True if the dash was triggered; False otherwise.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.Update">
+            <summary>
+            Updates the current state of the input processing machine and
+            actions stack.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.Bridges.PlatformerInputBridge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kernel2D.Input.Bridges.PlatformerInputBridge"/>
+            class and sets default values for the input dictionary mappings.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.DefaultInputActionNames">
+            <summary>
+            A container for reserved input action identifiers used for the various
+            input bridges in Kernel2D regardless of the current context. Triple
+            underscores before and after prevent collisions with user-defined
+            actions. Do NOT rename without refactoring all bridge logic.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.UpDirection">
+            <summary>
+            The reserved action identifier for the up direction.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.DownDirection">
+            <summary>
+            The reserved action identifier for the down direction.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.LeftDirection">
+            <summary>
+            The reserved action identifier for the left direction.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.RightDirection">
+            <summary>
+            The reserved action identifier for the right direction.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.AcceptAction">
+            <summary>
+            The reserved action identifier for the accept action.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.CancelAction">
+            <summary>
+            The reserved action identifier for the cancel action,
+            typically used to exit menus or cancel actions.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.BackAction">
+            <summary>
+            The reserved action identifier for the back action,
+            typically used to navigate back in menus or interfaces.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.DefaultInputActionNames.PauseAction">
+            <summary>
+            The reserved action identifier for the pause action,
+            typically used to pause the game or application.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.IInputBridge">
+            <summary>
+            Represents an abstraction for retrieving stateful input data, enabling
+            consistent input handling across different platforms and devices.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.IInputBridge.GetInputState(System.String)">
+            <summary>
+            Gets the state of the specified action input.
+            </summary>
+            <param name="action">The action whose input state is requested.</param>
+            <returns>The current state of the specified action.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.IInputBridge.Update">
+            <summary>
+            Updates the input bridge, processing any input events and updating the state
+            of the input actions. This method should be called once per frame to ensure
+            the input state is current and reflects the latest user interactions.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.IInputBridge.GetDefinedActions">
+            <summary>
+            Retrieves a collection of all defined action names that this input bridge can handle.
+            </summary>
+            <returns>A collection of defined action names.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.IInputBridge.GetPointerPosition">
+            <summary>
+            Gets the current position of the pointer (mouse or touch) in the game world.
+            </summary>
+            <returns>The current position of the pointer as a nullable Vector2.</returns>
+        </member>
+        <member name="T:Kernel2D.Input.IMenuInputBridge">
+            <summary>
+            Represents an abstraction for retrieving stateful input data in a
+            menu context.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Up">
+            <summary>
+            Gets the current state of the "Up" input.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Down">
+            <summary>
+            Gets the current state of the "Down" input.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Left">
+            <summary>
+            Gets the current state of the "Left" input.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Right">
+            <summary>
+            Gets the current state of the "Right" input.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Accept">
+            <summary>
+            Gets the current state of the "Accept" input, typically used for
+            confirming selections or actions.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.Cancel">
+            <summary>
+            Gets the current state of the "Cancel" input, typically used for
+            going back or dismissing menus.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.PointerPosition">
+            <summary>
+            Gets the current position of the pointer (mouse or touch) in the
+            menu context.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.PointerPressed">
+            <summary>
+            Gets whether the pointer is currently pressed down.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Input.IMenuInputBridge.PointerReleased">
+            <summary>
+            Gets whether the pointer was released since the last input update.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Input.InputBridgeContainer">
+            <summary>
+            A container for managing instances of <see cref="T:Kernel2D.Input.IInputBridge"/>
+            implementations. This allows for easy retrieval and management of input
+            bridges throughout the application. Uses a dictionary to store instances
+            by their type, ensuring that each type has a single instance and
+            providing a method to retrieve or create instances as needed.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.InputBridgeContainer.Get``1">
+            <summary>
+            Retrieves an instance of the specified input bridge type.
+            If an instance does not already exist, it creates a new one.
+            </summary>
+            <typeparam name="T">
+            The type of the input bridge to retrieve. It must implement
+            <see cref="T:Kernel2D.Input.IInputBridge"/> and have a parameterless constructor.
+            </typeparam>
+            <returns>An instance of the specified input bridge type.</returns>
+        </member>
+        <member name="M:Kernel2D.Input.InputBridgeContainer.Register``1(``0)">
+            <summary>
+            Manually registers an instance of an input bridge type.
+            This is useful for cases where the input bridge cannot be created
+            using the default constructor or when you want to provide a specific
+            instance of an input bridge.
+            </summary>
+            <typeparam name="T">
+            The type of the input bridge to register. It must implement
+            <see cref="T:Kernel2D.Input.IInputBridge"/> and be a class.
+            </typeparam>
+            <param name="instance">An instance of the input bridge to register.</param>
+        </member>
+        <member name="M:Kernel2D.Input.InputBridgeContainer.Clear">
+            <summary>
+            Clears all registered input bridge instances.
+            Useful for soft resets.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Input.InputBridgeContainer.Has``1">
+            <summary>
+            Checks if an input bridge of the specified type is registered.
+            </summary>
+            <typeparam name="T">
+            The type of the input bridge to check. It must implement
+            <see cref="T:Kernel2D.Input.IInputBridge"/> and be a class.
+            </typeparam>
+            <returns>
+            True if an instance of the specified input bridge type
+            is registered, false otherwise.
+            </returns>
+        </member>
+        <member name="M:Kernel2D.Input.InputBridgeContainer.TryGet``1(``0@)">
+            <summary>
+            Attempts to retrieve an instance of the specified input bridge type.
+            </summary>
+            <typeparam name="T">
+            The type of the input bridge to retrieve. It must implement
+            <see cref="T:Kernel2D.Input.IInputBridge"/> and be a class.
+            </typeparam>
+            <param name="result">
+            When this method returns, contains the instance of the specified
+            input bridge type if it exists; otherwise, null.
+            </param>
+            <returns>
+            True if an instance of the specified input bridge type
+            was found; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Input.InputState">
+            <summary>
+            Describes the current state of a given input.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.InputState.None">
+            <summary>
+            Represents a state where no specific value or option is selected.
+            </summary>
+            <remarks>This value is typically used as a default or placeholder to indicate
+            the absence of a meaningful selection.</remarks>
+        </member>
+        <member name="F:Kernel2D.Input.InputState.Pressed">
+            <summary>
+            The state where the input is currently being pressed down in the current frame.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.InputState.Held">
+            <summary>
+            The state where the input was pressed down in the previous frame,
+            and continues to be held down in the current frame.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Input.InputState.Released">
+            <summary>
+            The state where the input was pressed down in the previous frame,
+            but has been released in the current frame.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Menus.ChoiceOption">
+            <summary>
+            Creates a new menu option with a list of choices for the user
+            to select one of.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.ChoiceOption.SelectedIndex">
+            <summary>
+            The currently selected index from the options list.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.#ctor(System.String,System.Collections.Generic.List{System.String},System.Boolean,System.Action{System.String})">
+            <summary>
+            Creates a new menu option with which the user can pick a value
+            from a list of options.
+            </summary>
+            <param name="text">The label text to display.</param>
+            <param name="options">The list of selectable options.</param>
+            <param name="wraparound">Whether the current selection should wrap around
+            when reaching the end of the options list.</param>
+            <param name="onChoiche">(Optional) An action to invoke when selecting
+            one of the listed options. The name is purposefully misspelled in reference
+            to an old Super Mario Maker community inside joke.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+            <summary>
+            Draws the current menu option onscreen.
+            </summary>
+            <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
+            <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
+            <param name="selected">Whether the current menu option is selected or not.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.OnAccept">
+            <summary>
+            Triggers the logic of the selected option and returns choice selection
+            to the menu itself.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.OnLeft">
+            <summary>
+            Changes the currently selected value index one position to the "left"
+            of the list of options.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.OnRight">
+            <summary>
+            Changes the currently selected value index one position to the "right"
+            of the list of options.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ChoiceOption.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            Does nothing for this particular menu option type.
+            </summary>
+            <param name="input">Not applicable.</param>
+        </member>
+        <member name="T:Kernel2D.Menus.LabelOption">
+            <summary>
+            Creates a new text-only menu option.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.#ctor(System.String,System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="label"></param>
+            <param name="callback"></param>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.OnLeft">
+            <summary>
+            Does nothing.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.OnRight">
+            <summary>
+            Does nothing.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.OnAccept">
+            <summary>
+            When this option is selected, fires the callback action, if any.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+            <summary>
+            Draws the current menu option onscreen.
+            </summary>
+            <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
+            <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
+            <param name="selected">Whether the current menu option is selected or not.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.LabelOption.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            Does nothing.
+            </summary>
+            <param name="input">Not applicable.</param>
+        </member>
+        <member name="T:Kernel2D.Menus.MenuCursor">
+            <summary>
+            Represents a cursor for navigating through menu options in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.Texture">
+            <summary>
+            The texture used for the cursor.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.Animation">
+            <summary>
+            Optional animation for the cursor.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.Offset">
+            <summary>
+            The offset from the option position where the cursor will be drawn.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.Scale">
+            <summary>
+            The scale of the cursor texture.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.LayerDepth">
+            <summary>
+            The layer depth at which the cursor will be drawn.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuCursor.Position">
+            <summary>
+            The current position of the cursor in the menu.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuCursor.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kernel2D.Menus.MenuCursor"/> class with
+            the specified texture.
+            </summary>
+            <param name="texture">
+            The texture to use for the cursor.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuCursor.Update(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Updates the cursor's position based on the provided option position.
+            </summary>
+            <param name="optionPosition">
+            The position of the menu option that the cursor should point to.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuCursor.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Draws the cursor at its current position using the provided
+            <see cref="T:Kernel2D.Drawing.DrawContext"/>.
+            </summary>
+            <param name="context">
+            The drawing context to use for rendering the cursor.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Menus.MenuOption">
+            <summary>
+            A representation of a menu option in a menu screen.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.MenuOption.Position">
+            <summary>
+            The position at which to draw the menu option in the
+            viewport.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.MenuOption.SelectedColor">
+            <summary>
+            The color to draw the text for the selected menu option with.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.MenuOption.UnselectedColor">
+            <summary>
+            The color to draw the text for when an option is not selected.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuOption.ID">
+            <summary>
+            The identifier for the current menu option.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.MenuOption.LabelText">
+            <summary>
+            The label text for the menu option.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.#ctor(System.String)">
+            <summary>
+            Creates a new menu option with the specified label text.
+            </summary>
+            <param name="labelText">The label text to use for the menu option.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+            <summary>
+            Draws the current menu option using the provided <see cref="T:Kernel2D.Drawing.DrawContext"/>
+            and <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/>, and determines whether the option is currently
+            selected in the current menu.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> to draw the menu option with.
+            </param>
+            <param name="font">
+            The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the menu option with.
+            </param>
+            <param name="selected">Whether the current menu option is selected
+            or not.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.OnLeft">
+            <summary>
+            What to do when registering a left directional input.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.OnRight">
+            <summary>
+            What to do when registering a right directional input.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.OnAccept">
+            <summary>
+            What to do when registering an Accept action input.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            How to update the menu option based on any changes
+            applied to it depending on its type.
+            </summary>
+            <param name="input">
+            The <see cref="T:Kernel2D.Input.IMenuInputBridge"/> to interpret and apply
+            directional and action inputs from.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Menus.MenuOption.LabelColor(Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color)">
+            <summary>
+            The colors to render the options with when selected and
+            not selected.
+            </summary>
+            <param name="selected">The color to render the menu option
+            when selected.</param>
+            <param name="unselected">The color to render the menu
+            option when not selected.</param>
+        </member>
+        <member name="T:Kernel2D.Menus.SubMenuOption">
+            <summary>
+            Creates a menu option that will transition to a different screen upon
+            selection/activation.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.#ctor(System.String,Kernel2D.Screens.ScreenBase,Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase,Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase)">
+            <summary>
+            Creates a new menu option that will move the user to another screen, with optional
+            screen transition effects.
+            </summary>
+            <param name="labelText">The text to display for the menu option.</param>
+            <param name="nextScreen">The screen to change to.</param>
+            <param name="transOut">(Optional) A <see cref="T:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase"/> effect to
+            use when exiting the current screen.</param>
+            <param name="transIn">(Optional) A <see cref="T:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase"/> effect to
+            use when entering the next screen.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+            <summary>
+            Draws the current menu option onscreen.
+            </summary>
+            <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
+            <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
+            <param name="selected">Whether the current menu option is selected or not.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.OnAccept">
+            <summary>
+            Triggers the screen change from the current menu screen to the next screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.OnLeft">
+            <summary>
+            Does nothing for this particular menu option.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.OnRight">
+            <summary>
+            Does nothing for this particular menu option.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.SubMenuOption.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            Does nothing for this particular menu option.
+            </summary>
+            <param name="input">Not applicable.</param>
+        </member>
+        <member name="T:Kernel2D.Menus.ToggleOption">
+            <summary>
+            Creates a new menu option with a togglable value (true or false).
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.ToggleOption.Value">
+            <summary>
+            The current state of the toggle option.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.#ctor(System.String,System.Boolean,System.Action{System.Boolean})">
+            <summary>
+            Creates a new togglable menu option.
+            </summary>
+            <param name="labelText">The label text to display.</param>
+            <param name="defaultValue">The default value of the toggle.</param>
+            <param name="onToggle">The action to execute when the toggle state is changed</param>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+            <summary>
+            Draws the current menu option onscreen.
+            </summary>
+            <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
+            <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
+            <param name="selected">Whether the current menu option is selected or not.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.OnAccept">
+            <summary>
+            Changes the state of the toggle.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.OnLeft">
+            <summary>
+            Does nothing for this particular menu option type.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.OnRight">
+            <summary>
+            Does nothing for this particular menu option type.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.ToggleOption.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            Does nothing for this particular menu option type.
+            </summary>
+            <param name="input">Not applicable.</param>
+        </member>
+        <member name="T:Kernel2D.Menus.VerticalMenuList">
+            <summary>
+            Creates a vertical menu list in a game screen.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.VerticalMenuList.Options">
+            <summary>
+            The list of options to show in the menu.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.VerticalMenuList.Start">
+            <summary>
+            The starting location at which the menu should begin rendering.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.VerticalMenuList.Cursor">
+            <summary>
+            An optional cursor to display alongside the menu options.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Menus.VerticalMenuList.SelectedIndex">
+            <summary>
+            The currently selected item in the menu.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Menus.VerticalMenuList.SelectedItem">
+            <summary>
+            Gets the text of the currently selected menu item.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.#ctor(Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a new vertical menu at the specified position, with the
+            specified spacing between items using the provided font.
+            </summary>
+            <param name="start">The location to start drawing the menu to.</param>
+            <param name="spacing">The spacing between menu items.</param>
+            <param name="font">The font to use to render the menu items.</param>
+            <param name="singleLine">Whether to render the menu as a single line.</param>
+            <param name="carousel">If rendering as a single line, whether the menu should
+            be displayed as a scrolling carousel.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.#ctor(System.Single,System.Single,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a new vertical menu at the specified position, with the
+            specified spacing between items using the provided font.
+            </summary>
+            <param name="height">The Y-position to start drawing the centered menu
+            to.</param>
+            <param name="spacing">The spacing between menu items.</param>
+            <param name="font">The font to use to render the menu items.</param>
+            <param name="singleLine">Whether to render the menu as a single line.</param>
+            <param name="carousel">If rendering as a single line, whether the menu should
+            be displayed as a scrolling carousel.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.AddOption(Kernel2D.Menus.MenuOption)">
+            <summary>
+            Adds an option to the menu list.
+            </summary>
+            <param name="option">The option to add.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.RemoveOption(System.String)">
+            <summary>
+            Removes an option from the menu list.
+            </summary>
+            <param name="id">The ID of the option to remove.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Renders the current menu to the screen.
+            </summary>
+            <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use
+            to draw elements onscreen.</param>
+        </member>
+        <member name="M:Kernel2D.Menus.VerticalMenuList.Update(Kernel2D.Input.IMenuInputBridge)">
+            <summary>
+            Updates the current state of the menu option based on
+            the user input received.
+            </summary>
+            <param name="input">
+            The <see cref="T:Kernel2D.Input.IMenuInputBridge"/> to process inputs from.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Physics2D.Platformer2DPhysics">
+            <summary>
+            Basic physics values for a 2D platformer game.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.RunSpeed">
+            <summary>
+            Running speed of the player character.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.DashSpeed">
+            <summary>
+            Dashing speed of the player character.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.JumpVelocity">
+            <summary>
+            Jumping velocity of the player character.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.JumpHeight">
+            <summary>
+            Maximum jump height of the player character.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.Gravity">
+            <summary>
+            Base gravity to apply to the player character when falling.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Physics2D.Platformer2DPhysics.GravityDecay">
+            <summary>
+            Rate at which gravity decays up to a maximum value.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Physics2D.Platformer2DPhysics.Default">
+            <summary>
+            Gets default physics values for a 2D player character
+            in a platforming game.
+            </summary>
+            <returns>
+            A set of default physics values.
+            </returns>
+        </member>
+        <member name="T:Kernel2D.Screens.GameScreen">
+            <summary>
+            A screen where gameplay (user interaction and in-game world response)
+            is actively happening in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.GameScreen.Input">
+            <summary>
+            The <see cref="T:Kernel2D.Input.Bridges.PlatformerInputBridge"/> to use in the current screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.GameScreen.#ctor(Microsoft.Xna.Framework.Content.ContentManager,Kernel2D.Input.Bridges.PlatformerInputBridge)">
+            <summary>
+            Creates a new playable screen.
+            </summary>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> to load assets from.
+            </param>
+            <param name="input">
+            The <see cref="T:Kernel2D.Input.Bridges.PlatformerInputBridge"/> to use in the current screen.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Screens.MenuScreen">
+            <summary>
+            A screen where menu options are shown for the user to interact with.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.MenuScreen.Input">
+            <summary>
+            The <see cref="T:Kernel2D.Input.IInputBridge"/> to use in the current screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.MenuScreen.#ctor(Microsoft.Xna.Framework.Content.ContentManager,Kernel2D.Input.IInputBridge)">
+            <summary>
+            Creates a new user-interactable menu screen.
+            </summary>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> to load assets from.
+            </param>
+            <param name="input">
+            The <see cref="T:Kernel2D.Input.IInputBridge"/> to use for processing user input
+            in the menu screen.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Screens.ScreenBase">
+            <summary>
+            Base class for a screen in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenBase.ID">
+            <summary>
+            Gets the unique identifier for the screen, which is typically
+            the name of the derived class.
+            </summary>
+        </member>
+        <member name="E:Kernel2D.Screens.ScreenBase.ExitRequested">
+            <summary>
+            Event that is raised when the screen requests to exit the game.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.OnExitRequested">
+            <summary>
+            Invokes the <see cref="E:Kernel2D.Screens.ScreenBase.ExitRequested"/> event to signal that the
+            screen wants to exit the game.
+            </summary>
+        </member>
+        <member name="F:Kernel2D.Screens.ScreenBase._content">
+            <summary>
+            The content manager used to load and manage game assets.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.GetCurrentContent">
+            <summary>
+            Gets the currently loaded <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/>.
+            </summary>
+            <returns>The currently loaded <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/>.</returns>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.LoadContent(Microsoft.Xna.Framework.Content.ContentManager)">
+            <summary>
+            Loads the content for the screen using the provided
+            <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/>.
+            </summary>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> to use for loading content.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.UnloadContent">
+            <summary>
+            Unloads the content for the screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates the screen with the given <see cref="T:Microsoft.Xna.Framework.GameTime"/>.
+            </summary>
+            <param name="gameTime">
+            Provides a snapshot of timing values used for game updates.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenBase.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Draws the screen using the provided <see cref="T:Kernel2D.Drawing.DrawContext"/>.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> that contains the drawing parameters
+            such as the <see cref="T:Kernel2D.Drawing.DrawQueue"/>, transform matrix, graphics device,
+            and game time.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Screens.ScreenManager">
+            <summary>
+            Manages the screens in a 2D game, allowing for screen transitions and updates.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenManager.CurrentScreen">
+            <summary>
+            Gets the current screen being managed by the ScreenManager.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.RegisterScreen(System.String,Kernel2D.Screens.ScreenBase)">
+            <summary>
+            Registers a screen with the ScreenManager using its name as the key.
+            </summary>
+            <param name="name">
+            The unique name for the screen. This should be a string that
+            identifies the screen uniquely within the manager.
+            </param>
+            <param name="screen">
+            The instance of the <see cref="T:Kernel2D.Screens.ScreenBase"/> to register.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.GetScreen(System.String)">
+            <summary>
+            Gets the screen with the specified name.
+            </summary>
+            <param name="name">The name of the screen to get.</param>
+            <returns>The screen with the specified name.</returns>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.ChangeScreen(System.String,Microsoft.Xna.Framework.Content.ContentManager,Kernel2D.Screens.ScreenTransitionPair)">
+            <summary>
+            Changes the current screen being rendered by the ScreenManager.
+            </summary>
+            <param name="screenName">
+            The name of the screen to switch to. This should match
+            the name used when registering the screen.
+            </param>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> used to load the content for the new screen.
+            </param>
+            <param name="transitions">
+            Optional parameter that specifies the transitions to use when changing screens.
+            If null, no transitions will be applied.
+            </param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+            Thrown if the specified screen name does not exist in the ScreenManager.
+            </exception>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.CommitScreenChange">
+            <summary>
+            Commits the pending screen change by unloading the current screen,
+            loading the new screen, and applying any transition effects.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.PushScreen(Kernel2D.Screens.ScreenBase,Microsoft.Xna.Framework.Content.ContentManager,Kernel2D.Screens.ScreenTransitionPair)">
+            <summary>
+            Pushes a new screen onto the screen stack, loading its content
+            and applying any specified transitions over whatever existing
+            screen is currently active.
+            </summary>
+            <param name="newScreen">
+            The new screen to push onto the stack. This should be an instance
+            of <see cref="T:Kernel2D.Screens.ScreenBase"/> that has been registered with the
+            ScreenManager.
+            </param>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> used to load the content for the
+            new screen.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.PopScreen(Kernel2D.Screens.ScreenTransitionPair)">
+            <summary>
+            Removes the top screen from the screen stack, unloading its content
+            and applying any specified transitions to the previous screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates the current screen with the given <see cref="T:Microsoft.Xna.Framework.GameTime"/>.
+            </summary>
+            <param name="gameTime">
+            Provides a snapshot of timing values used for game updates.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenManager.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Draws the current screen using the provided <see cref="T:Kernel2D.Drawing.DrawContext"/>.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> that contains the drawing parameters
+            such as the sprite batch, transform matrix, graphics device, game
+            time, and font.
+            </param>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenManager.Instance">
+            <summary>
+            Gets the singleton instance of the ScreenManager.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Screens.ScreenTransitionPair">
+            <summary>
+            Represents a pair of screen transitions for managing in and out transitions
+            when changing screens in a 2D game.
+            </summary>
+            <param name="TransitionPreviousOut">
+            The transition to apply when exiting the current screen.
+            </param>
+            <param name="TransitionCurrentIn">
+            The transition to apply when entering the new screen.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitionPair.#ctor(Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase,Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase)">
+            <summary>
+            Represents a pair of screen transitions for managing in and out transitions
+            when changing screens in a 2D game.
+            </summary>
+            <param name="TransitionPreviousOut">
+            The transition to apply when exiting the current screen.
+            </param>
+            <param name="TransitionCurrentIn">
+            The transition to apply when entering the new screen.
+            </param>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitionPair.TransitionPreviousOut">
+            <summary>
+            The transition to apply when exiting the current screen.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitionPair.TransitionCurrentIn">
+            <summary>
+            The transition to apply when entering the new screen.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Screens.ScreenTransitions.FadeTransition">
+            <summary>
+            Represents a fade transition effect between screens in a 2D game.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.FadeTransition.#ctor(System.Single,System.Boolean,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a new fade transition.
+            </summary>
+            <param name="duration">
+            The duration of the transition in seconds.
+            </param>
+            <param name="fadeOut">
+            If true, the transition will fade out; if false, it will fade in.
+            </param>
+            <param name="fadeColor">
+            The color to use for the fade effect. This will be multiplied by the
+            alpha value based on the transition progress.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.FadeTransition.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Updates the transition's elapsed time based on the game time.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> containing the game time and other
+            drawing parameters.
+            </param>
+        </member>
+        <member name="T:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase">
+            <summary>
+            Base class for screen transitions in a 2D game.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.Elapsed">
+            <summary>
+            The elapsed time since the transition started, in seconds.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.Duration">
+            <summary>
+            The total duration of the transition, in seconds.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.IsFinished">
+            <summary>
+            Indicates whether the transition has finished.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.IsActive">
+            <summary>
+            Indicates whether the transition is currently active (not finished).
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.#ctor(System.Single)">
+            <summary>
+            Base constructor for a screen transition instance.
+            </summary>
+            <param name="duration">
+            The duration of the transition in seconds. This defines how long the
+            transition will take to complete from start to finish.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates the transition's elapsed time based on the game time.
+            </summary>
+            <param name="gameTime">
+            The <see cref="T:Microsoft.Xna.Framework.GameTime"/> that provides timing information for the game,
+            including elapsed time since the last update and total game time.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.Draw(Kernel2D.Drawing.DrawContext)">
+            <summary>
+            Draws the transition effect using the provided <see cref="T:Kernel2D.Drawing.DrawContext"/>.
+            </summary>
+            <param name="context">
+            The <see cref="T:Kernel2D.Drawing.DrawContext"/> that contains the drawing parameters
+            such as the sprite batch, transform matrix, graphics device, and
+            game time.
+            </param>
+        </member>
+        <member name="M:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase.Reset">
+            <summary>
+            Resets the transition's progress so it can be reused.
+            </summary>
+        </member>
+        <member name="T:Kernel2D.Screens.SettingsScreen">
+            <summary>
+            A screen where global game-related settings are shown to the user to
+            view and modify.
+            </summary>
+        </member>
+        <member name="P:Kernel2D.Screens.SettingsScreen.Input">
+            <summary>
+            The <see cref="T:Kernel2D.Input.IInputBridge"/> to use in the current screen.
+            </summary>
+        </member>
+        <member name="M:Kernel2D.Screens.SettingsScreen.#ctor(Microsoft.Xna.Framework.Content.ContentManager,Kernel2D.Input.IInputBridge)">
+            <summary>
+            Creates a new global game settings screen. This screen type should
+            not be used for anything but global game settings, in order to
+            keep a level of separation between in-game menus for in-game world
+            data and execution data.
+            </summary>
+            <param name="content">
+            The <see cref="T:Microsoft.Xna.Framework.Content.ContentManager"/> to load assets from.
+            </param>
+            <param name="input">
+            The <see cref="T:Kernel2D.Input.IInputBridge"/> to use for processing user input
+            in the settings screen.
+            </param>
+        </member>
+    </members>
+</doc>
