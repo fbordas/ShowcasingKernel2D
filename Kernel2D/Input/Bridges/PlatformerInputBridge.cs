@@ -23,7 +23,8 @@ namespace Kernel2D.Input.Bridges
             Dash,
             Jump,
             Shoot,
-            Melee
+            Melee,
+            Pause
         }
 
         private readonly Dictionary<PlatformerBaseAction, string> 
@@ -36,7 +37,8 @@ namespace Kernel2D.Input.Bridges
                 { PlatformerBaseAction.Dash, "dash" },
                 { PlatformerBaseAction.Jump, "jump" },
                 { PlatformerBaseAction.Shoot, "shoot" },
-                { PlatformerBaseAction.Melee, "slash" }
+                { PlatformerBaseAction.Melee, "slash" },
+                { PlatformerBaseAction.Pause, "pause" }
             };
 
         /// <summary>
@@ -111,6 +113,15 @@ namespace Kernel2D.Input.Bridges
         {
             get => _actionNames[PlatformerBaseAction.Melee];
             set => RenameAction(PlatformerBaseAction.Melee, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the action for pausing the game.
+        /// </summary>
+        public string PauseActionName
+        {
+            get => _actionNames[PlatformerBaseAction.Pause];
+            set => RenameAction(PlatformerBaseAction.Pause, value);
         }
 
         #endregion
@@ -287,6 +298,8 @@ namespace Kernel2D.Input.Bridges
                 PlatformerBaseAction.Shoot.ToString().ToLowerInvariant();
             MeleeActionName =
                 PlatformerBaseAction.Melee.ToString().ToLowerInvariant();
+            PauseActionName =
+                PlatformerBaseAction.Pause.ToString().ToLowerInvariant();
             // Register default key mappings for platformer actions.
             foreach (var kvp in _actionNames)
             {

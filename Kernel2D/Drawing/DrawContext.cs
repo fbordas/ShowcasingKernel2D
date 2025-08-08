@@ -18,7 +18,7 @@ namespace Kernel2D.Drawing
         /// used for scaling, rotating, or translating the drawn elements in the
         /// game world.
         /// </summary>
-        public Matrix TransformMatrix { get; }
+        public Matrix TransformMatrix { get; private set; }
         /// <summary>
         /// A white pixel used for screen transition overlays or other effects that
         /// require a solid color texture.
@@ -203,5 +203,13 @@ namespace Kernel2D.Drawing
             Vector2 screen = new(Graphics.Viewport.Width, Graphics.Viewport.Height);
             return (screen - size) / 2f;
         }
+
+        /// <summary>
+        /// Changes the transformation matrix used for drawing operations.
+        /// </summary>
+        /// <param name="matrix">
+        /// The new transformation <see cref="Matrix"/> to apply.
+        /// </param>
+        public void SetTransformMatrix(Matrix matrix) => TransformMatrix = matrix;
     }
 }

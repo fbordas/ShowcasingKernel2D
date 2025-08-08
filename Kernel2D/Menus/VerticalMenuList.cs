@@ -24,6 +24,7 @@ namespace Kernel2D.Menus
         private readonly SpriteFont _font;
         private readonly bool _singleLine = false;
         private readonly bool _carousel = false;
+        private readonly float _height = -1f;
 
         /// <summary>
         /// An optional cursor to display alongside the menu options.
@@ -54,6 +55,27 @@ namespace Kernel2D.Menus
             bool singleLine = false, bool carousel = false)
         {
             Start = start;
+            Spacing = spacing;
+            _font = font;
+            _singleLine = singleLine;
+            _carousel = carousel;
+        }
+
+        /// <summary>
+        /// Creates a new vertical menu at the specified position, with the
+        /// specified spacing between items using the provided font.
+        /// </summary>
+        /// <param name="height">The Y-position to start drawing the centered menu
+        /// to.</param>
+        /// <param name="spacing">The spacing between menu items.</param>
+        /// <param name="font">The font to use to render the menu items.</param>
+        /// <param name="singleLine">Whether to render the menu as a single line.</param>
+        /// <param name="carousel">If rendering as a single line, whether the menu should
+        /// be displayed as a scrolling carousel.</param>
+        public VerticalMenuList(float height, float spacing, SpriteFont font,
+            bool singleLine = false, bool carousel = false)
+        {
+            _height = height;
             Spacing = spacing;
             _font = font;
             _singleLine = singleLine;
@@ -97,7 +119,9 @@ namespace Kernel2D.Menus
                         var option = Options[wrappedIndex];
 
                         float yOffset = offset * Spacing;
-                        option.Position = Start + new Vector2(0, yOffset);
+                        option.Position = 
+                            (_height < 0 ? Start! : context.CenterTextHorizontally(_font, option.LabelText, 1f, _height))
+                            + new Vector2(0, yOffset);
                         bool isSelected = (offset == 0);
                         option.Draw(context, _font, isSelected);
                     }
@@ -106,7 +130,8 @@ namespace Kernel2D.Menus
                 {
                     // Simple single-line display
                     var option = Options[SelectedIndex];
-                    option.Position = Start;
+                    option.Position = 
+                        _height < 0 ? Start : context.CenterTextHorizontally(_font, option.LabelText, 1f, _height);
                     option.Draw(context, _font, true);
                 }
                 return;
@@ -118,7 +143,9 @@ namespace Kernel2D.Menus
             {
                 var option = Options[i];
                 float yOffset = i * Spacing;
-                option.Position = Start + new Vector2(0, yOffset);
+                option.Position = 
+                    (_height < 0 ? Start : context.CenterTextHorizontally(_font, option.LabelText, 1f, _height))
+                    + new Vector2(0, yOffset);
                 bool isSelected = (i == SelectedIndex);
                 option.Draw(context, _font, isSelected);
                 if (isSelected) { selectedPos = option.Position; }

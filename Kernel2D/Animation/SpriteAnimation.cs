@@ -25,5 +25,10 @@
         /// machine.
         /// </summary>
         public HashSet<string> Tags { get; set; } = [];
+
+        /// <summary>
+        /// The <see cref="Spritesheet"/> that this animation belongs to.
+        /// </summary>
+        public Spritesheet? Spritesheet { get; set; } = null;
     }
 }

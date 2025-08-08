@@ -41,6 +41,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TitleText.spritefont
 
+#begin GlobalAssets/lab.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GlobalAssets/lab.png
+
 #begin GlobalAssets/TitleScreen/bread.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -64,18 +76,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GlobalAssets/TitleScreen/titlebg.png;GlobalAssets/TitleScreen/titlebg
-
-#begin GlobalAssets/whitepixel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GlobalAssets/whitepixel.png
 
 #begin Player/zero_base.gif
 /importer:TextureImporter

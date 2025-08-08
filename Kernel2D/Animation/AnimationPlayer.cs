@@ -61,8 +61,13 @@ namespace Kernel2D.Animation
         /// to draw at.</param>
         /// <param name="fx">Any <see cref="SpriteEffects"/> to apply to the current
         /// render.</param>
-        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx)
-            => Draw(context, tex, position, fx, Color.White);
+        /// <param name="depth">
+        /// The depth at which to draw the sprite, allowing for layering of sprites
+        /// on the screen. Defaults to 0.8f, which is a common depth for sprites
+        /// to be drawn above the background but below UI elements.
+        /// </param>
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx, float depth = 0.8f)
+            => Draw(context, tex, position, fx, Color.White, depth);
 
         /// <summary>
         /// Gets the current animation being played by this player.
@@ -84,16 +89,22 @@ namespace Kernel2D.Animation
         /// render.</param>
         /// <param name="tint">Any <see cref="Color"/> to apply as a tint to the current
         /// render. Defaults to <see cref="Color.White"/>.</param>
+        /// <param name="depth">
+        /// The depth at which to draw the sprite, allowing for layering of sprites
+        /// on the screen. Defaults to 0.8f, which is a common depth for sprites
+        /// to be drawn above the background but below UI elements.
+        /// </param>
         /// <remarks>The origin point is set to the bottom center of the sprite frame
         /// to support consistent ground aligning during vertical actions and states like
         /// jumping and falling.</remarks>
-        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx, Color tint)
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position, SpriteEffects fx,
+            Color tint, float depth = 0.8f)
         {
             if (_currentAnim == null || _currentAnimIndex >= _currentAnim.Frames.Count) { return; }
             var frame = _currentAnim.Frames[_currentAnimIndex];
             var origin = new XnaVector(frame.SourceRectangle.Width / 2f, frame.SourceRectangle.Height);
             var drawCommand = new SpriteDrawCommand
-                (tex, position, frame.SourceRectangle, tint, 0f, origin, new(2f, 2f), fx, 0);
+                (tex, position, frame.SourceRectangle, tint, 0f, origin, new(2f, 2f), fx, depth);
             context.DrawingQueue.Enqueue(drawCommand);
         }
 
@@ -108,8 +119,12 @@ namespace Kernel2D.Animation
         /// <param name="tex">The <see cref="Texture2D"/> to display.</param>
         /// <param name="position">The <see cref="XnaVector"/> representing the coordinates
         /// to draw at.</param>
-        public void Draw(DrawContext context, Texture2D tex, XnaVector position) =>
-            Draw(context, tex, position, SpriteEffects.None);
+        /// <param name="depth">The depth at which to draw the sprite, allowing for layering
+        /// of sprites on the screen. Defaults to 0.8f, which is a common depth for sprites
+        /// to be drawn above the background but below UI elements.
+        /// </param>
+        public void Draw(DrawContext context, Texture2D tex, XnaVector position, float depth = 0.8f) =>
+            Draw(context, tex, position, SpriteEffects.None, Color.White, depth);
 
         /// <summary>
         /// Starts playback of the specified animation, resetting its progress and optionally

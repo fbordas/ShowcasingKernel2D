@@ -52,7 +52,8 @@ namespace Kernel2D.Input.Bridges
             LeftDirection = DefaultInputActionNames.LeftDirection,
             RightDirection = DefaultInputActionNames.RightDirection,
             AcceptAction = DefaultInputActionNames.AcceptAction,
-            CancelAction = DefaultInputActionNames.CancelAction;
+            CancelAction = DefaultInputActionNames.CancelAction,
+            PauseAction = DefaultInputActionNames.PauseAction;
 
         /// <summary>
         /// Gets the default action identifier for the up action.
@@ -85,6 +86,11 @@ namespace Kernel2D.Input.Bridges
         public string DefaultCancelAction => CancelAction;
 
         /// <summary>
+        /// Gets the default action identifier for the pause action.
+        /// </summary>
+        public string DefaultPauseAction => PauseAction;
+
+        /// <summary>
         /// A dictionary mapping action identifiers to keyboard keys.
         /// </summary>
         protected readonly Dictionary<string, Keys[]> _keyMappings = new()
@@ -94,7 +100,8 @@ namespace Kernel2D.Input.Bridges
             { DownDirection, [Keys.Down, Keys.S] },
             { RightDirection, [Keys.Right, Keys.D] },
             { AcceptAction, [Keys.Enter] },
-            { CancelAction, [Keys.Back] }
+            { CancelAction, [Keys.Back] },
+            { PauseAction, [Keys.P] }
         };
 
         /// <summary>
@@ -106,8 +113,9 @@ namespace Kernel2D.Input.Bridges
             { LeftDirection, [Buttons.DPadLeft, Buttons.LeftThumbstickLeft] },
             { DownDirection, [Buttons.DPadDown, Buttons.LeftThumbstickDown] },
             { RightDirection, [Buttons.DPadRight, Buttons.LeftThumbstickRight] },
-            { AcceptAction, [Buttons.Start, Buttons.A] },
-            { CancelAction, [Buttons.Back, Buttons.B] }
+            { AcceptAction, [Buttons.A] },
+            { CancelAction, [Buttons.Back, Buttons.B] },
+            { PauseAction, [Buttons.Start] }
         };
 
         /// <summary>

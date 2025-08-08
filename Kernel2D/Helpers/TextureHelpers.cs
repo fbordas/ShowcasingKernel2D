@@ -6,10 +6,9 @@ namespace Kernel2D.Helpers
     /// <summary>
     /// Provides helper methods for working with textures in a 2D game.
     /// </summary>
-    public class TextureHelpers
+    public static class TextureHelpers
     {
-        private static Texture2D _whitePixel;
-
+        private static Texture2D? _whitePixel = null;
         /// <summary>
         /// Gets a white pixel texture that can be used for drawing purposes.
         /// </summary>
@@ -21,10 +20,10 @@ namespace Kernel2D.Helpers
         /// </returns>
         public static Texture2D WhitePixel(GraphicsDevice device)
         {
-            if (_whitePixel == null || _whitePixel.IsDisposed)
+            if (_whitePixel == null)
             {
                 _whitePixel = new Texture2D(device, 1, 1);
-                _whitePixel.SetData(new[] { Color.White });
+                _whitePixel.SetData([Color.White]);
             }
             return _whitePixel;
         }

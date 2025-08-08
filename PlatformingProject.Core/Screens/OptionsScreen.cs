@@ -13,12 +13,13 @@ namespace PlatformingProject.Core.Screens
     internal class OptionsScreen : SettingsScreen
     {
         private readonly SpriteFont _font;
+        private readonly string _titleText = "Main Options Screen (Not working)";
 
         public OptionsScreen(ContentManager content, SpriteFont font, IInputBridge input) 
             : base(content, input)
         {
             _content = content;
-            _font = _content.Load<SpriteFont>(@"Fonts/MenuOption");
+            _font = font;
             optionsTrans = new ScreenTransitionPair(optionsTransOut, optionsTransIn);
             _fullScreen = new ToggleOption("Use full screen", false, null);
             _enableSound = new ToggleOption("Enable sound", true, null);
@@ -30,7 +31,7 @@ namespace PlatformingProject.Core.Screens
                 ScreenManager.Instance.ChangeScreen("TitleScreen", content, optionsTrans);
             });
 
-            _menuItems = new(new(80f, 200f), 120, _font);
+            _menuItems = new VerticalMenuList(new Vector2(40f, 180f), 45f, _font);
             _menuItems.AddOption(_fullScreen);
             _menuItems.AddOption(_enableSound);
             _menuItems.AddOption(_resolutions);
@@ -44,6 +45,9 @@ namespace PlatformingProject.Core.Screens
         {
             base.Draw(context);
             context.Graphics.Clear(Color.DarkRed);
+            var txcmd = new TextDrawCommand(_font, _titleText, context.CenterTextHorizontally(_font, _titleText, 1f, 50f),
+                Color.Green, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.8f);
+            context.DrawingQueue.Enqueue(txcmd);
             _menuItems.Draw(context);
         }
 

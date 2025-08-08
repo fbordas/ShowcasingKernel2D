@@ -16,7 +16,7 @@ namespace PlatformingProject.Core.Screens
         SpriteFont _titleFont;
 
         private int _selectedIndex = 0;
-        private readonly string titleText = "   Test\nMain Menu\n  Screen";
+        private readonly string titleText = "Main Menu Screen";
 
         VerticalMenuList _menuList;
         LabelOption _start;
@@ -70,18 +70,18 @@ namespace PlatformingProject.Core.Screens
             base.Draw(context);
             context.Graphics.Clear(Color.Navy);
             var bg = _content.Load<Texture2D>("GlobalAssets/TitleScreen/titlebg");
-            float titleScaling = 1f;
-            float menuScaling = 1f;
-            float bgScaling = 1.2f;
+            float titleScaling = 0.6f;
+            float menuScaling = 0.8f;
+            float bgScaling = 0.7f;
             var bgLocation = context.CenterImageOnScreen(bg, bgScaling);
-            var titleLocation = context.CenterTextHorizontally(_titleFont, titleText, titleScaling, 100);
-            var menuLocation = context.CenterTextHorizontally(_menuFont, _menuList.SelectedItem, menuScaling, 800);
+            var titleLocation = context.CenterTextHorizontally(_titleFont, titleText, titleScaling, 50);
+            var menuLocation = context.CenterTextHorizontally(_menuFont, _menuList.SelectedItem, menuScaling, 400);
             context.DrawingQueue.Enqueue(new SpriteDrawCommand(bg, bgLocation, null, Color.White,
                 0, Vector2.Zero, new(bgScaling, bgScaling), SpriteEffects.None, 1f));
             context.DrawingQueue.Enqueue(new TextDrawCommand(_titleFont, titleText, titleLocation,
-                Color.White, 0, Vector2.Zero, titleScaling, SpriteEffects.None, 0));
+                Color.White, 0, Vector2.Zero, titleScaling, SpriteEffects.None, 0.8f));
             context.DrawingQueue.Enqueue(new TextDrawCommand(_menuFont, _menuList.SelectedItem, menuLocation,
-                Color.Yellow, 0, Vector2.Zero, menuScaling, SpriteEffects.None, 0));
+                Color.Yellow, 0, Vector2.Zero, menuScaling, SpriteEffects.None, 0.8f));
         }
     }
 }

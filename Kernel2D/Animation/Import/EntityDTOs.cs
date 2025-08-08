@@ -86,5 +86,4 @@
         /// </summary>
         public int Height { get; set; }
     }
-
 }

@@ -14,7 +14,7 @@ namespace Kernel2D.Menus
         /// <summary>
         /// The texture used for the cursor.
         /// </summary>
-        public Texture2D Texture { get; }
+        public Texture2D? Texture { get; }
 
         /// <summary>
         /// Optional animation for the cursor.
@@ -25,6 +25,11 @@ namespace Kernel2D.Menus
         /// The offset from the option position where the cursor will be drawn.
         /// </summary>
         public Vector2 Offset { get; set; } = new(-32, 0); // Default: left of text
+
+        /// <summary>
+        /// The scale of the cursor texture.
+        /// </summary>
+        public Vector2 Scale { get; set; } = Vector2.One;
 
         /// <summary>
         /// The layer depth at which the cursor will be drawn.
@@ -63,9 +68,34 @@ namespace Kernel2D.Menus
         /// </param>
         public void Draw(DrawContext context)
         {
-            context.DrawingQueue.Enqueue(new SpriteDrawCommand
-                (Texture, Position, null, Color.White, 0f, Vector2.Zero, 
-                Vector2.One, SpriteEffects.None, LayerDepth));
+            if (Animation == null || Animation.Spritesheet == null 
+                || Animation.Spritesheet!.Texture == null)
+            {
+                if (Texture == null) { return; }
+                context.DrawingQueue.Enqueue(new SpriteDrawCommand
+                    (Texture!, Position, SourceRectangle: null, Color: Color.White,
+                    Rotation: 0f, Origin: Vector2.Zero, Scale, SpriteEffects.None,
+                    LayerDepth));
+                return;
+            }
+
+            elapsedTime += (float)context.GameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsedTime >= Animation.Frames[currentFrameIndex].Duration)
+            {
+                currentFrameIndex++;
+                if (currentFrameIndex >= Animation.Frames.Count)
+                { currentFrameIndex = Animation.Loop ? 0 : Animation.Frames.Count - 1; }
+                
+                elapsedTime = 0f;
+            }
+
+            context.DrawingQueue.Enqueue(new SpriteDrawCommand(
+                Animation.Spritesheet!.Texture!,
+                Position, Animation.Frames[currentFrameIndex].SourceRectangle,
+                Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None,
+                LayerDepth));
         }
+        private float elapsedTime = 0f;
+        private int currentFrameIndex = 0;
     }
 }

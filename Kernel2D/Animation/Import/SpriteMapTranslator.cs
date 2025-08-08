@@ -71,6 +71,7 @@ namespace Kernel2D.Animation.Import
                     });
                 }
                 sheet.Animations[anim.Name] = anim;
+                anim.Spritesheet = sheet;
             }
             return sheet;
         }

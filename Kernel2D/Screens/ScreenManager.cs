@@ -21,6 +21,7 @@ namespace Kernel2D.Screens
         private ScreenTransitionBase? _currentTransition;
         private ScreenTransitionBase? _outTransition;
         private ScreenTransitionBase? _inTransition;
+        private readonly Stack<ScreenBase> _screenStack = new();
 
         /// <summary>
         /// Gets the current screen being managed by the ScreenManager.
@@ -95,9 +96,16 @@ namespace Kernel2D.Screens
         {
             _currentScreen?.UnloadContent();
             _currentScreen = _pendingScreen;
-            _currentScreen?.LoadContent(_content!);
             _pendingScreen = null;
 
+            _screenStack.Clear();
+            if (_currentScreen != null)
+            { 
+                _screenStack.Push(_currentScreen!);
+                _currentScreen!.LoadContent(_content!);
+            }
+
+            
             if (_inTransition != null)
             {
                 _inTransition.Reset();
@@ -109,6 +117,58 @@ namespace Kernel2D.Screens
             }
         }
 
+        /// <summary>
+        /// Pushes a new screen onto the screen stack, loading its content
+        /// and applying any specified transitions over whatever existing
+        /// screen is currently active.
+        /// </summary>
+        /// <param name="newScreen">
+        /// The new screen to push onto the stack. This should be an instance
+        /// of <see cref="ScreenBase"/> that has been registered with the
+        /// ScreenManager.
+        /// </param>
+        /// <param name="content">
+        /// The <see cref="ContentManager"/> used to load the content for the
+        /// new screen.
+        /// </param>
+        public void PushScreen(ScreenBase newScreen, ContentManager content,
+            ScreenTransitionPair? transitions = null)
+        {
+            _content = content;
+            _inTransition = transitions?.TransitionCurrentIn;
+
+            _screenStack.Push(newScreen);
+            newScreen.LoadContent(_content!);
+
+            _currentScreen = newScreen;
+
+            if (_inTransition != null)
+            {
+                _inTransition.Reset();
+                _currentTransition = _inTransition;
+            }
+        }
+
+        /// <summary>
+        /// Removes the top screen from the screen stack, unloading its content
+        /// and applying any specified transitions to the previous screen.
+        /// </summary>
+        public void PopScreen(ScreenTransitionPair? transitions = null)
+        {
+            if (_screenStack.Count <= 1) return; // no screen to pop
+
+            var oldScreen = _screenStack.Pop();
+            oldScreen.UnloadContent();
+
+            _currentScreen = _screenStack.Peek();
+
+            _inTransition = transitions?.TransitionPreviousOut;
+            if (_inTransition != null)
+            {
+                _inTransition.Reset();
+                _currentTransition = _inTransition;
+            }
+        }
 
         /// <summary>
         /// Updates the current screen with the given <see cref="GameTime"/>.
@@ -121,24 +181,23 @@ namespace Kernel2D.Screens
             if (_currentTransition != null)
             {
                 _currentTransition.Update(gameTime);
-
                 if (_currentTransition.IsFinished)
                 {
                     if (_currentTransition == _outTransition)
                     {
-                        _outTransition = null;
                         CommitScreenChange();
                     }
-                    else
+                    else if (_currentTransition == _inTransition)
                     {
                         _inTransition = null;
+                        _outTransition = null;
                         _currentTransition = null;
                     }
                 }
             }
-            else
+            else if (_screenStack.Count > 0)
             {
-                _currentScreen?.Update(gameTime);
+                _screenStack.Peek().Update(gameTime);
             }
         }
 
@@ -152,17 +211,28 @@ namespace Kernel2D.Screens
         /// </param>
         public void Draw(DrawContext context)
         {
-            if (_currentScreen == null)
+            if (_screenStack.Count == 0)
             {
-                Debugger.WriteLine("ScreenManager.Draw() | No current screen -- checking for transitions...");
+                Debugger.WriteLine
+                    ("ScreenManager.Draw() | No current screen -- checking for transitions...");
                 if (_currentTransition != null)
                 {
-                    Debugger.WriteLine($"ScreenManager.Draw() | Drawing transition: {_currentTransition.GetType().Name}");
+                    Debugger.WriteLine
+                        ($"ScreenManager.Draw() | Drawing transition: {_currentTransition.GetType().Name}");
                 }
+                return;
             }
-            _currentScreen?.Draw(context);
+
+            // Draw all screens in the stack, bottom to top
+            foreach (var screen in _screenStack.Reverse())
+            {
+                screen.Draw(context);
+            }
+
+            // Draw the transition on top if there is one
             _currentTransition?.Draw(context);
         }
+
 
         /// <summary>
         /// Gets the singleton instance of the ScreenManager.

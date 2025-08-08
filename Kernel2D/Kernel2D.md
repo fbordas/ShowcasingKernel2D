@@ -151,25 +151,23 @@ Solution/
 │   ├── Helpers/
 │   ├── Physics/
 │   └── Resources/
-├── YourGameProject/                    # Game-specific logic
-│   ├── Core/
-│   │   ├── GameEntities/
-│   │   └── Screens/
-│   ├── Content/
-│   │   ├── Fonts/
-│   │   ├── GlobalAssets/
-│   │   │   └── whitepixel.png          # Required for screen-fading functionality
-│   │   ├── Player/
-│   │   │   └── playerspritesheet.gif   # Texure content file
-│   │   └── Enemies/
-│   │       ├── enemyspritesheet1.gif   # Texture file, must match resource path
-|   |       └── enemyspritesheet2.gif   # Texture file, must match resource path
-│   └── Resources/
-│       ├── Player/
-│       │   └── playerspritesheet.json  # Sprite-mapping file, must match texture path
-│       └── Enemies/
-│           ├── enemyspritesheet1.json  # Sprite-mapping file, must match texture path
-|           └── enemyspritesheet2.json  # Sprite-mapping file, must match texture path
+└── YourGameProject/                    # Game-specific logic
+    ├── Core/
+    │   ├── GameEntities/
+    │   └── Screens/
+    ├── Content/
+    │   ├── Fonts/
+    │   ├── Player/
+    │   │   └── playerspritesheet.gif   # Texure content file
+    │   └── Enemies/
+    │       ├── enemyspritesheet1.gif   # Texture file, must match resource path
+    |       └── enemyspritesheet2.gif   # Texture file, must match resource path
+    └── Resources/
+        ├── Player/
+        │   └── playerspritesheet.json  # Sprite-mapping file, must match texture path
+        └── Enemies/
+            ├── enemyspritesheet1.json  # Sprite-mapping file, must match texture path
+            └── enemyspritesheet2.json  # Sprite-mapping file, must match texture path
 ```
 
 ---
@@ -204,4 +202,4 @@ Solution/
 
 ---
 
-*This file will grow and evolve with Kernel2D as more systems and utilities are added. Contributions welcome!*
+*This file will grow and evolve with Kernel2D as more systems and utilities are added.*

@@ -46,10 +46,10 @@ namespace PlatformingProject.Core
 
         protected override void Initialize()
         {
-            _graphics.IsFullScreen = false;
-            _graphics.PreferredBackBufferWidth = BaseWidth;
-            _graphics.PreferredBackBufferHeight = BaseHeight;
-            _graphics.ApplyChanges();
+            //_graphics.IsFullScreen = false;
+            //_graphics.PreferredBackBufferWidth = BaseWidth;
+            //_graphics.PreferredBackBufferHeight = BaseHeight;
+            //_graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -59,17 +59,22 @@ namespace PlatformingProject.Core
             sb = new SpriteBatch(GraphicsDevice);
             _font = Content.Load<SpriteFont>(@"Fonts\BaseText");
 
+            _optionsFont = Content.Load<SpriteFont>(@"Fonts/MenuOption");
+
             var transIn = new FadeTransition(1f, true, Color.White);
 
             _manager.RegisterScreen("OptionsSubMenu", 
-                new OptionsSubScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+                new OptionsSubScreen(Content, _optionsFont, InputBridgeContainer.Get<HIDMenuInputBridge>()));
             _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
             _manager.RegisterScreen("TitleScreen", 
                 new TitleScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
             _manager.RegisterScreen("OptionsScreen", 
-                new OptionsScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+                new OptionsScreen(Content, _optionsFont, InputBridgeContainer.Get<HIDMenuInputBridge>()));
             _manager.RegisterScreen("GameplayScreen", 
                 new PlatformerGameTestScreen(Content, InputBridgeContainer.Get<PlatformerInputBridge>()));
+            _manager.RegisterScreen("GameOverScreen", new GameOverScreen(_font));
+            _manager.RegisterScreen("PauseScreen", 
+                new PauseScreen(Content, InputBridgeContainer.Get<HIDMenuInputBridge>()));
             _manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(null, transIn));
         }
 
@@ -134,6 +139,7 @@ namespace PlatformingProject.Core
                 ? $"Keys: {string.Join(", ", keys.Select(k => k.ToString()))}"
                 : "Keys: None";
             string padButtons = "Buttons: ";
+            string wSize = $"{_graphics.PreferredBackBufferWidth}x{_graphics.PreferredBackBufferHeight}";
             if (gamepad.IsConnected)
             {
                 padButtons += string.Join(", ", new[]
@@ -152,11 +158,12 @@ namespace PlatformingProject.Core
             }
             else
             { padButtons += "None (Gamepad not connected)"; }
-            Window.Title = $"{keyString} | {padButtons}";
+            Window.Title = $"{wSize} | {keyString} | {padButtons}";
         }
 
         private SpriteBatch sb = null;
         private SpriteFont _font = null;
+        private SpriteFont _optionsFont = null;
         private readonly ScreenManager _manager = null;
         private DrawContext context;
         private readonly DrawQueue drawingqueue = new();

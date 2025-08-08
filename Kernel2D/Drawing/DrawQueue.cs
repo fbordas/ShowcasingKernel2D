@@ -42,8 +42,8 @@ namespace Kernel2D.Drawing
                         break;
                     case TextDrawCommand text:
                         sb.DrawString(text.SpriteFont, text.Text, text.Position,
-                                text.Color, text.Rotation, text.Origin,
-                                text.Scale, text.Effects, text.LayerDepth);
+                            text.Color, text.Rotation, text.Origin,
+                            text.Scale, text.Effects, text.LayerDepth);
                         break;
                     default:
                         Debugger.WriteLine($"Unsupported draw command: {command.GetType().Name}");

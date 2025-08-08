@@ -1,24 +1,60 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+
+using Kernel2D.Drawing;
+using Kernel2D.Input;
+using Kernel2D.Input.Bridges;
+using Kernel2D.Input.Bridges.Menu;
+using Kernel2D.Screens;
+using Kernel2D.Screens.ScreenTransitions;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
+using PuzzleGame.Core.Screens;
+
+using Debugger = Kernel2D.Helpers.DebugHelpers;
 
 namespace PuzzleGame.Core
 {
     public class PuzzleGame : Game
     {
         private GraphicsDeviceManager _graphics;
+        private int BaseWidth = 1280;
+        private int BaseHeight = 960;
         private SpriteBatch _spriteBatch;
+        private ScreenManager _manager;
+        private DrawContext _context;
+        private readonly DrawQueue _drawingQueue = new();
+        private SpriteFont _font;
+
+        /// <summary>
+        /// Indicates if the game is running on a mobile platform.
+        /// </summary>
+        public readonly static bool IsMobile = OperatingSystem.IsAndroid() || OperatingSystem.IsIOS();
+
+        /// <summary>
+        /// Indicates if the game is running on a desktop platform.
+        /// </summary>
+        public readonly static bool IsDesktop = OperatingSystem.IsMacOS() || OperatingSystem.IsLinux() || OperatingSystem.IsWindows();
 
         public PuzzleGame()
         {
             _graphics = new GraphicsDeviceManager(this);
+            Services.AddService(typeof(GraphicsDeviceManager), _graphics);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            _manager = ScreenManager.Instance;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.IsFullScreen = false;
+            _graphics.PreferredBackBufferWidth = BaseWidth;
+            _graphics.PreferredBackBufferHeight = BaseHeight;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -27,7 +63,20 @@ namespace PuzzleGame.Core
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _font = Content.Load<SpriteFont>(@"Fonts\BaseText");
+
+            var transIn = new FadeTransition(1f, true, Color.White);
+
+            _manager.RegisterScreen("OptionsSubMenu",
+                new OptionsSubScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+            _manager.RegisterScreen("SplashScreen", new SplashScreen(_font));
+            _manager.RegisterScreen("TitleScreen",
+                new TitleScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+            _manager.RegisterScreen("OptionsScreen",
+                new OptionsScreen(Content, _font, InputBridgeContainer.Get<HIDMenuInputBridge>()));
+            //_manager.RegisterScreen("GameplayScreen",
+            //    new PlatformerGameTestScreen(Content, InputBridgeContainer.Get<PlatformerInputBridge>()));
+            //_manager.ChangeScreen("SplashScreen", Content, new ScreenTransitionPair(null, transIn));
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,6 +90,12 @@ namespace PuzzleGame.Core
 
             if (keyComboPressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
 
+            if (_manager.CurrentScreen != null)
+            {
+                _manager.Update(gameTime);
+                _manager.CurrentScreen.ExitRequested += Exit;
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -48,9 +103,24 @@ namespace PuzzleGame.Core
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            Debugger.WriteLine($"Game.Draw()   | {gameTime.TotalGameTime.TotalMilliseconds}");
+            GraphicsDevice.Clear(Color.Gray);
+            base.Draw(gameTime);
 
-            // TODO: Add your drawing code here
+            _context ??= new DrawContext
+                (_drawingQueue, Matrix.Identity, GraphicsDevice, gameTime);
+
+            if (_context.DrawingQueue == null)
+            {
+                Debugger.WriteLine("SpriteBatch in DrawContext currently null!");
+                return;
+            }
+
+            _context.DrawingQueue.ClearQueue();
+            _manager.Draw(_context);
+            _spriteBatch.Begin(transformMatrix: _context.TransformMatrix);
+            _context.DrawingQueue.Flush(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

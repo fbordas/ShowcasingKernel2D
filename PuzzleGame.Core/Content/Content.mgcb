@@ -13,7 +13,35 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin GlobalAssets/whitepixel.png
+#begin Fonts/BaseText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BaseText.spritefont
+
+#begin Fonts/MenuOption.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MenuOption.spritefont
+
+#begin Fonts/Splash.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Splash.spritefont
+
+#begin Fonts/TitleText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TitleText.spritefont
+
+#begin GlobalAssets/TitleScreen/bread.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,5 +51,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GlobalAssets/whitepixel.png
+/build:GlobalAssets/TitleScreen/bread.png
 
