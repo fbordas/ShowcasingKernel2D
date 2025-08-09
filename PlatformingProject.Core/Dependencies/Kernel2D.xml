@@ -1983,13 +1983,14 @@
             one of the listed options. The name is purposefully misspelled in reference
             to an old Super Mario Maker community inside joke.</param>
         </member>
-        <member name="M:Kernel2D.Menus.ChoiceOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+        <member name="M:Kernel2D.Menus.ChoiceOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Single)">
             <summary>
             Draws the current menu option onscreen.
             </summary>
             <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
             <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
             <param name="selected">Whether the current menu option is selected or not.</param>
+            <param name="textScaling">The scale factor to apply to the text when drawing it.</param>
         </member>
         <member name="M:Kernel2D.Menus.ChoiceOption.OnAccept">
             <summary>
@@ -2042,13 +2043,16 @@
             When this option is selected, fires the callback action, if any.
             </summary>
         </member>
-        <member name="M:Kernel2D.Menus.LabelOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+        <member name="M:Kernel2D.Menus.LabelOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Single)">
             <summary>
             Draws the current menu option onscreen.
             </summary>
             <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
             <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
             <param name="selected">Whether the current menu option is selected or not.</param>
+            <param name="scale">
+            The scale factor to apply to the text when drawing it.
+            </param>
         </member>
         <member name="M:Kernel2D.Menus.LabelOption.Update(Kernel2D.Input.IMenuInputBridge)">
             <summary>
@@ -2154,7 +2158,7 @@
             </summary>
             <param name="labelText">The label text to use for the menu option.</param>
         </member>
-        <member name="M:Kernel2D.Menus.MenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+        <member name="M:Kernel2D.Menus.MenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Single)">
             <summary>
             Draws the current menu option using the provided <see cref="T:Kernel2D.Drawing.DrawContext"/>
             and <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/>, and determines whether the option is currently
@@ -2168,6 +2172,8 @@
             </param>
             <param name="selected">Whether the current menu option is selected
             or not.</param>
+            <param name="textScaling">The scale factor to apply to the text when
+            drawing it.</param>
         </member>
         <member name="M:Kernel2D.Menus.MenuOption.OnLeft">
             <summary>
@@ -2222,13 +2228,14 @@
             <param name="transIn">(Optional) A <see cref="T:Kernel2D.Screens.ScreenTransitions.ScreenTransitionBase"/> effect to
             use when entering the next screen.</param>
         </member>
-        <member name="M:Kernel2D.Menus.SubMenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+        <member name="M:Kernel2D.Menus.SubMenuOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Single)">
             <summary>
             Draws the current menu option onscreen.
             </summary>
             <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
             <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
             <param name="selected">Whether the current menu option is selected or not.</param>
+            <param name="textScaling">The scale factor to apply to the text when drawing it.</param>
         </member>
         <member name="M:Kernel2D.Menus.SubMenuOption.OnAccept">
             <summary>
@@ -2269,13 +2276,14 @@
             <param name="defaultValue">The default value of the toggle.</param>
             <param name="onToggle">The action to execute when the toggle state is changed</param>
         </member>
-        <member name="M:Kernel2D.Menus.ToggleOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean)">
+        <member name="M:Kernel2D.Menus.ToggleOption.Draw(Kernel2D.Drawing.DrawContext,Microsoft.Xna.Framework.Graphics.SpriteFont,System.Boolean,System.Single)">
             <summary>
             Draws the current menu option onscreen.
             </summary>
             <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use to draw.</param>
             <param name="font">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteFont"/> to render the text with.</param>
             <param name="selected">Whether the current menu option is selected or not.</param>
+            <param name="textScaling">The scale factor to apply to the text when drawing it.</param>
         </member>
         <member name="M:Kernel2D.Menus.ToggleOption.OnAccept">
             <summary>
@@ -2365,12 +2373,14 @@
             </summary>
             <param name="id">The ID of the option to remove.</param>
         </member>
-        <member name="M:Kernel2D.Menus.VerticalMenuList.Draw(Kernel2D.Drawing.DrawContext)">
+        <member name="M:Kernel2D.Menus.VerticalMenuList.Draw(Kernel2D.Drawing.DrawContext,System.Single)">
             <summary>
             Renders the current menu to the screen.
             </summary>
             <param name="context">The <see cref="T:Kernel2D.Drawing.DrawContext"/> to use
             to draw elements onscreen.</param>
+            <param name="textScaling">The scale factor to apply to the text when
+            drawing it.</param>
         </member>
         <member name="M:Kernel2D.Menus.VerticalMenuList.Update(Kernel2D.Input.IMenuInputBridge)">
             <summary>
